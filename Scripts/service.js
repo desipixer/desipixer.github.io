@@ -99,7 +99,6 @@
                         blogURL: 'http://hq-bollywood.blogspot.com/',
                         category: 1
                     },
-                     
                     {
                         blogId: 7613699008692966649,
                         blogURL: 'http://www.celebsnext.com/',
@@ -204,8 +203,8 @@
                         blogURL: 'http://teluguclue.blogspot.com/',
                         category: 1
                     },{
-                        blogId: 3570505240870034981,
-                        blogURL: 'http://illeana-hotphotos.blogspot.com/',
+                        blogId: 5648086490419664967,
+                        blogURL: 'http://actresscelebritygallery.blogspot.com/',
                         category: 1
                     }
 
