@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html ng-app="myApp">
+   <head>
+      <title>Angular Intermediate</title>
+      <script src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+      <link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" />
+      <script src="https://code.angularjs.org/1.2.18/angular-route.min.js"></script>
+      <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+      <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+      <script src="Scripts/app.js"></script>
+      <script src="Scripts/service.js"></script>
+      <script src="Scripts/controller.js"></script>
+      <style>
+         img {
+             height : 320px;
+             width : 250px;
+         }
+      </style>
+   </head>
+   <body>
+      <div ng-controller="homeCtrl">
+        
+               <table>
+                  <tr>
+                     <td>
+                        <a href="index.html" ><button class="btn btn-info"> HOME </button> </a> Search : <input ng-model="searchText" />
+                     </td>
+                     
+                     <td>
+                        <button ng-click="getPreviousPosts(siteList)"> PREVIOUS</button>
+                        <button ng-click="getNextPosts(siteList)" > NEXT</button>
+                        <select ng-model="siteList" ng-change="selectedSite()">
+                           <option ng-repeat="site in sitesList" value="{{site.blogURL}}">
+                              {{site.blogURL}}
+                           </option>
+                        </select>
+                        <button id="btnLogin" ng-click="userLogin()" ng-hide="IsLoggedIn()" class="btn btn-primary">
+                        Login
+                        </button>
+                        <button ng-hide="!(IsLoggedIn())" class="btn btn-danger">
+                        LogOut
+                        </button>
+                     </td>
+                     <td>
+                        Get Blog : <input type="text" ng-model="txtBlogName" /> 
+                        <button ng-click="getBlogName()" > Get Blog </button>
+                     </td>
+                  </tr>
+                  <tr>
+                  <td>
+                        BLOG ID : {{blogId}}  </td> <td> TOTAL ITEMS : {{totalItems}}
+                     </td>
+                     
+                  </tr>
+               </table>
+            
+         <div ng-hide="isActive('')">
+            <span ng-repeat="thumb in imageThumb | filter : searchText">
+            <a ng-href="#content/{{thumb.index}}">    <img ng-src="{{thumb.imgThumb}}" title="{{thumb.title}}" /></a>
+            </span>
+         </div>
+         <div ng-view>
+         
+      </div>
+   </body>
+</html>
