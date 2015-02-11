@@ -101,6 +101,7 @@
                         category: 1
                     },
 <<<<<<< HEAD
+<<<<<<< HEAD
                     {
                         blogId: 2951969169923408846,
                         blogURL: 'http://fultohot.blogspot.com/',
@@ -120,10 +121,15 @@
                         blogId: 7613699008692966649,
                         blogURL: 'http://www.celebsnext.com/',
 =======
+=======
+>>>>>>> parent of e675f41... Services Updated
 
                      {
                         blogId: 3570505240870034981,
                         blogURL: 'http://illeana-hotphotos.blogspot.com/',
+<<<<<<< HEAD
+>>>>>>> parent of e675f41... Services Updated
+=======
 >>>>>>> parent of e675f41... Services Updated
                         category: 1
                     }, {
@@ -227,6 +233,7 @@
                         blogURL: 'http://heroines.aninani.com/',
                         category: 1
 <<<<<<< HEAD
+<<<<<<< HEAD
                     },
                     ,{
                         blogId: 5489822191765425450,
@@ -237,6 +244,8 @@
                         blogId: 1607837477387514460,
                         blogURL: 'http://teluguclue.blogspot.com/',
                         category: 1
+=======
+>>>>>>> parent of e675f41... Services Updated
 =======
 >>>>>>> parent of e675f41... Services Updated
                     }
