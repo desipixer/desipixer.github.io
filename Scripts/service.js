@@ -202,10 +202,6 @@
                         blogId: 1607837477387514460,
                         blogURL: 'http://teluguclue.blogspot.com/',
                         category: 1
-                    },{
-                        blogId: 5648086490419664967,
-                        blogURL: 'http://actresscelebritygallery.blogspot.com/',
-                        category: 1
                     }
 
                     ];
