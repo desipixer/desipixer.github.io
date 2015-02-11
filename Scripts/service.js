@@ -4,7 +4,7 @@
     var blogId = "";
     var startIndex = 0001;
     var totalItems = 0001;
-    var bloggerKey = "AIzaSyCIEuVxD1SFWMNBTtc24gBtuVExstlSGEQ";
+    var bloggerKey = "AIzaSyBxq8RSFUIDS77LW8qdyz9AsRra1WG18J0";
 
     this.getBlogId = function (blogName) {
         var deferred = $q.defer();
@@ -21,22 +21,6 @@
     {
         //var startIndex = 0001;
         var deferred = $q.defer();
-        /*if(blogId == 4985646326158465936 //tollywoodblog.in
-            )
-        {
-            var URL = "https://www.googleapis.com/blogger/v3/blogs/"+ blogId +"/posts?key=AIzaSyAb3tFTPvsduIR2xopIVpYhwKMQ5ac_5Po&maxResults=20";
-            $http.get(URL).success(function(data) {
-                deferred.resolve(data);
-                var arr1 = [];
-                angular.forEach(data.items, function (entryX) {
-                    arr1.push(entryX);
-                });
-                angular.copy(arr1, entries);
-                debugger;
-            });
-        }
-        else
-        {*/
             var URL = "https://www.blogger.com/feeds/" + blogId + "/posts/default?start-index=" + startIndex + "&max-results=500&alt=json&callback=JSON_CALLBACK";
             $http.jsonp(URL).success(function (data) {
                 deferred.resolve(data);
@@ -46,7 +30,7 @@
                 });
                 angular.copy(arr1, entries);
         });
-       /* }*/
+      
         return deferred.promise;
     }
 
@@ -100,12 +84,28 @@
                         blogURL: 'http://www.desipixer.in/',
                         category: 1
                     },
-
-                     {
-                        blogId: 3570505240870034981,
-                        blogURL: 'http://illeana-hotphotos.blogspot.com/',
+                    {
+                        blogId: 2951969169923408846,
+                        blogURL: 'http://fultohot.blogspot.com/',
                         category: 1
-                    }, {
+                    },
+                    {
+                        blogId: 3293309843232706023,
+                        blogURL: 'http://www.searchtamilmovies.com/',
+                        category: 1
+                    },
+                    {
+                        blogId: 719302156971941098,
+                        blogURL: 'http://hq-bollywood.blogspot.com/',
+                        category: 1
+                    },
+                     
+                    {
+                        blogId: 7613699008692966649,
+                        blogURL: 'http://www.celebsnext.com/',
+                        category: 1
+                    },
+                    {
                         blogId: 4257078420076874919,
                         blogURL: 'http://ssmusictheblog.blogspot.com/',
                         category: 1
@@ -117,11 +117,7 @@
                         blogId: 3568736907693451574,
                         blogURL: 'http://filmytrend.blogspot.com/',
                         category: 1
-                    }, {
-                        blogId: 2951969169923408846,
-                        blogURL: 'http://fultohot.blogspot.com/',
-                        category: 1
-                    }, {
+                    },  {
                         blogId: 7294698807437562935,
                         blogURL: 'http://tollywoodtolly.blogspot.com/',
                         category: 1
@@ -145,11 +141,7 @@
                         blogId: 1259465806147598254,
                         blogURL: 'http://way2newsblog.blogspot.com/',
                         category: 1
-                    }, {
-                        blogId: 719302156971941098,
-                        blogURL: 'http://hq-bollywood.blogspot.com/',
-                        category: 1
-                    }, {
+                    },  {
                         blogId: 530660620295703790,
                         blogURL: 'http://www.hdpictureswallpapers.com/',
                         category: 1
@@ -157,11 +149,7 @@
                         blogId: 4919960343339905419,
                         blogURL: 'http://www.indianbeast.com/',
                         category: 1
-                    }, {
-                        blogId: 3293309843232706023,
-                        blogURL: 'http://www.searchtamilmovies.com/',
-                        category: 1
-                    },  {
+                    },   {
                         blogId: 8351995278725523676,
                         blogURL: 'http://cinema.nilavaithedi.biz/',
                         category: 1
@@ -205,7 +193,22 @@
                         blogId: 1651717035288674953,
                         blogURL: 'http://heroines.aninani.com/',
                         category: 1
+                    },
+                    ,{
+                        blogId: 5489822191765425450,
+                        blogURL: 'http://actress-photo-shoot.blogspot.com/',
+                        category: 1
+                    },
+                    ,{
+                        blogId: 1607837477387514460,
+                        blogURL: 'http://teluguclue.blogspot.com/',
+                        category: 1
+                    },{
+                        blogId: 3570505240870034981,
+                        blogURL: 'http://illeana-hotphotos.blogspot.com/',
+                        category: 1
                     }
+
                     ];
         return siteList;
     }
@@ -229,7 +232,7 @@ app.service('loginService', ['$http', '$q', function ($http, $q) {
     this.logMeIn = function ()
     {
         var parameters = {
-            client_id: "275853503857-5i1500ilc6ldlmgt6oldhbd8kpa4evkp.apps.googleusercontent.com",
+            client_id: "215192364453-1vbjuf6f3r0vka9b5q0hj2mqj212dr9o.apps.googleusercontent.com",
             immediate: false,
             response_type: "token",
             scope: "http://www.blogger.com/feeds/"
@@ -257,31 +260,11 @@ app.service('loginService', ['$http', '$q', function ($http, $q) {
 app.service('postService', ['$http', '$q','loginService', function ($http, $q,loginService) {
 
     this.postFunction = function (postObject) {
-        var title = postObject.postTitle + " ★ Desipixer  ★ Latest Photos ♥ Hot Stills ♥ Spicy Images  ♥ DESI ACTRESS PICTURES ";
+        var title = postObject.postTitle + " ★ Desipixer  ★ ♥ DESI ACTRESS PICTURES ";
         var content = postObject.postContent;
         var blogId = postObject.blogId;
         
-        /*loginService.getToken().then(function (data) {
-            gapi.client.load('blogger', 'v3', function () {
-                var request = gapi.client.blogger.posts.insert({
-                    "blogId": blogId,
-                    "resource": {
-                        "title": title,
-                        "content": content
-                    }
-                });
-                
-                request.execute(function (response) {
-                    if (response.error != null) {
-                        alert(response.error.message);
-                    }
-                    else {
-                        alert('Posted Successfully');
-                    }
-                   
-                });
-            });
-    });*/
+      
         loginService.getToken().then(function (data) {
             var accessToken = data.access_token;
             var myJSObject = { "content": content, "title": title };
