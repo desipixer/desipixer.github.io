@@ -190,7 +190,8 @@
         getBlogList: this.getBlogList,
         entries: entries,
         blogId: blogId,
-        startIndex : startIndex
+        startIndex : startIndex,
+        bloggerKey : bloggerKey
     }
 
 }]);

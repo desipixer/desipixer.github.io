@@ -101,7 +101,7 @@
     $scope.sortBlogs = function(){
         var tempArray = [];
         for(var i=0; i < $scope.sitesList.length; i++){
-            var tempURL = "https://www.googleapis.com/blogger/v3/blogs/byurl?url="+thatSiteList[i].blogURL +"&key="+thatSecretData.key;
+            var tempURL = "https://www.googleapis.com/blogger/v3/blogs/byurl?url="+$scope.sitesList[i].blogURL +"&key="+imageService.bloggerKey;
             tempArray.push($http.get(tempURL));
         }
         $q.all(tempArray).then(function(result){
