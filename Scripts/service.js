@@ -85,7 +85,6 @@
                         blogURL: 'http://www.desipixer.in/',
                         category: 1
                     },
-
                      {
                         blogId: 3570505240870034981,
                         blogURL: 'http://illeana-hotphotos.blogspot.com/',
@@ -110,11 +109,7 @@
                         blogId: 7294698807437562935,
                         blogURL: 'http://tollywoodtolly.blogspot.com/',
                         category: 1
-                    }, {
-                        blogId: 1168679934182343226,
-                        blogURL: 'http://www.hdhotstills.com/',
-                        category: 1
-                    }, {
+                    },  {
                         blogId: 78242048938000965,
                         blogURL: 'http://www.tollyscreen.com/',
                         category: 1
@@ -134,11 +129,7 @@
                         blogId: 719302156971941098,
                         blogURL: 'http://hq-bollywood.blogspot.com/',
                         category: 1
-                    }, {
-                        blogId: 530660620295703790,
-                        blogURL: 'http://www.hdpictureswallpapers.com/',
-                        category: 1
-                    }, {
+                    },{
                         blogId: 4919960343339905419,
                         blogURL: 'http://www.indianbeast.com/',
                         category: 1
@@ -185,10 +176,6 @@
                     },{
                         blogId: 9011145545740768794,
                         blogURL: 'http://telugumoviesongsfreedownloads.blogspot.com/',
-                        category: 1
-                    },{
-                        blogId: 1651717035288674953,
-                        blogURL: 'http://heroines.aninani.com/',
                         category: 1
                     }
                     ];

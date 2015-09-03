@@ -1,4 +1,3 @@
-﻿app.controller('homeCtrl', function ($scope, imageService, loginService, postService, $sce, $location) {
     $scope.xStartIndex = 0;
     $scope.xThumbnails = [];
 
@@ -96,8 +95,37 @@
         }
     }
 
-   
+    $scope.displayData = [];
 
+    $scope.sortBlogs = function(){
+        var tempArray = [];
+        for(var i=0; i < $scope.sitesList.length; i++){
+            var tempURL = "https://www.googleapis.com/blogger/v3/blogs/byurl?url="+thatSiteList[i].blogURL +"&key="+thatSecretData.key;
+            tempArray.push($http.get(tempURL));
+        }
+        $q.all(tempArray).then(function(result){
+            for(var i=0; i< result.length ; i++){
+                var data = result[i].data;
+                var tempObj = {
+                    blogId : data.id,
+                    blogURL : data.url,
+                    name : data.name,
+                    category: 1,
+                    totalItems : data.posts.totalItems,
+                    updated : Date.parse(new Date(data.updated))
+                }
+                $scope.displayData.push(tempObj);
+            }
+
+            var sortDate = function(obj1, obj2){
+                return obj2.updated - obj1.updated;
+            }
+
+            $scope.displayData.sort(sortDate);
+
+            $scope.sitesList = $scope.displayData;   
+        }
+    }
     
 
     $scope.renderHtml = function (htmlCode) {
