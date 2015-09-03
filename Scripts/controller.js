@@ -125,7 +125,7 @@
             $scope.displayData.sort(sortDate);
 
             $scope.sitesList = $scope.displayData;   
-        }
+        });
     }
     
 
