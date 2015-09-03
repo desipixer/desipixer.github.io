@@ -1,4 +1,4 @@
-﻿app.controller('homeCtrl', function ($scope, imageService, loginService, postService, $sce, $location,$q) {
+﻿app.controller('homeCtrl', function ($scope, imageService, loginService, postService, $sce, $location,$q,$http) {
     $scope.xStartIndex = 0;
     $scope.xThumbnails = [];
 
