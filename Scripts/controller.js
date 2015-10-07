@@ -156,7 +156,7 @@ app.controller('messageCtrl', function ($scope, $routeParams, $sce, imageService
         var imageArray = obj.thumbs;
         var imageSrc = "";
         imageArray.forEach(function(element,index){
-            imageSrc = imageSrc + "<a href='" + element + "'  target='_blank'><img src='" + obj.images[index] + "' /></a>";
+            imageSrc = imageSrc + "<a href='" + obj.images[index] + "'  target='_blank'><img src='" + element + "' /></a>";
         });
         return imageSrc;
     }
@@ -174,7 +174,7 @@ app.controller('messageCtrl', function ($scope, $routeParams, $sce, imageService
     $scope.renderHtml = function (htmlCode) {
         return $sce.trustAsHtml(htmlCode);
     };
-    
+
     $scope.body = '<div>' + getHTML() + ' </div>';
     $scope.postTitle = obj.title;
 
