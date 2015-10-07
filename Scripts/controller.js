@@ -32,6 +32,7 @@
         imageService.getBlogId($scope.txtBlogName).then(function (data) {
         $scope.blogId = data.id;
         imageService.blogId = data.id;
+        imageService.startIndex = 1;
         imageService.totalItems = data.posts.totalItems;
         $scope.totalItems = data.posts.totalItems;
         imageService.getPosts(data.id,imageService.startIndex).then(function (data) {
@@ -146,7 +147,7 @@
 });
 
 
-app.controller('messageCtrl', function ($scope, $routeParams, $sce, imageService, $rootScope, postService) {
+app.controller('messageCtrl', function ($scope, $routeParams, $sce, imageService, $rootScope, postService,blogutil) {
     $scope.messageId = $routeParams.messageId;
     var html = imageService.entries[$routeParams.messageId].content.$t;
     var linkLength = imageService.entries[$routeParams.messageId].link.length;
