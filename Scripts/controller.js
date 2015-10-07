@@ -166,10 +166,13 @@ app.controller('messageCtrl', function ($scope, $routeParams, $sce, imageService
         //var imageArray = $($.parseHTML(resizedHtml)).find('img');
         var imageArray = obj.thumbs;
         var imageSrc = "";
-        $(imageArray).each(function () {
+        imageArray.forEach(function(element,index){
+            imageSrc = imageSrc + "<a href='" + element + "'  target='_blank'><img src='" + obj.images[index] + "' /></a>";
+        });
+        /*$(imageArray).each(function () {
             var href = this.src.replace(new RegExp("s320", "g"), "s1600");
             imageSrc = imageSrc + "<a href='" + href + "'  target='_blank'><img src='" + this.src + "' /></a>";
-        });
+        });*/
         return imageSrc;
     }
 
