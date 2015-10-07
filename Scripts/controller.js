@@ -63,7 +63,7 @@
     $scope.getNextPosts = function () {
         //console.log($scope.siteList);
         imageService.startIndex += 500;
-        $scope.getPosts($scope.blogId, imageService.startIndex );
+        $scope.getSite($scope.blogId, imageService.startIndex );
     }
 
     $scope.getPreviousPosts = function () {
@@ -72,7 +72,7 @@
         {
             imageService.startIndex -= 500;
         }
-        $scope.getPosts($scope.blogId, imageService.startIndex);
+        $scope.getSite($scope.blogId, imageService.startIndex);
     }
 
     $scope.selectedSite = function () {
