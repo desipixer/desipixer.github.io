@@ -1,4 +1,4 @@
-﻿app.service('imageService', ['$http', '$q', function ($http, $q, blogutil) {
+﻿app.service('imageService', ['$http', '$q',"blogutil", function ($http, $q, blogutil) {
     //Variables Declaration
     var entries = [];
     var blogId = "";
@@ -57,7 +57,7 @@
         blogutil.parseFeed(blogData);
         var feedObj = blogutil.getFeedObj();
 
-        
+
         var thumbnailArray = [];
         var blogPosts = blogData.feed.entry;
         $(blogPosts).each(function (index, value) {
