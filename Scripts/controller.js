@@ -149,55 +149,34 @@
 
 app.controller('messageCtrl', function ($scope, $routeParams, $sce, imageService, $rootScope, postService,blogutil) {
 
+
     var obj = blogutil.searchObjectArray(blogutil.getFeedObj(),"id",$routeParams.messageId);
-    var thumbs = obj.thumbs;
 
-
-
-    //$scope.messageId = $routeParams.messageId;
-    //var html = imageService.entries[$routeParams.messageId].content.$t;
-    //var linkLength = imageService.entries[$routeParams.messageId].link.length;
-
-   // var link = linkLength > 1 ? imageService.entries[$routeParams.messageId].link[linkLength - 1].href : "";
-    //debugger;
-   // var resizedHtml = html.replace(new RegExp("s1600", "g"), "s320");
-    //debugger;
     var getHTML = function () {
-        //var imageArray = $($.parseHTML(resizedHtml)).find('img');
         var imageArray = obj.thumbs;
         var imageSrc = "";
         imageArray.forEach(function(element,index){
             imageSrc = imageSrc + "<a href='" + element + "'  target='_blank'><img src='" + obj.images[index] + "' /></a>";
         });
-        /*$(imageArray).each(function () {
-            var href = this.src.replace(new RegExp("s320", "g"), "s1600");
-            imageSrc = imageSrc + "<a href='" + href + "'  target='_blank'><img src='" + this.src + "' /></a>";
-        });*/
         return imageSrc;
     }
 
     var getPostHTML = function () {
-        var imageArray = $($.parseHTML(resizedHtml)).find('img');
+        var imageArray = obj.images;
         var imageSrc = "";
-        $(imageArray).each(function () {
-            var href = this.src;
-            if (href.indexOf("blogspot") > -1) {
-                var imgThumbURL = href.replace(href.split('/')[href.split('/').length - 2], 's1600');
-                href = imgThumbURL;
-            }
-            imageSrc = imageSrc + '<a href="' + href + '" onclick="window.open(&#39;http://www.desipixer.in&#39;)" target="_blank"><img src="' + href + '" /></a>';
+
+        imageArray.forEach(function(element,index){
+            imageSrc = imageSrc + "<a href='" + element + "'  target='_blank'><img src='" + element + "' /></a>";
         });
         return imageSrc;
     }
-    //var pubDate = new Date(imageService.entries[$routeParams.messageId].published.$t);
-    //console.log(imageService.entries[$routeParams.messageId]);
-    //$scope.publishedDate = new Date(pubDate);
 
     $scope.renderHtml = function (htmlCode) {
         return $sce.trustAsHtml(htmlCode);
     };
+    
     $scope.body = '<div>' + getHTML() + ' </div>';
-    $scope.postTitle = imageService.entries[$routeParams.messageId].title.$t;
+    $scope.postTitle = obj.title;
 
 
     $scope.postFunction = function (postObject) {
