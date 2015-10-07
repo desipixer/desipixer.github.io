@@ -7,6 +7,7 @@
         imageService.blogId = data.id;
         imageService.totalItems = data.posts.totalItems;
         $scope.totalItems = data.posts.totalItems;
+        currentBlog.id = data.id;
         imageService.getPosts(data.id,imageService.startIndex).then(function (data) {
             $scope.blogPosts = data;
             $scope.imageThumb = imageService.getThumbnails(data);
@@ -62,7 +63,7 @@
     $scope.getNextPosts = function () {
         //console.log($scope.siteList);
         imageService.startIndex += 500;
-        $scope.getSite($scope.siteList, imageService.startIndex );
+        $scope.getPosts($scope.blogId, imageService.startIndex );
     }
 
     $scope.getPreviousPosts = function () {
@@ -71,7 +72,7 @@
         {
             imageService.startIndex -= 500;
         }
-        $scope.getSite($scope.siteList, imageService.startIndex);
+        $scope.getPosts($scope.blogId, imageService.startIndex);
     }
 
     $scope.selectedSite = function () {
