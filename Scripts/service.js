@@ -320,7 +320,7 @@ app.service('blogutil',function(){
         var imgTags = htmlContent.match(/<img\s[^>]*?src\s*=\s*['\"]([^'\"]*?)['\"][^>]*?>/g);
         if(imgTags != undefined && imgTags.length > 0){
             for(img of imgTags){
-                var imgURL = img.match(/(https?:\/\/.*\.(?:png|jpg))/ig);
+                var imgURL = img.match(/(https?:\/\/.*\.(?:png|jpg))/);
                 if(imgURL != undefined && imgURL.length > 0){
 
                     /* get large images if it is a blogger site images */
