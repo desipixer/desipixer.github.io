@@ -148,16 +148,23 @@
 
 
 app.controller('messageCtrl', function ($scope, $routeParams, $sce, imageService, $rootScope, postService,blogutil) {
-    $scope.messageId = $routeParams.messageId;
-    var html = imageService.entries[$routeParams.messageId].content.$t;
-    var linkLength = imageService.entries[$routeParams.messageId].link.length;
 
-    var link = linkLength > 1 ? imageService.entries[$routeParams.messageId].link[linkLength - 1].href : "";
+    var obj = blogutil.searchObjectArray(blogutil.getFeedObj(),"id",$routeParams.messageId);
+    var thumbs = obj.thumbs;
+
+
+
+    //$scope.messageId = $routeParams.messageId;
+    //var html = imageService.entries[$routeParams.messageId].content.$t;
+    //var linkLength = imageService.entries[$routeParams.messageId].link.length;
+
+   // var link = linkLength > 1 ? imageService.entries[$routeParams.messageId].link[linkLength - 1].href : "";
     //debugger;
-    var resizedHtml = html.replace(new RegExp("s1600", "g"), "s320");
+   // var resizedHtml = html.replace(new RegExp("s1600", "g"), "s320");
     //debugger;
     var getHTML = function () {
-        var imageArray = $($.parseHTML(resizedHtml)).find('img');
+        //var imageArray = $($.parseHTML(resizedHtml)).find('img');
+        var imageArray = obj.thumbs;
         var imageSrc = "";
         $(imageArray).each(function () {
             var href = this.src.replace(new RegExp("s320", "g"), "s1600");

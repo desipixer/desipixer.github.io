@@ -62,7 +62,7 @@
         var blogPosts = blogData.feed.entry;
         $(blogPosts).each(function (index, value) {
             var tempJSON = {};
-
+            var entry = this;
             var postTitle = this.title.$t;
             var postContent = this.content.$t;
             var filteredHTML = postContent.match(/<img\s+src\s*=\s*(["'][^"']+["']|[^>]+)>/ig);
@@ -76,6 +76,7 @@
                 tempJSON.title = postTitle;
                 tempJSON.imgThumb = imgThumbURL;
                 tempJSON.index = index;
+                tempJSON.id = entry.id.$t.match(/\d+/g)[1] + "-"+ entry.id.$t.match(/\d+/g)[2];
                 thumbnailArray.push(tempJSON);
             }
         });

@@ -61,7 +61,7 @@
             
          <div ng-hide="isActive('')">
             <span ng-repeat="thumb in imageThumb | filter : searchText">
-            <a ng-href="#content/{{thumb.index}}">    <img ng-src="{{thumb.imgThumb}}" title="{{thumb.title}}" /></a>
+            <a ng-href="#content/{{thumb.id}}">    <img ng-src="{{thumb.imgThumb}}" title="{{thumb.title}}" /></a>
             </span>
          </div>
          <div ng-view>
