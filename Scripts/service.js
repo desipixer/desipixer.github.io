@@ -1,4 +1,4 @@
-﻿app.service('imageService', ['$http', '$q', function ($http, $q) {
+﻿app.service('imageService', ['$http', '$q', function ($http, $q, blogutil) {
     //Variables Declaration
     var entries = [];
     var blogId = "";
@@ -53,6 +53,11 @@
     }
 
     this.getThumbnails = function(blogData) {
+
+        blogutil.parseFeed(blogData);
+        var feedObj = blogutil.getFeedObj();
+
+        
         var thumbnailArray = [];
         var blogPosts = blogData.feed.entry;
         $(blogPosts).each(function (index, value) {
@@ -263,3 +268,139 @@ app.service('postService', ['$http', '$q','loginService', function ($http, $q,lo
     }
 
 }]);
+
+
+app.service('blogutil',function(){
+
+   /* variables that stores the images */
+    var imgContainer = [];
+    var thumbContainer = [];
+    var feedObj = [];
+
+    /* parse the feed and get the images in the object */
+    var parseFeed = function(obj){
+        resetParams();
+        if(typeof obj =="object"){
+            /* iterate through each entries */
+
+            obj.feed.entry.forEach(function(element,index){
+                if(element.content.$t !== undefined){
+                    var htmlContent = element.content.$t;
+
+                    feedObj.push(parseEntry(element));
+                    imgContainer = imgContainer.concat(parseImageFromHTML(htmlContent));
+                    thumbContainer = JSON.parse(JSON.stringify(imgContainer).replace(/s1600/g,"s320"));
+                }
+            });
+
+        }   
+
+    }
+
+    /* returns filtered result of an entry */
+    var parseEntry = function(entry){
+        var obj = {};
+        obj.title = entry.title.$t;
+        obj.images = parseImageFromHTML(entry.content.$t);
+        obj.thumbs = JSON.parse(JSON.stringify(obj.images).replace(/s1600/g,"s320"));
+        obj.id = entry.id.$t.match(/\d+/g)[1] + "-"+ entry.id.$t.match(/\d+/g)[2];
+        obj.published = (new Date(entry.published.$t)).getTime();
+        obj.updated = (new Date(entry.updated.$t)).getTime();
+        if(entry.hasOwnProperty("category"))
+            obj.category = (entry.category[0].hasOwnProperty("term")) ? entry.category[0].term : "";
+        return obj;
+    }
+
+    
+
+    /* takes html content as input and returns array */
+    var parseImageFromHTML = function(htmlContent){
+        var imgArray = [];
+        var imgTags = htmlContent.match(/<img\s[^>]*?src\s*=\s*['\"]([^'\"]*?)['\"][^>]*?>/g);
+        if(imgTags != undefined && imgTags.length > 0){
+            for(img of imgTags){
+                var imgURL = img.match(/(https?:\/\/.*\.(?:png|jpg))/);
+                if(imgURL != undefined && imgURL.length > 0){
+
+                    /* get large images if it is a blogger site images */
+                    if(imgURL[0].indexOf("bp.blogspot.com") !== -1){
+                        var imgSplit = imgURL[0].split('/');
+                        var imgRes = imgSplit.splice(imgSplit.length - 2,1);
+                        largeIMG = imgURL[0].replace(imgRes,"s1600");
+                        imgArray.push(largeIMG);
+                    }
+                }
+            }
+        }
+        return imgArray;
+    }
+
+    /* returns the list of images from feed */
+    var getImages = function(obj){
+        return imgContainer;
+    }
+    
+    /* returns the list of thumbs from feed */
+    var getThumbs = function(obj){
+        return thumbContainer;
+    }
+
+    /* returns the list of filtered feeds */
+    var getFeedObj = function(){
+        return feedObj;
+    }
+
+    var resetParams = function(){
+        imgContainer = [];
+        thumbContainer = [];
+        feedObj = [];
+    }
+
+    /* used to load the images partially */
+    var lazyLoadingImages = function(length,num){
+        if(length == undefined){
+            length = 0;
+        }
+        if(num == undefined){
+            num = 50;
+        }
+        if(length > imgContainer.length || length < 0){
+            return imgContainer;
+        }
+        else{
+            return imgContainer.slice(length, length + num);
+        }
+    }
+
+
+    var searchObjectArray = function(arr,key,value){
+        var obj = [];
+        for(element of arr){
+            if(element.hasOwnProperty(key)){
+                if(value == element[key]){
+                    obj.push(element);
+                }
+            }
+        }
+        
+        if(obj.length == 1){
+            return obj[0];
+        }
+        if(obj.length == 0){
+            return null;
+        }
+        else
+        {
+            return obj;
+        }
+    }
+
+    return {
+        parseFeed : parseFeed,
+        getThumbs : getThumbs,
+        getImages : getImages,
+        getFeedObj : getFeedObj,
+        lazyLoadingImages : lazyLoadingImages,
+        searchObjectArray : searchObjectArray
+    }
+});
