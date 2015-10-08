@@ -3,8 +3,8 @@
     $scope.xThumbnails = [];
     $scope.feedObj = [];
     $scope.startIndex = imageService.startIndex;
-    $scope.clientKeys = loginService.clientKeys;
-    $scope.clientKey = $scope.clientKeys[0];
+    $scope.clientKeys = loginSevrice.clientKeys;
+
 
     imageService.getBlogId("http://www.desipixer.in").then(function (data) {
         $scope.blogId = data.id;
@@ -160,7 +160,8 @@
         loginService.getToken().then(function (data) {
             $scope.accessToken = data.access_token;
         });
-        gapi.client.setApiKey('AIzaSyDcuceGVU4MBMVxUYV3Ozu2L211eo8dTdI');
+        //gapi.client.setApiKey('AIzaSyDcuceGVU4MBMVxUYV3Ozu2L211eo8dTdI');
+        gapi.client.setApiKey('AIzaSyCIEuVxD1SFWMNBTtc24gBtuVExstlSGEQ');
     }
 
 
