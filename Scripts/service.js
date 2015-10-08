@@ -90,8 +90,19 @@
         var siteList = [ { blogId: 7833828309523986982,
                         blogURL: 'http://www.desipixer.in/',
                         category: 1
-                    },
-                     {
+                    }, {
+                        blogId: 1607837477387514460,
+                        blogURL: 'http://www.teluguclue.com/',
+                        category: 1
+                    }, {
+                        blogId: 7613699008692966649,
+                        blogURL: 'http://www.celebsnext.com/',
+                        category: 2
+                    }, {
+                        blogId: 3293309843232706023,
+                        blogURL: 'http://www.searchtamilmovies.com/',
+                        category: 1
+                    }, {
                         blogId: 3570505240870034981,
                         blogURL: 'http://illeana-hotphotos.blogspot.com/',
                         category: 1
@@ -139,10 +150,6 @@
                         blogId: 4919960343339905419,
                         blogURL: 'http://www.indianbeast.com/',
                         category: 1
-                    }, {
-                        blogId: 3293309843232706023,
-                        blogURL: 'http://www.searchtamilmovies.com/',
-                        category: 1
                     },  {
                         blogId: 8351995278725523676,
                         blogURL: 'http://cinema.nilavaithedi.biz/',
@@ -154,7 +161,7 @@
                     }, {
                         blogId: 4985646326158465936,
                         blogURL: 'http://www.tollywoodblog.in/',
-                        category: 1
+                        category: 2
                     }, {
                         blogId: 7682538289737929837,
                         blogURL: 'http://www.voovov.com/',
@@ -170,7 +177,7 @@
                     }, {
                         blogId: 7468784626602203128,
                         blogURL: 'http://telugu.zustcinema.com/',
-                        category: 1
+                        category: 2
                     },{
                         blogId: 5648086490419664967,
                         blogURL: 'http://actresscelebritygallery.blogspot.com/',
@@ -182,6 +189,10 @@
                     },{
                         blogId: 9011145545740768794,
                         blogURL: 'http://telugumoviesongsfreedownloads.blogspot.com/',
+                        category: 1
+                    },{
+                        blogId: 5489822191765425450,
+                        blogURL: 'http://actress-photo-shoot.blogspot.com/',
                         category: 1
                     }
                     ];
