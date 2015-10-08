@@ -3,7 +3,7 @@
     $scope.xThumbnails = [];
     $scope.feedObj = [];
     $scope.startIndex = imageService.startIndex;
-    $scope.clientKeys = loginSevrice.clientKeys;
+    $scope.clientKeys = loginService.clientKeys;
 
 
     imageService.getBlogId("http://www.desipixer.in").then(function (data) {
