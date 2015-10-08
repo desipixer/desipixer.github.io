@@ -188,6 +188,23 @@
         return siteList;
     }
 
+    this.postBlogs = [
+    { 
+        blogId: 7833828309523986982,
+        blogURL: 'http://www.desipixer.in/',
+        category: 1
+    },
+    { 
+        blogId: 9011345903648301710,
+        blogURL: 'http://desipixers.blogspot.com/',
+        category: 1
+    },
+    { 
+        blogId: 8288428012409826912,
+        blogURL: 'http://samanthapix.blogspot.com/',
+        category: 1
+    },
+    ];
 
     return {
         getBlogId: this.getBlogId,
@@ -198,7 +215,8 @@
         blogId: blogId,
         startIndex : startIndex,
         bloggerKey : bloggerKey,
-        getSearchPosts : this.getSearchPosts
+        getSearchPosts : this.getSearchPosts,
+        postBlogs : this.postBlogs
     }
 
 }]);

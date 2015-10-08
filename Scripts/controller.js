@@ -167,6 +167,8 @@
 
 app.controller('messageCtrl', function ($scope, $routeParams, $sce, imageService, $rootScope, postService,blogutil) {
 
+    $scope.postBlogs = imageService.postBlogs;
+    $scope.selectPostBlog = 7833828309523986982;
 
     var obj = blogutil.searchObjectArray(blogutil.getFeedObj(),"id",$routeParams.messageId);
 
@@ -177,6 +179,10 @@ app.controller('messageCtrl', function ($scope, $routeParams, $sce, imageService
             imageSrc = imageSrc + "<a href='" + obj.images[index] + "'  target='_blank'><img src='" + element + "' /></a>";
         });
         return imageSrc;
+    }
+
+    var selectedBlog = function(){
+        console.log($scope.selectPostBlog); 
     }
 
     var getPostHTML = function () {
@@ -199,7 +205,7 @@ app.controller('messageCtrl', function ($scope, $routeParams, $sce, imageService
 
     $scope.postFunction = function (postObject) {
         var postObject = {};
-        postObject.blogId = "7833828309523986982";
+        postObject.blogId = $scope.selectPostBlog;
         postObject.postContent = '<div>' + getPostHTML() + '</div>';
         postObject.postTitle = $scope.postTitle;
         console.log(postObject);
