@@ -261,7 +261,7 @@ app.service('postService', ['$http', '$q','loginService', function ($http, $q,lo
         loginService.getToken().then(function (data) {
             var accessToken = data.access_token;
             var myJSObject = { "content": content, "title": title };
-            var POSTURL = "https://www.googleapis.com/blogger/v3/blogs/7833828309523986982/posts";
+            var POSTURL = "https://www.googleapis.com/blogger/v3/blogs/"+ blogId +"/posts";
             $.ajax({
                     beforeSend: function (xhr) {
                         xhr.setRequestHeader("Authorization", "Bearer " + accessToken);
