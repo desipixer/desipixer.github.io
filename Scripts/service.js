@@ -209,17 +209,17 @@
 
     this.postBlogs = [
     { 
-        blogId: 7833828309523986982,
+        blogId: "7833828309523986982",
         blogURL: 'http://www.desipixer.in/',
         category: 1
     },
     { 
-        blogId: 9011345903648301710,
+        blogId: "9011345903648301710",
         blogURL: 'http://desipixers.blogspot.com/',
         category: 1
     },
     { 
-        blogId: 8288428012409826912,
+        blogId: "8288428012409826912",
         blogURL: 'http://samanthapix.blogspot.com/',
         category: 1
     },
@@ -242,6 +242,7 @@
 
 app.service('loginService', ['$http', '$q', function ($http, $q) {
     var deferred = $q.defer();
+    this.selectedKey = null ;
 
     this.clientKeys = [{
         "name" : "key1",
@@ -254,10 +255,14 @@ app.service('loginService', ['$http', '$q', function ($http, $q) {
         "key" : "215192364453-3qtb7m8oocgu684qsfipkpdac6ntsjto.apps.googleusercontent.com"
     }];
 
-    this.selectedKey = null;
+    
 
     this.logMeIn = function ()
     {
+
+        if(this.selectedKey == null){
+            this.selectedKey = this.clientKeys[0].key;
+        }
         var parameters = {
             client_id: this.selectedKey,
             immediate: false,
@@ -296,7 +301,7 @@ app.service('postService', ['$http', '$q','loginService', function ($http, $q,lo
             var accessToken = data.access_token;
             var myJSObject = { "content": content, "title": title };
             var POSTURL = "https://www.googleapis.com/blogger/v3/blogs/"+ blogId +"/posts";
-            $.ajax({
+            var ajaxObj = {
                     beforeSend: function (xhr) {
                         xhr.setRequestHeader("Authorization", "Bearer " + accessToken);
                     },
@@ -307,11 +312,15 @@ app.service('postService', ['$http', '$q','loginService', function ($http, $q,lo
                     dataType: "json",
                     success: function (successcode) {
                         console.log("Posted Successfully");
+                        $('#responseCode').show().css('color', 'green').text('POSTED').fadeOut(4000);
+;
                     },
                     error: function (errcode) {
-                       console.log("Failed");
+                        console.log(errcode);
+                        $('#responseCode').show().css('color', 'red').text('ERROR').fadeOut(4000);
                     }
-                });
+                };
+            $.ajax(ajaxObj);
 
             });
         

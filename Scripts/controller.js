@@ -5,23 +5,6 @@
     $scope.startIndex = imageService.startIndex;
     $scope.clientKeys = loginService.clientKeys;
 
-
-    imageService.getBlogId("http://www.desipixer.in").then(function (data) {
-        $scope.blogId = data.id;
-        imageService.blogId = data.id;
-        imageService.totalItems = data.posts.totalItems;
-        $scope.totalItems = data.posts.totalItems;
-        imageService.getPosts(data.id,imageService.startIndex).then(function (data) {
-            $scope.blogPosts = data;
-
-            blogutil.parseFeed(data);
-            $scope.feedObj = blogutil.getFeedObj(data);
-
-            //$scope.imageThumb = imageService.getThumbnails(data);
-            $scope.startIndex = imageService.startIndex;
-        });
-    });
-
     $scope.getSite = function (blogName,startIndex) {
         imageService.getBlogId(blogName).then(function (data) {
             imageService.blogId = data.id;
@@ -29,11 +12,8 @@
             imageService.totalItems = data.posts.totalItems;
             $scope.totalItems = data.posts.totalItems;
             imageService.getPosts(data.id, startIndex).then(function (data) {
-
                 blogutil.parseFeed(data);
                 $scope.feedObj = blogutil.getFeedObj(data);
-
-                //$scope.imageThumb = imageService.getThumbnails(data);
                 $scope.startIndex = imageService.startIndex;
             });
         });
@@ -49,11 +29,8 @@
         $scope.totalItems = data.posts.totalItems;
         imageService.getPosts(data.id,imageService.startIndex).then(function (data) {
             $scope.blogPosts = data;
-
             blogutil.parseFeed(data);
             $scope.feedObj = blogutil.getFeedObj(data);
-
-            //$scope.imageThumb = imageService.getThumbnails(data);
             $scope.startIndex = imageService.startIndex;
         });
     });
@@ -85,7 +62,6 @@
     }
 
     $scope.getPreviousPosts = function () {
-        //console.log($scope.siteList);
         if (imageService.startIndex - 200 > 0)
         {
             imageService.startIndex -= 200;
@@ -94,8 +70,6 @@
     }
 
     $scope.selectedSite = function () {
-        
-        //console.log($scope.siteList);
         imageService.startIndex = 0001;
         $scope.getSite($scope.siteList, imageService.startIndex);
     }
@@ -159,10 +133,16 @@
 
         loginService.getToken().then(function (data) {
             $scope.accessToken = data.access_token;
+            if(data != null)
+                console.log("login successful");
         });
         //gapi.client.setApiKey('AIzaSyDcuceGVU4MBMVxUYV3Ozu2L211eo8dTdI');
         gapi.client.setApiKey('AIzaSyCIEuVxD1SFWMNBTtc24gBtuVExstlSGEQ');
     }
+
+
+    /***** default site loaded *******/
+    $scope.getSite("http://www.desipixer.in",1);
 
 
 
@@ -172,7 +152,7 @@
 app.controller('messageCtrl', function ($scope, $routeParams, $sce, imageService, $rootScope, postService,blogutil) {
 
     $scope.postBlogs = imageService.postBlogs;
-    $scope.selectPostBlog = 7833828309523986982;
+    $scope.selectPostBlog = "7833828309523986982";
 
     var obj = blogutil.searchObjectArray(blogutil.getFeedObj(),"id",$routeParams.messageId);
 

@@ -34,12 +34,16 @@
                      <td>
                         <button ng-click="getPreviousPosts(siteList)"> PREVIOUS</button>
                         <button ng-click="getNextPosts(siteList)" > NEXT</button>
-                        <select ng-model="siteList" ng-change="selectedSite()">
+                        
+                        <!-- <select ng-model="siteList" ng-change="selectedSite()">
                            <option ng-repeat="site in sitesList" value="{{site.blogURL}}">
                               {{site.blogURL}}
                            </option>
-                        </select>
+                        </select> -->
+                        BLOG : 
+                        <select   ng-model="siteList" ng-options="site.blogURL as site.blogURL for site in sitesList" ng-init="siteList = sitesList[0]" ng-change="selectedSite()"></select>
 
+                        CLIENT KEY : 
                         <select  ng-init="clientKey = clientKeys[0]" ng-model="clientKey" ng-options="key.key as key.name for key in clientKeys"></select>
                         <button id="btnLogin" ng-click="userLogin()" ng-hide="IsLoggedIn()" class="btn btn-primary">
                         Login
@@ -62,10 +66,12 @@
                   </td>
                   <td>
                          <p class="">TOTAL ITEMS : {{totalItems}} </p> 
+                         <p id="responseCode"></p>
                   </td>
                    <td>
                          <p class="">StartIndex :  {{startIndex}} </p> 
                   </td>
+                  
                   <td>
                          Fast Search : <input ng-model="fastQueryText" />
                          <button ng-click="queryText()" class="btn btn-warning"> SEARCH </button>
