@@ -38,8 +38,8 @@
     this.getSearchPosts= function(blogId,startIndex,searchText)
     {
         var deferred = $q.defer();
-        searchText = searchText.replace(new RegExp(" ", "g"), "%20");
-         var URL = "https://www.blogger.com/feeds/" + blogId + "/posts/default?start-index=" + startIndex + "&max-results=500&alt=json&q="+searchText+"callback=JSON_CALLBACK";
+        //searchText = searchText.replace(new RegExp(" ", "g"), "%20");
+         var URL = "https://www.blogger.com/feeds/" + blogId + "/posts/default?start-index=" + startIndex + "&max-results=500&alt=json&q="+searchText+"&callback=JSON_CALLBACK";
             $http.jsonp(URL).success(function (data) {
                 deferred.resolve(data);
                 var arr1 = [];
@@ -197,7 +197,8 @@
         entries: entries,
         blogId: blogId,
         startIndex : startIndex,
-        bloggerKey : bloggerKey
+        bloggerKey : bloggerKey,
+        getSearchPosts : this.getSearchPosts
     }
 
 }]);

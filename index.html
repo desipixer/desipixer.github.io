@@ -1,17 +1,20 @@
 ﻿<!DOCTYPE html>
 <html ng-app="myApp">
    <head>
-      <title>Angular Intermediate</title>
+      <title>DP Portal</title>
+
+      <link rel="shortcut icon" href="Images/icon.png" type="image/x-icon"> 
+
       <script src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
       <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
-      <link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" />
+     
       <script src="https://code.angularjs.org/1.2.18/angular-route.min.js"></script>
       <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
       <script type="text/javascript" src="https://www.google.com/jsapi"></script>
       <script src="Scripts/app.js"></script>
       <script src="Scripts/service.js"></script>
       <script src="Scripts/controller.js"></script>
-      
+     
       <style>
          img {
              height : 320px;
@@ -22,7 +25,7 @@
    <body>
       <div ng-controller="homeCtrl">
         
-               <table>
+               <table class="table">
                   <tr>
                      <td>
                         <a href="index.html" ><button class="btn btn-info"> HOME </button> </a> Search : <input ng-model="searchText" />
@@ -53,19 +56,31 @@
                   </tr>
                   <tr>
                   <td>
-                        BLOG ID : {{blogId}}  </td> <td> TOTAL ITEMS : {{totalItems}}
-                     </td>
-                     
+                        <p class="bg-primary">BLOG ID : {{blogId}} </p> 
+                  </td>
+                  <td>
+                         <p class="bg-primary">TOTAL ITEMS : {{totalItems}} </p> 
+                  </td>
+                   <td>
+                         <p class="bg-primary">StartIndex :  {{startIndex}} </p> 
+                  </td>
+                  <td>
+                         Fast Search : <input ng-model="fastQueryText" />
+                         <button ng-click="queryText()" class="btn btn-warning"> SEARCH </button>
+                  </td>   
                   </tr>
                </table>
             
          <div ng-hide="isActive('')">
-            <span ng-repeat="thumb in imageThumb | filter : searchText">
-            <a ng-href="#content/{{thumb.id}}">    <img ng-src="{{thumb.imgThumb}}" title="{{thumb.title}}" /></a>
+            <span ng-repeat="entry in feedObj | filter : searchText">
+            <a ng-href="#content/{{entry.id}}">    <img ng-src="{{entry.thumbs[0]}}" title="{{entry.title}}" /></a>
             </span>
          </div>
          <div ng-view>
          
       </div>
+
+      <link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" />
+
    </body>
 </html>

@@ -1,16 +1,22 @@
-﻿app.controller('homeCtrl', function ($scope, imageService, loginService, postService, $sce, $location,$q,$http) {
+﻿app.controller('homeCtrl', function ($scope, imageService, loginService, postService, $sce, $location,$q,$http,blogutil) {
     $scope.xStartIndex = 0;
     $scope.xThumbnails = [];
+    $scope.feedObj = [];
+    $scope.startIndex = imageService.startIndex;
+
 
     imageService.getBlogId("http://www.desipixer.in").then(function (data) {
         $scope.blogId = data.id;
         imageService.blogId = data.id;
         imageService.totalItems = data.posts.totalItems;
         $scope.totalItems = data.posts.totalItems;
-        currentBlog.id = data.id;
         imageService.getPosts(data.id,imageService.startIndex).then(function (data) {
             $scope.blogPosts = data;
-            $scope.imageThumb = imageService.getThumbnails(data);
+
+            blogutil.parseFeed(data);
+            $scope.feedObj = blogutil.getFeedObj(data);
+
+            //$scope.imageThumb = imageService.getThumbnails(data);
             $scope.startIndex = imageService.startIndex;
         });
     });
@@ -22,7 +28,11 @@
             imageService.totalItems = data.posts.totalItems;
             $scope.totalItems = data.posts.totalItems;
             imageService.getPosts(data.id, startIndex).then(function (data) {
-                $scope.imageThumb = imageService.getThumbnails(data);
+
+                blogutil.parseFeed(data);
+                $scope.feedObj = blogutil.getFeedObj(data);
+
+                //$scope.imageThumb = imageService.getThumbnails(data);
                 $scope.startIndex = imageService.startIndex;
             });
         });
@@ -38,22 +48,29 @@
         $scope.totalItems = data.posts.totalItems;
         imageService.getPosts(data.id,imageService.startIndex).then(function (data) {
             $scope.blogPosts = data;
-            $scope.imageThumb = imageService.getThumbnails(data);
+
+            blogutil.parseFeed(data);
+            $scope.feedObj = blogutil.getFeedObj(data);
+
+            //$scope.imageThumb = imageService.getThumbnails(data);
             $scope.startIndex = imageService.startIndex;
         });
     });
         
     }
 
-    $scope.queryText = function(searchQuery)
+    $scope.queryText = function()
     {
-        imageService.getBlogId(blogName).then(function (data) {
+
+        imageService.getBlogId($scope.siteList).then(function (data) {
             imageService.blogId = data.id;
             $scope.blogId = data.id;
             imageService.totalItems = data.posts.totalItems;
             $scope.totalItems = data.posts.totalItems;
-            imageService.getSearchPosts(data.id, startIndex,searchQuery).then(function (data) {
-                $scope.imageThumb = imageService.getThumbnails(data);
+            imageService.getSearchPosts(data.id, $scope.startIndex,$scope.fastQueryText).then(function (data) {
+
+                blogutil.parseFeed(data);
+                $scope.feedObj = blogutil.getFeedObj(data);
                 $scope.startIndex = imageService.startIndex;
             });
         });
