@@ -3,7 +3,8 @@
     $scope.xThumbnails = [];
     $scope.feedObj = [];
     $scope.startIndex = imageService.startIndex;
-
+    $scope.clientKeys = loginService.clientKeys;
+    $scope.clientKey = $scope.clientKeys[0];
 
     imageService.getBlogId("http://www.desipixer.in").then(function (data) {
         $scope.blogId = data.id;
@@ -79,15 +80,15 @@
 
     $scope.getNextPosts = function () {
         //console.log($scope.siteList);
-        imageService.startIndex += 500;
+        imageService.startIndex += 200;
         $scope.getSite($scope.siteList, imageService.startIndex);
     }
 
     $scope.getPreviousPosts = function () {
         //console.log($scope.siteList);
-        if (imageService.startIndex - 500 > 0)
+        if (imageService.startIndex - 200 > 0)
         {
-            imageService.startIndex -= 500;
+            imageService.startIndex -= 200;
         }
         $scope.getSite($scope.siteList, imageService.startIndex);
     }
@@ -124,6 +125,7 @@
             tempArray.push($http.get(tempURL));
         }
         $q.all(tempArray).then(function(result){
+            $scope.displayData = [];
             for(var i=0; i< result.length ; i++){
                 var data = result[i].data;
                 var tempObj = {
@@ -153,11 +155,12 @@
     };
 
     $scope.userLogin = function () {
+        loginService.selectedKey = $scope.clientKey;
+
         loginService.getToken().then(function (data) {
             $scope.accessToken = data.access_token;
         });
         gapi.client.setApiKey('AIzaSyDcuceGVU4MBMVxUYV3Ozu2L211eo8dTdI');
-
     }
 
 

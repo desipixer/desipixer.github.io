@@ -4,6 +4,7 @@
     var blogId = "";
     var startIndex = 0001;
     var totalItems = 0001;
+    var maxResults = 200;
     var bloggerKey = "AIzaSyCIEuVxD1SFWMNBTtc24gBtuVExstlSGEQ";
 
     this.getBlogId = function (blogName) {
@@ -14,7 +15,7 @@
             totalItems = data.posts.totalItems;
             deferred.resolve(data);
         });
-        console.log(deferred.promise);
+        //console.log(deferred.promise);
         return deferred.promise;
     }
     this.getPosts = function (blogId,startIndex)
@@ -22,7 +23,7 @@
        
         var deferred = $q.defer();
         
-            var URL = "https://www.blogger.com/feeds/" + blogId + "/posts/default?start-index=" + startIndex + "&max-results=500&alt=json&callback=JSON_CALLBACK";
+            var URL = "https://www.blogger.com/feeds/" + blogId + "/posts/default?start-index=" + startIndex + "&max-results="+ maxResults +"&alt=json&callback=JSON_CALLBACK";
             $http.jsonp(URL).success(function (data) {
                 deferred.resolve(data);
                 var arr1 = [];
@@ -31,6 +32,13 @@
                 });
                 angular.copy(arr1, entries);
         });
+
+        /* blog present in list of blogs */
+        var IsBlogInList = blogutil.searchObjectArray(this.getBlogList(),"blogId",blogId);
+        if(IsBlogInList !== null &&  IsBlogInList.category == 2){
+            var URL = "";
+            $http.jsonp(URL)
+        }
       
         return deferred.promise;
     }
@@ -39,7 +47,7 @@
     {
         var deferred = $q.defer();
         //searchText = searchText.replace(new RegExp(" ", "g"), "%20");
-         var URL = "https://www.blogger.com/feeds/" + blogId + "/posts/default?start-index=" + startIndex + "&max-results=500&alt=json&q="+searchText+"&callback=JSON_CALLBACK";
+         var URL = "https://www.blogger.com/feeds/" + blogId + "/posts/default?start-index=" + startIndex + "&max-results="+ maxResults +"&alt=json&q="+searchText+"&callback=JSON_CALLBACK";
             $http.jsonp(URL).success(function (data) {
                 deferred.resolve(data);
                 var arr1 = [];
@@ -235,10 +243,23 @@
 app.service('loginService', ['$http', '$q', function ($http, $q) {
     var deferred = $q.defer();
 
+    this.clientKeys = [{
+        "name" : "key1",
+        "key" : "215192364453-1vbjuf6f3r0vka9b5q0hj2mqj212dr9o.apps.googleusercontent.com"
+    },{
+        "name" : "key2",
+        "key" : "215192364453-j0vhrg3fl205k4gdqk30eic72rg12out.apps.googleusercontent.com"
+    },{
+        "name" : "key3",
+        "key" : "215192364453-3qtb7m8oocgu684qsfipkpdac6ntsjto.apps.googleusercontent.com"
+    }];
+
+    this.selectedKey = null;
+
     this.logMeIn = function ()
     {
         var parameters = {
-            client_id: "215192364453-1vbjuf6f3r0vka9b5q0hj2mqj212dr9o.apps.googleusercontent.com",
+            client_id: this.selectedKey,
             immediate: false,
             response_type: "token",
             scope: "http://www.blogger.com/feeds/"
@@ -258,7 +279,9 @@ app.service('loginService', ['$http', '$q', function ($http, $q) {
     return {
         logMeIn: this.logMeIn,
         callbackFn: this.callbackFn,
-        getToken : this.getToken
+        getToken : this.getToken,
+        clientKeys : this.clientKeys,
+        selectedKey : this.selectedKey
     }
 
 }]);
@@ -319,8 +342,8 @@ app.service('blogutil',function(){
                     var htmlContent = element.content.$t;
 
                     feedObj.push(parseEntry(element));
-                    imgContainer = imgContainer.concat(parseImageFromHTML(htmlContent));
-                    thumbContainer = JSON.parse(JSON.stringify(imgContainer).replace(/s1600/g,"s320"));
+                    //imgContainer = imgContainer.concat(parseImageFromHTML(htmlContent));
+                    //thumbContainer = JSON.parse(JSON.stringify(imgContainer).replace(/s1600/g,"s320"));
                 }
             });
 
@@ -333,7 +356,7 @@ app.service('blogutil',function(){
         var obj = {};
         obj.title = entry.title.$t;
         obj.images = parseImageFromHTML(entry.content.$t);
-        obj.thumbs = JSON.parse(JSON.stringify(obj.images).replace(/s1600/g,"s320"));
+        obj.thumbs = JSON.parse(JSON.stringify(obj.images).replace(/s1600/g,"s320")); //can be memory intensive
         obj.id = entry.id.$t.match(/\d+/g)[1] + "-"+ entry.id.$t.match(/\d+/g)[2];
         obj.published = (new Date(entry.published.$t)).getTime();
         obj.updated = (new Date(entry.updated.$t)).getTime();
@@ -368,11 +391,17 @@ app.service('blogutil',function(){
 
     /* returns the list of images from feed */
     var getImages = function(obj){
+        for(feed of feedObj){
+            imgContainer = imgContainer.concat(feed.images);
+        }
         return imgContainer;
     }
     
     /* returns the list of thumbs from feed */
     var getThumbs = function(obj){
+        for(feed of feedObj){
+            imgContainer = imgContainer.concat(feed.thumbs);
+        }
         return thumbContainer;
     }
 

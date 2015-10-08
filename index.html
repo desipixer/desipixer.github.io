@@ -39,6 +39,8 @@
                               {{site.blogURL}}
                            </option>
                         </select>
+
+                        <select  ng-init="clientKey = clientKeys[0]" ng-model="clientKey" ng-options="key.key as key.name for key in clientKeys"></select>
                         <button id="btnLogin" ng-click="userLogin()" ng-hide="IsLoggedIn()" class="btn btn-primary">
                         Login
                         </button>
