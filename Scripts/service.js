@@ -369,6 +369,9 @@ app.service('blogutil',function(){
         obj.id = entry.id.$t.match(/\d+/g)[1] + "-"+ entry.id.$t.match(/\d+/g)[2];
         obj.published = (new Date(entry.published.$t)).getTime();
         obj.updated = (new Date(entry.updated.$t)).getTime();
+        if(entry.hasOwnProperty("link")){
+            obj.url = (entry.link[entry.link.length - 1].href);
+        }
         if(entry.hasOwnProperty("category"))
             obj.category = (entry.category[0].hasOwnProperty("term")) ? entry.category[0].term : "";
         return obj;

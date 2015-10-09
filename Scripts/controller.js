@@ -179,6 +179,20 @@ app.controller('messageCtrl', function ($scope, $routeParams, $sce, imageService
         return imageSrc;
     }
 
+    $scope.shareFBDialog = function(){
+        var base_url = "https://www.facebook.com/sharer/sharer.php?";
+        base_url += "u="+obj.url;
+        base_url += "&t="+obj.title.replace(/\s/g,"%20");
+        window.open(base_url, '_blank', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');
+    }
+
+    $scope.shareGoogleDialog = function(){
+        var base_url = "https://plus.google.com/share?";
+        base_url += "url="+obj.url;
+        window.open(base_url, '_blank', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');
+    }
+    
+
     $scope.renderHtml = function (htmlCode) {
         return $sce.trustAsHtml(htmlCode);
     };
@@ -197,3 +211,4 @@ app.controller('messageCtrl', function ($scope, $routeParams, $sce, imageService
     }
 
 });
+
