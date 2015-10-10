@@ -104,6 +104,10 @@
                         category: 1
                     }, {
                         blogId: 7613699008692966649,
+                        blogURL: 'http://rockingfunimages.blogspot.com/',
+                        category: 2
+                    },  {
+                        blogId: 4846859112009281783,
                         blogURL: 'http://www.celebsnext.com/',
                         category: 2
                     }, {
@@ -201,6 +205,34 @@
                     },{
                         blogId: 5489822191765425450,
                         blogURL: 'http://actress-photo-shoot.blogspot.com/',
+                        category: 1
+                    },{
+                        blogId: 8261689056909797037,
+                        blogURL: 'http://lgmoviee.blogspot.com/',
+                        category: 1
+                    },{
+                        blogId: 3905178814471876545,
+                        blogURL: 'http://sareebelownavelshow.blogspot.com/',
+                        category: 1
+                    },{
+                        blogId: 1739735805822337775,
+                        blogURL: 'http://www.vtelugu.in/',
+                        category: 1
+                    },{
+                        blogId: 5656041982218593755,
+                        blogURL: 'http://filmgain.blogspot.com/',
+                        category: 1
+                    },{
+                        blogId: 5067574769190905623,
+                        blogURL: 'http://actresshdgallery.blogspot.com/',
+                        category: 1
+                    },{
+                        blogId: 4713835892748753574,
+                        blogURL: 'http://www.tcinema.in/',
+                        category: 1
+                    },{
+                        blogId: 8089698501885637773,
+                        blogURL: 'http://www.123photos.in/',
                         category: 1
                     }
                     ];
