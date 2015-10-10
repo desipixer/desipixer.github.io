@@ -106,6 +106,10 @@
                         blogId: 7613699008692966649,
                         blogURL: 'http://rockingfunimages.blogspot.com/',
                         category: 2
+                    } {
+                        blogId: 7225871578344472338,
+                        blogURL: 'http://www.urtamilcinema.com/',
+                        category: 2
                     },  {
                         blogId: 4846859112009281783,
                         blogURL: 'http://www.celebsnext.com/',
