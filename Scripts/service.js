@@ -100,7 +100,7 @@
                         category: 1
                     }, {
                         blogId: 1607837477387514460,
-                        blogURL: 'http://www.teluguclue.com/',
+                        blogURL: 'http://teluguclue.blogspot.in/',
                         category: 1
                     }, {
                         blogId: 7613699008692966649,
