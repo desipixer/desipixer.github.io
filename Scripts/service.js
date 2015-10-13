@@ -283,6 +283,11 @@
         blogId: "9026317655696914243",
         blogURL: 'http://samanthapixer.blogspot.com/',
         category: 1
+    },
+    {
+        blogId: "7770041580109253182",
+        blogURL: 'http://tamannapixer.blogspot.com/',
+        category: 1
     }
     ];
 
