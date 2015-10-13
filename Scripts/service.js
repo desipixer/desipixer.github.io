@@ -238,6 +238,10 @@
                         blogId: 8089698501885637773,
                         blogURL: 'http://www.123photos.in/',
                         category: 1
+                    },{
+                        blogId: 5187513159820363840,
+                        blogURL: 'http://www.spicycinegallery.com/',
+                        category: 1
                     }
                     ];
         return siteList;
