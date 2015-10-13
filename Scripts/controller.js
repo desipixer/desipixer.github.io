@@ -165,7 +165,7 @@ app.controller('messageCtrl', function ($scope, $routeParams, $sce, imageService
         return imageSrc;
     }
 
-    var selectedBlog = function(){
+    $scope.selectedBlog = function(){
         imageService.selPostBlog = $scope.selectPostBlog;
         console.log("post blog changed to "+ $scope.selectPostBlog);
     }
