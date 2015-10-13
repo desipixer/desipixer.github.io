@@ -6,6 +6,7 @@
     var totalItems = 0001;
     var maxResults = 200;
     var bloggerKey = "AIzaSyCIEuVxD1SFWMNBTtc24gBtuVExstlSGEQ";
+    var selPostBlog = "7833828309523986982";
 
     this.getBlogId = function (blogName) {
         var deferred = $q.defer();
@@ -275,7 +276,8 @@
         startIndex : startIndex,
         bloggerKey : bloggerKey,
         getSearchPosts : this.getSearchPosts,
-        postBlogs : this.postBlogs
+        postBlogs : this.postBlogs,
+        selPostBlog : selPostBlog
     }
 
 }]);

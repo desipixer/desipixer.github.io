@@ -152,7 +152,7 @@
 app.controller('messageCtrl', function ($scope, $routeParams, $sce, imageService, $rootScope, postService,blogutil) {
 
     $scope.postBlogs = imageService.postBlogs;
-    $scope.selectPostBlog = "7833828309523986982";
+    $scope.selectPostBlog = imageService.selPostBlog;
 
     var obj = blogutil.searchObjectArray(blogutil.getFeedObj(),"id",$routeParams.messageId);
 
@@ -166,7 +166,8 @@ app.controller('messageCtrl', function ($scope, $routeParams, $sce, imageService
     }
 
     var selectedBlog = function(){
-        console.log($scope.selectPostBlog); 
+        imageService.selPostBlog = $scope.selectPostBlog;
+        console.log("post blog changed to "+ $scope.selectPostBlog);
     }
 
     var getPostHTML = function () {
