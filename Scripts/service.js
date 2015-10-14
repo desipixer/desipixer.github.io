@@ -4,7 +4,7 @@
     var blogId = "";
     var startIndex = 0001;
     var totalItems = 0001;
-    var maxResults = 200;
+    var maxResults = 400;
     var bloggerKey = "AIzaSyCIEuVxD1SFWMNBTtc24gBtuVExstlSGEQ";
     var selPostBlog = "7833828309523986982";
 
@@ -337,7 +337,8 @@
         bloggerKey : bloggerKey,
         getSearchPosts : this.getSearchPosts,
         postBlogs : this.postBlogs,
-        selPostBlog : selPostBlog
+        selPostBlog : selPostBlog,
+        maxResults : maxResults
     }
 
 }]);

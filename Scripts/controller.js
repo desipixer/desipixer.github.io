@@ -57,14 +57,14 @@
 
     $scope.getNextPosts = function () {
         //console.log($scope.siteList);
-        imageService.startIndex += 200;
+        imageService.startIndex += imageService.maxResults;
         $scope.getSite($scope.siteList, imageService.startIndex);
     }
 
     $scope.getPreviousPosts = function () {
-        if (imageService.startIndex - 200 > 0)
+        if (imageService.startIndex - imageService.maxResults > 0)
         {
-            imageService.startIndex -= 200;
+            imageService.startIndex -= imageService.maxResults;
         }
         $scope.getSite($scope.siteList, imageService.startIndex);
     }
