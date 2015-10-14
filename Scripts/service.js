@@ -243,6 +243,41 @@
                         blogId: 5187513159820363840,
                         blogURL: 'http://www.spicycinegallery.com/',
                         category: 1
+                    },
+                    { 
+                        blogId: "9011345903648301710",
+                        blogURL: 'http://desipixers.blogspot.com/',
+                        category: 1
+                    },
+                    { 
+                        blogId: "8288428012409826912",
+                        blogURL: 'http://samanthapix.blogspot.com/',
+                        category: 1
+                    },
+                    {
+                        blogId: "4729247519531040631",
+                        blogURL: 'http://rakulpixer.blogspot.com/',
+                        category: 1
+                    },
+                    {
+                        blogId: "6614264041233815321",
+                        blogURL: 'http://kajalpixer.blogspot.com/',
+                        category: 1
+                    },
+                    {
+                        blogId: "2016762340977866228",
+                        blogURL: 'http://shriyapixer.blogspot.com/',
+                        category: 1
+                    },
+                    {
+                        blogId: "9026317655696914243",
+                        blogURL: 'http://samanthapixer.blogspot.com/',
+                        category: 1
+                    },
+                    {
+                        blogId: "7770041580109253182",
+                        blogURL: 'http://tamannapixer.blogspot.com/',
+                        category: 1
                     }
                     ];
         return siteList;
