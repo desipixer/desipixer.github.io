@@ -192,6 +192,15 @@ app.controller('messageCtrl', function ($scope, $routeParams, $sce, imageService
         base_url += "url="+obj.url;
         window.open(base_url, '_blank', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');
     }
+
+    $scope.shareFlipboardDialog = function(){
+        var base_url = "https://share.flipboard.com/bookmarklet/popout?v=2&";
+        base_url += "url="+obj.url;
+        base_url += "&title="+obj.title;
+        base_url += "&ext=addthis&utm_medium=web&utm_campaign=widgets&utm_source=addthis"
+        window.open(base_url, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=400,width=400');
+    }
+
     
 
     $scope.renderHtml = function (htmlCode) {

@@ -3,11 +3,7 @@
 
 
 app.config(function ($routeProvider) {
-    $routeProvider.when('/content', {
-        controller: 'homeCtrl',
-        templateUrl: 'Pages/imagePage.html'
-    }).
-    when('/content/:messageId', {
+    $routeProvider.when('/content/:messageId', {
         controller: 'messageCtrl',
         templateUrl: 'Pages/post.html'
     }).
