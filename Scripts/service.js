@@ -23,7 +23,17 @@
     {
        
         var deferred = $q.defer();
-        
+
+        /* blog present in list of blogs */
+        var IsBlogInList = blogutil.searchObjectArray(this.getBlogList(),"blogId",blogId);
+        if(IsBlogInList !== null &&  IsBlogInList.category == 2){
+            var URL = "https://www.googleapis.com/blogger/v3/blogs/"+ blogId +"/posts?fetchImages=true&key=AIzaSyBZvR46qyUilZ6Fl5vn9oPnLZtYHnqSknE&maxResults=500";
+            $http.get(URL).success(function(data){
+                deferred.resolve(data);
+            });
+        }
+        else
+        {
             var URL = "https://www.blogger.com/feeds/" + blogId + "/posts/default?start-index=" + startIndex + "&max-results="+ maxResults +"&alt=json&callback=JSON_CALLBACK";
             $http.jsonp(URL).success(function (data) {
                 deferred.resolve(data);
@@ -32,15 +42,9 @@
                     arr1.push(entryX);
                 });
                 angular.copy(arr1, entries);
-        });
+            });
+        }    
 
-        /* blog present in list of blogs */
-        var IsBlogInList = blogutil.searchObjectArray(this.getBlogList(),"blogId",blogId);
-        if(IsBlogInList !== null &&  IsBlogInList.category == 2){
-            var URL = "";
-            $http.jsonp(URL)
-        }
-      
         return deferred.promise;
     }
 
@@ -449,16 +453,26 @@ app.service('blogutil',function(){
         resetParams();
         if(typeof obj =="object"){
             /* iterate through each entries */
+            if(obj.hasOwnProperty("feed")){
+                obj.feed.entry.forEach(function(element,index){
+                    if(element.content.$t !== undefined){
+                        var htmlContent = element.content.$t;
 
-            obj.feed.entry.forEach(function(element,index){
-                if(element.content.$t !== undefined){
-                    var htmlContent = element.content.$t;
-
-                    feedObj.push(parseEntry(element));
-                    //imgContainer = imgContainer.concat(parseImageFromHTML(htmlContent));
-                    //thumbContainer = JSON.parse(JSON.stringify(imgContainer).replace(/s1600/g,"s320"));
-                }
-            });
+                        feedObj.push(parseEntry(element));
+                        //imgContainer = imgContainer.concat(parseImageFromHTML(htmlContent));
+                        //thumbContainer = JSON.parse(JSON.stringify(imgContainer).replace(/s1600/g,"s320"));
+                    }
+                });
+            }
+            if(obj.hasOwnProperty("items")){
+                obj.items.forEach(function(element,index){
+                    if(element.content != undefined){
+                        var htmlContent = element.content;
+                        feedObj.push(parseAPIEntry(element));
+                    }
+                })
+            }
+            
 
         }   
 
@@ -480,8 +494,18 @@ app.service('blogutil',function(){
             obj.category = (entry.category[0].hasOwnProperty("term")) ? entry.category[0].term : "";
         return obj;
     }
-
-    
+    /* returns filtered result of an entry */
+    var parseAPIEntry = function(entry){
+        var obj = {};
+        obj.title = entry.title;
+        obj.images = parseImageFromHTML(entry.content);
+        obj.thumbs = JSON.parse(JSON.stringify(obj.images).replace(/s1600/g,"s320")); //can be memory intensive
+        obj.id = entry.id;
+        obj.published = (new Date(entry.published)).getTime();
+        obj.updated = (new Date(entry.updated)).getTime();
+        return obj;
+    }
+        
 
     /* takes html content as input and returns array */
     var parseImageFromHTML = function(htmlContent){
