@@ -42,15 +42,17 @@
                         </select> -->
                         BLOG : 
                         <select   ng-model="siteList" ng-options="site.blogURL as site.blogURL for site in sitesList" ng-init="siteList = sitesList[0]" ng-change="selectedSite()"></select>
-
-                        CLIENT KEY : 
-                        <select  ng-init="clientKey = clientKeys[0]" ng-model="clientKey" ng-options="key.key as key.name for key in clientKeys"></select>
-                        <button id="btnLogin" ng-click="userLogin()" ng-hide="IsLoggedIn()" class="btn btn-primary">
-                        Login
-                        </button>
-                        <button ng-hide="!(IsLoggedIn())" class="btn btn-danger">
-                        LogOut
-                        </button>
+                        <td>
+                          CLIENT KEY : 
+                                                 <select  ng-init="clientKey = clientKeys[0]" ng-model="clientKey" ng-options="key.key as key.name for key in clientKeys"></select>
+                                                 <button id="btnLogin" ng-click="userLogin()" ng-hide="IsLoggedIn()" class="btn btn-primary">
+                                                 Login
+                                                 </button>
+                                                 <button ng-hide="!(IsLoggedIn())" class="btn btn-danger">
+                                                 LogOut
+                                                 </button>
+                        </td> 
+                       
                      </td>
                      <td>
                         Sort Blogs : <button ng-click="sortBlogs()" class="btn" > SORT </button>
@@ -72,16 +74,22 @@
                          <p class="">StartIndex :  {{startIndex}} </p> 
                   </td>
                   
+                 
+
                   <td>
+                    <!-- Intentionally left blank -->
+                  </td>  
+                   <td>
                          Fast Search : <input ng-model="fastQueryText" />
                          <button ng-click="queryText()" class="btn btn-warning"> SEARCH </button>
-                  </td>   
+                  </td> 
                   </tr>
                </table>
             
          <div ng-hide="isActive('')">
-            <span ng-repeat="entry in feedObj | filter : searchText">
+            <span ng-repeat="entry in feedObj | filter : searchText" class="imageContainer" ng-hide="entry.thumbs.length == 1">
             <a ng-href="#content/{{entry.id}}">    <img ng-src="{{entry.thumbs[0]}}" title="{{entry.title}}" /></a>
+            <span class="imgCount" > {{ entry.thumbs.length }} </span>
             </span>
          </div>
          <div ng-view>
@@ -89,6 +97,21 @@
       </div>
 
       <link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" />
-
+      <style>
+      .imageContainer {
+         position : relative;
+      }
+      .imgCount {
+            position: absolute; 
+            width: 20px; 
+            height : 20px;
+            right: 0; 
+            top: 0; 
+            bottom: 0; 
+            left:0;
+            background: black; 
+            color:white
+      }
+      </style>
    </body>
 </html>
