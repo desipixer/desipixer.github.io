@@ -345,7 +345,6 @@
 
 app.service('loginService', ['$http', '$q', function ($http, $q) {
     var deferred = $q.defer();
-    this.selectedKey = null ;
 
     this.clientKeys = [{
         "name" : "key1",
@@ -363,11 +362,10 @@ app.service('loginService', ['$http', '$q', function ($http, $q) {
     this.logMeIn = function ()
     {
 
-        if(this.selectedKey == null){
-            this.selectedKey = this.clientKeys[0].key;
-        }
+
+        var selectedKey = this.clientKeys[0].key;
         var parameters = {
-            client_id: this.selectedKey,
+            client_id: selectedKey,
             immediate: false,
             response_type: "token",
             scope: "http://www.blogger.com/feeds/"
@@ -389,7 +387,6 @@ app.service('loginService', ['$http', '$q', function ($http, $q) {
         callbackFn: this.callbackFn,
         getToken : this.getToken,
         clientKeys : this.clientKeys,
-        selectedKey : this.selectedKey
     }
 
 }]);

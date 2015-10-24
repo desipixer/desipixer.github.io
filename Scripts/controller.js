@@ -129,8 +129,6 @@
     };
 
     $scope.userLogin = function () {
-        loginService.selectedKey = $scope.clientKey;
-
         loginService.getToken().then(function (data) {
             $scope.accessToken = data.access_token;
             if(data != null)

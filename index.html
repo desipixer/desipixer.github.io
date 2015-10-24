@@ -1,104 +1,94 @@
 ﻿<!DOCTYPE html>
 <html ng-app="myApp">
-   <head>
-      <title>DP Portal</title>
+<head>
+  <title>DP Portal</title>
 
-      <link rel="shortcut icon" href="Images/icon.png" type="image/x-icon"> 
+  <link rel="shortcut icon" href="Images/icon.png" type="image/x-icon"> 
 
-      <script src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
-      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
-     
-      <script src="https://code.angularjs.org/1.2.18/angular-route.min.js"></script>
-      <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
-      <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-      <script src="Scripts/app.js"></script>
-      <script src="Scripts/service.js"></script>
-      <script src="Scripts/controller.js"></script>
-     
-      <style>
-         img {
-             height : 320px;
-             width : 250px;
-         }
-      </style>
-   </head>
-   <body>
-      <div ng-controller="homeCtrl">
-        
-               <table class="table table-condensed">
-                  <tr>
-                     <td>
-                        <a href="/" ><button class="btn btn-info"> HOME </button> </a>
-                     </td>
-                     
-                     <td>
-                        <span> Page </span>
-                        <button ng-click="getPreviousPosts(siteList)"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></button>
-                        <button ng-click="getNextPosts(siteList)" ><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button>
-                     </td>
-                     <td>
+  <script src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
 
-                        BLOG : 
-                        <select   ng-model="siteList" ng-options="site.blogURL as site.blogURL for site in sitesList" ng-init="siteList = sitesList[0]" ng-change="selectedSite()"></select>
-                        <td>
-                          CLIENT KEY : 
-                          <select  ng-init="clientKey = clientKeys[0]" ng-model="clientKey" ng-options="key.key as key.name for key in clientKeys"></select>
-                          <button id="btnLogin" ng-click="userLogin()" ng-hide="IsLoggedIn()" class="btn btn-primary">
-                          Login
-                          </button>
-                          <button ng-hide="!(IsLoggedIn())" class="btn btn-danger">
-                          LogOut
-                          </button>
-                        </td>
-                        
-                     </td>
-                     <td>
-                        Sort Blogs : <button ng-click="sortBlogs()" class="btn" > SORT </button>
-                     </td>
-                     
-                     <td>
-                        Filter : <input ng-model="searchText" />
-                     </td>
+  <script src="https://code.angularjs.org/1.2.18/angular-route.min.js"></script>
+  <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+  <script src="Scripts/app.js"></script>
+  <script src="Scripts/service.js"></script>
+  <script src="Scripts/controller.js"></script>
 
-                  </tr>
-                  <tr>
-                  <td>
-                        <p class="bg-primary">BLOG ID : {{blogId}} </p> 
-                  </td>
-                  <td>
-                         <p class="">TOTAL ITEMS : {{totalItems}} </p> 
-                         <p id="responseCode"></p>
-                  </td>
-                   <td>
-                             Get Blog : <input ng-model="txtBlogName" /> 
-                             <button ng-click="getBlogName()" class="btn btn-info" > Get Blog </button>
-                         
-                        
-                  </td>
-                  <td>
-                      <p class="">StartIndex :  {{startIndex}} </p> 
-                  </td>
-                  <td>
+  <style>
+   img {
+     height : 320px;
+     width : 250px;
+   }
+ </style>
+</head>
+<body>
+  <div ng-controller="homeCtrl">
 
-                  </td>
-                  <td>
-                         Search : <input ng-model="fastQueryText" />
-                         <button ng-click="queryText()" class="btn btn-warning"> SEARCH </button>
-                  </td>   
-                  </tr>
-               </table>
-            
-         <div ng-hide="isActive('')">
-            <span ng-repeat="entry in feedObj | filter : searchText" class="imageContainer" ng-hide="entry.thumbs.length == 1">
-            <a ng-href="#content/{{entry.id}}">    <img ng-src="{{entry.thumbs[0]}}" title="{{entry.title}}" /></a>
-            <span class="imgCount" > {{ entry.thumbs.length }} </span>
-            </span>
-         </div>
-         <div ng-view>
-         
-      </div>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-      <link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" />
-       <link href="Styles/styles.css" rel="stylesheet" />
-   </body>
+   <table class="table table-condensed">
+    <tr>
+     <td>
+      <a href="/" ><button class="btn btn-info btn-sm"> HOME </button> </a>
+    </td>
+    <td>
+      <p>BLOG ID : {{blogId}} </p> 
+    </td>
+    
+
+    <td>
+      <select ng-model="siteList" ng-options="site.blogURL as site.blogURL for site in sitesList" ng-init="siteList = sitesList[0]" ng-change="selectedSite()"></select>
+      <button ng-click="sortBlogs()" class="btn btn-sm" > SORT </button>
+    </td>
+
+    <td>
+      Filter : <input ng-model="searchText" />
+    </td>
+
+    <td>
+      <button id="btnLogin" ng-click="userLogin()" ng-hide="IsLoggedIn()" class="btn btn-primary btn-sm">
+       Login
+     </button>
+     <button ng-hide="!(IsLoggedIn())" class="btn btn-danger btn-sm">
+       LogOut
+     </button>
+   </td>
+
+ </tr>
+ <tr>
+  <td>
+    <button ng-click="getPreviousPosts(siteList)"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Prev</button>
+    <button ng-click="getNextPosts(siteList)" > Next <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button>
+  </td>
+  <td>
+   <p class="">TOTAL ITEMS : {{totalItems}} </p>
+ 
+   <p id="responseCode"></p>
+ </td>
+ <td>
+    <input ng-model="txtBlogName" style="width:350px"/> 
+   <button ng-click="getBlogName()" class="btn btn-info btn-sm  "  > Get Blog </button>
+ </td>
+<td>
+ Search : <input ng-model="fastQueryText" />
+ <button ng-click="queryText()" class="btn btn-warning btn-sm"> SEARCH </button>
+</td>   
+<td>
+    <p > Index :  {{startIndex}} </p> 
+</td>
+</tr>
+</table>
+
+<div ng-hide="isActive('')">
+  <span ng-repeat="entry in feedObj | filter : searchText" class="imageContainer" ng-hide="entry.thumbs.length == 1">
+    <a ng-href="#content/{{entry.id}}">    <img ng-src="{{entry.thumbs[0]}}" title="{{entry.title}}" /></a>
+    <span class="imgCount" > {{ entry.thumbs.length }} </span>
+  </span>
+</div>
+<div ng-view>
+
+</div>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" />
+<link href="Styles/styles.css" rel="stylesheet" />
+</body>
 </html>
