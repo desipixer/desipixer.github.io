@@ -28,37 +28,38 @@
                <table class="table table-condensed">
                   <tr>
                      <td>
-                        <a href="/" ><button class="btn btn-info"> HOME </button> </a> Search : <input ng-model="searchText" />
+                        <a href="/" ><button class="btn btn-info"> HOME </button> </a>
                      </td>
                      
                      <td>
-                        <button ng-click="getPreviousPosts(siteList)"> PREVIOUS</button>
-                        <button ng-click="getNextPosts(siteList)" > NEXT</button>
-                        
-                        <!-- <select ng-model="siteList" ng-change="selectedSite()">
-                           <option ng-repeat="site in sitesList" value="{{site.blogURL}}">
-                              {{site.blogURL}}
-                           </option>
-                        </select> -->
+                        <span> Page </span>
+                        <button ng-click="getPreviousPosts(siteList)"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></button>
+                        <button ng-click="getNextPosts(siteList)" ><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button>
+                     </td>
+                     <td>
+
                         BLOG : 
                         <select   ng-model="siteList" ng-options="site.blogURL as site.blogURL for site in sitesList" ng-init="siteList = sitesList[0]" ng-change="selectedSite()"></select>
-
-                        CLIENT KEY : 
-                        <select  ng-init="clientKey = clientKeys[0]" ng-model="clientKey" ng-options="key.key as key.name for key in clientKeys"></select>
-                        <button id="btnLogin" ng-click="userLogin()" ng-hide="IsLoggedIn()" class="btn btn-primary">
-                        Login
-                        </button>
-                        <button ng-hide="!(IsLoggedIn())" class="btn btn-danger">
-                        LogOut
-                        </button>
+                        <td>
+                          CLIENT KEY : 
+                          <select  ng-init="clientKey = clientKeys[0]" ng-model="clientKey" ng-options="key.key as key.name for key in clientKeys"></select>
+                          <button id="btnLogin" ng-click="userLogin()" ng-hide="IsLoggedIn()" class="btn btn-primary">
+                          Login
+                          </button>
+                          <button ng-hide="!(IsLoggedIn())" class="btn btn-danger">
+                          LogOut
+                          </button>
+                        </td>
+                        
                      </td>
                      <td>
                         Sort Blogs : <button ng-click="sortBlogs()" class="btn" > SORT </button>
                      </td>
+                     
                      <td>
-                        Get Blog : <input type="text" ng-model="txtBlogName" /> 
-                        <button ng-click="getBlogName()" > Get Blog </button>
+                        Filter : <input ng-model="searchText" />
                      </td>
+
                   </tr>
                   <tr>
                   <td>
@@ -69,26 +70,35 @@
                          <p id="responseCode"></p>
                   </td>
                    <td>
-                         <p class="">StartIndex :  {{startIndex}} </p> 
+                             Get Blog : <input ng-model="txtBlogName" /> 
+                             <button ng-click="getBlogName()" class="btn btn-info" > Get Blog </button>
+                         
+                        
                   </td>
-                  
                   <td>
-                         Fast Search : <input ng-model="fastQueryText" />
+                      <p class="">StartIndex :  {{startIndex}} </p> 
+                  </td>
+                  <td>
+
+                  </td>
+                  <td>
+                         Search : <input ng-model="fastQueryText" />
                          <button ng-click="queryText()" class="btn btn-warning"> SEARCH </button>
                   </td>   
                   </tr>
                </table>
             
          <div ng-hide="isActive('')">
-            <span ng-repeat="entry in feedObj | filter : searchText">
+            <span ng-repeat="entry in feedObj | filter : searchText" class="imageContainer" ng-hide="entry.thumbs.length == 1">
             <a ng-href="#content/{{entry.id}}">    <img ng-src="{{entry.thumbs[0]}}" title="{{entry.title}}" /></a>
+            <span class="imgCount" > {{ entry.thumbs.length }} </span>
             </span>
          </div>
          <div ng-view>
          
       </div>
-
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
       <link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" />
-
+       <link href="Styles/styles.css" rel="stylesheet" />
    </body>
 </html>
