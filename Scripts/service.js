@@ -294,6 +294,16 @@
         blogURL: 'http://desipixers.blogspot.com/',
         category: 1
     },
+    {
+        blogId: "5935768727601291895",
+        blogURL: 'http://pixerdesi.blogspot.com/',
+        category: 1
+    },
+    {
+        blogId: "4938539013570546208",
+        blogURL: 'http://tamilpicz.blogspot.com/',
+        category: 1
+    },
     { 
         blogId: "8288428012409826912",
         blogURL: 'http://samanthapix.blogspot.com/',
