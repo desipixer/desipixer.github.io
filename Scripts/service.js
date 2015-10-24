@@ -244,6 +244,16 @@
                         blogURL: 'http://www.spicycinegallery.com/',
                         category: 1
                     },
+                    {
+                        blogId: "7524614484713497380",
+                        blogURL: 'http://www.tollywoodtimepass.com/',
+                        category: 1
+                    },
+                    {
+                        blogId: "506675312802549728",
+                        blogURL: 'http://actressmirchi.blogspot.com/',
+                        category: 2
+                    },
                     { 
                         blogId: "9011345903648301710",
                         blogURL: 'http://desipixers.blogspot.com/',
@@ -278,7 +288,10 @@
                         blogId: "7770041580109253182",
                         blogURL: 'http://tamannapixer.blogspot.com/',
                         category: 1
-                    }
+                    },
+                    {blogId: "8733127730104997251", blogURL: "http://hotandsexysouthheroines.blogspot.com/", category: 1},
+                    {blogId: "6539177596614326409", blogName: "http://bollyystilspics.blogspot.com/", category: 1}
+                    
                     ];
         return siteList;
     }

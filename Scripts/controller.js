@@ -27,6 +27,11 @@
         imageService.startIndex = 1;
         imageService.totalItems = data.posts.totalItems;
         $scope.totalItems = data.posts.totalItems;
+        console.log({
+            blogId : data.id,
+            blogURL : $scope.txtBlogName,
+            category : 1
+        });
         imageService.getPosts(data.id,imageService.startIndex).then(function (data) {
             $scope.blogPosts = data;
             blogutil.parseFeed(data);
