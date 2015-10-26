@@ -290,7 +290,7 @@
                         category: 1
                     },
                     {blogId: "8733127730104997251", blogURL: "http://hotandsexysouthheroines.blogspot.com/", category: 1},
-                    {blogId: "6539177596614326409", blogName: "http://bollyystilspics.blogspot.com/", category: 1}
+                    {blogId: "6539177596614326409", blogURL: "http://bollyystilspics.blogspot.com/", category: 1}
                     
                     ];
         return siteList;
