@@ -468,16 +468,26 @@ app.service('blogutil',function(){
         resetParams();
         if(typeof obj =="object"){
             /* iterate through each entries */
+            if(obj.hasOwnProperty("feed")){
+                obj.feed.entry.forEach(function(element,index){
+                    if(element.content.$t !== undefined){
+                        var htmlContent = element.content.$t;
 
-            obj.feed.entry.forEach(function(element,index){
-                if(element.content.$t !== undefined){
-                    var htmlContent = element.content.$t;
-
-                    feedObj.push(parseEntry(element));
-                    //imgContainer = imgContainer.concat(parseImageFromHTML(htmlContent));
-                    //thumbContainer = JSON.parse(JSON.stringify(imgContainer).replace(/s1600/g,"s320"));
-                }
-            });
+                        feedObj.push(parseEntry(element));
+                        //imgContainer = imgContainer.concat(parseImageFromHTML(htmlContent));
+                        //thumbContainer = JSON.parse(JSON.stringify(imgContainer).replace(/s1600/g,"s320"));
+                    }
+                });
+            }
+            if(obj.hasOwnProperty("items")){
+                obj.items.forEach(function(element,index){
+                    if(element.content != undefined){
+                        var htmlContent = element.content;
+                        feedObj.push(parseAPIEntry(element));
+                    }
+                })
+            }
+            
 
         }   
 
@@ -500,7 +510,17 @@ app.service('blogutil',function(){
         return obj;
     }
 
-    
+    /* returns filtered result of an entry */
+    var parseAPIEntry = function(entry){
+        var obj = {};
+        obj.title = entry.title;
+        obj.images = parseImageFromHTML(entry.content);
+        obj.thumbs = JSON.parse(JSON.stringify(obj.images).replace(/s1600/g,"s320")); //can be memory intensive
+        obj.id = entry.id;
+        obj.published = (new Date(entry.published)).getTime();
+        obj.updated = (new Date(entry.updated)).getTime();
+        return obj;
+    }
 
     /* takes html content as input and returns array */
     var parseImageFromHTML = function(htmlContent){
@@ -512,7 +532,7 @@ app.service('blogutil',function(){
                 if(imgURL != undefined && imgURL.length > 0){
 
                     /* get large images if it is a blogger site images */
-                    if(imgURL[0].indexOf("bp.blogspot.com") !== -1){
+                    if(imgURL[0].indexOf("bp.blogspot.com") !== -1 && imgURL[0].indexOf("telugu.zustcinema_film_news_updates.png") == -1){
                         var imgSplit = imgURL[0].split('/');
                         var imgRes = imgSplit.splice(imgSplit.length - 2,1);
                         largeIMG = imgURL[0].replace(imgRes,"s1600");
