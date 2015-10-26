@@ -22,26 +22,30 @@
     this.getPosts = function (blogId,startIndex)
     {
        
-        var deferred = $q.defer();
-        
-            var URL = "https://www.blogger.com/feeds/" + blogId + "/posts/default?start-index=" + startIndex + "&max-results="+ maxResults +"&alt=json&callback=JSON_CALLBACK";
-            $http.jsonp(URL).success(function (data) {
-                deferred.resolve(data);
-                var arr1 = [];
-                angular.forEach(data.feed.entry, function (entryX) {
-                    arr1.push(entryX);
-                });
-                angular.copy(arr1, entries);
-        });
+       var deferred = $q.defer();
 
-        /* blog present in list of blogs */
-        var IsBlogInList = blogutil.searchObjectArray(this.getBlogList(),"blogId",blogId);
-        if(IsBlogInList !== null &&  IsBlogInList.category == 2){
-            var URL = "";
-            $http.jsonp(URL)
-        }
-      
-        return deferred.promise;
+       /* blog present in list of blogs */
+       var IsBlogInList = blogutil.searchObjectArray(this.getBlogList(),"blogId",blogId);
+       if(IsBlogInList !== null &&  IsBlogInList.category == 2){
+           var URL = "https://www.googleapis.com/blogger/v3/blogs/"+ blogId +"/posts?fetchImages=true&key=AIzaSyBZvR46qyUilZ6Fl5vn9oPnLZtYHnqSknE&maxResults=500";
+           $http.get(URL).success(function(data){
+               deferred.resolve(data);
+           });
+       }
+       else
+       {
+           var URL = "https://www.blogger.com/feeds/" + blogId + "/posts/default?start-index=" + startIndex + "&max-results="+ maxResults +"&alt=json&callback=JSON_CALLBACK";
+           $http.jsonp(URL).success(function (data) {
+               deferred.resolve(data);
+               var arr1 = [];
+               angular.forEach(data.feed.entry, function (entryX) {
+                   arr1.push(entryX);
+               });
+               angular.copy(arr1, entries);
+           });
+       }    
+
+       return deferred.promise;
     }
 
     this.getSearchPosts= function(blogId,startIndex,searchText)
