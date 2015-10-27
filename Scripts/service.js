@@ -321,6 +321,9 @@
         blogURL: 'http://tamilpicz.blogspot.com/',
         category: 1
     },
+    {blogId: "2313063316259818401", blogURL: "http://cinestillz.blogspot.com/", category: 1},
+     {blogId: "1689491623003449378", blogURL: "http://pixerhub.blogspot.com/", category: 1},
+     {blogId: "2360413207505978741", blogURL: "http://pixerblog.blogspot.com/", category: 1},
     { 
         blogId: "8288428012409826912",
         blogURL: 'http://samanthapix.blogspot.com/',
