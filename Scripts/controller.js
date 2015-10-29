@@ -204,6 +204,11 @@ app.controller('messageCtrl', function ($scope, $routeParams, $sce, imageService
         window.open(base_url, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=400,width=400');
     }
 
+     $scope.openURL = function(){
+          var win = window.open(obj.url, '_blank');
+          win.focus();
+    }
+
     
 
     $scope.renderHtml = function (htmlCode) {

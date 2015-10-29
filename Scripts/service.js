@@ -526,6 +526,8 @@ app.service('blogutil',function(){
         obj.id = entry.id;
         obj.published = (new Date(entry.published)).getTime();
         obj.updated = (new Date(entry.updated)).getTime();
+        obj.url = entry.url;
+        obj.labels = entry.labels;
         return obj;
     }
 
