@@ -103,15 +103,16 @@
         var siteList = [ { blogId: 7833828309523986982,
                         blogURL: 'http://www.desipixer.in/',
                         category: 1
-                    }, {
+                    },
+                    {blogId: "3079987222818050451", blogURL: "http://movies.cinema65.com/", category: 1},
+                    {blogId: "4846859112009281783", blogURL: "http://rockingfunimages.blogspot.com/", category: 1},
+                    {blogId: "719302156971941098", blogURL: "http://hq-bollywood.blogspot.com/", category: 1},
+
+                     {
                         blogId: 1607837477387514460,
                         blogURL: 'http://teluguclue.blogspot.in/',
                         category: 1
                     }, {
-                        blogId: 7613699008692966649,
-                        blogURL: 'http://rockingfunimages.blogspot.com/',
-                        category: 2
-                    },{
                         blogId: 7225871578344472338,
                         blogURL: 'http://www.urtamilcinema.com/',
                         category: 2
@@ -162,10 +163,6 @@
                     }, {
                         blogId: 1259465806147598254,
                         blogURL: 'http://way2newsblog.blogspot.com/',
-                        category: 1
-                    }, {
-                        blogId: 719302156971941098,
-                        blogURL: 'http://hq-bollywood.blogspot.com/',
                         category: 1
                     },{
                         blogId: 4919960343339905419,
@@ -234,10 +231,6 @@
                     },{
                         blogId: 5067574769190905623,
                         blogURL: 'http://actresshdgallery.blogspot.com/',
-                        category: 1
-                    },{
-                        blogId: 4713835892748753574,
-                        blogURL: 'http://www.tcinema.in/',
                         category: 1
                     },{
                         blogId: 8089698501885637773,
