@@ -109,6 +109,7 @@
                     {blogId: "719302156971941098", blogURL: "http://hq-bollywood.blogspot.com/", category: 1},
                     {blogId: "1579799827781024268", blogURL: "http://www.telugupeopleadda.com/", category: 1},
                     {blogId: "5935905342569794143", blogURL: "http://sabhothimages.blogspot.com/", category: 1},
+                    {blogId: "801637413886327659", blogURL: "http://honeymedia.blogspot.com/", category: 1},
                      {
                         blogId: 1607837477387514460,
                         blogURL: 'http://teluguclue.blogspot.in/',
@@ -168,10 +169,6 @@
                     },{
                         blogId: 4919960343339905419,
                         blogURL: 'http://www.indianbeast.com/',
-                        category: 1
-                    },  {
-                        blogId: 8351995278725523676,
-                        blogURL: 'http://cinema.nilavaithedi.biz/',
                         category: 1
                     }, {
                         blogId: 8630800337511284753,
@@ -288,7 +285,8 @@
                         category: 1
                     },
                     {blogId: "8733127730104997251", blogURL: "http://hotandsexysouthheroines.blogspot.com/", category: 1},
-                    {blogId: "6539177596614326409", blogURL: "http://bollyystilspics.blogspot.com/", category: 1}
+                    {blogId: "6539177596614326409", blogURL: "http://bollyystilspics.blogspot.com/", category: 1},
+                     {blogId: "375502430236704104", blogURL: "http://catchemind.blogspot.com/", category: 1}
                     
                     ];
         return siteList;
