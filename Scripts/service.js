@@ -250,11 +250,6 @@
                         category: 2
                     },
                     { 
-                        blogId: "9011345903648301710",
-                        blogURL: 'http://desipixers.blogspot.com/',
-                        category: 1
-                    },
-                    { 
                         blogId: "8288428012409826912",
                         blogURL: 'http://samanthapix.blogspot.com/',
                         category: 1
