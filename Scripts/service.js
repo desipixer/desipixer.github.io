@@ -240,11 +240,6 @@
                         category: 1
                     },
                     {
-                        blogId: "7524614484713497380",
-                        blogURL: 'http://www.tollywoodtimepass.com/',
-                        category: 1
-                    },
-                    {
                         blogId: "506675312802549728",
                         blogURL: 'http://actressmirchi.blogspot.com/',
                         category: 2
@@ -291,11 +286,6 @@
     { 
         blogId: "7833828309523986982",
         blogURL: 'http://www.desipixer.in/',
-        category: 1
-    },
-    { 
-        blogId: "9011345903648301710",
-        blogURL: 'http://desipixers.blogspot.com/',
         category: 1
     },
     {
