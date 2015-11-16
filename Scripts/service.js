@@ -447,6 +447,42 @@ app.service('blogutil',function(){
     var thumbContainer = [];
     var feedObj = [];
 
+
+    /* removes stop words from the title */
+    var removeStopWords = function(string){
+        var stopWords = ["Telugu","Tamil","Actress","Acress","CelebsNext","Photoshoot","Cinema","Photos","Photo","Pictures","Picture","Tollywood","Kollywood","Movies","Movie","Latest","Saree","Gallery","Dress","Event","Audio","Stills","Still"," hot ","Navel","Cleavage","Boobs","Exposing","Desi ","Heroine","Heroin", "Images","Wallpapers","Wallpaper","Cute","Spicy","New ","Function","Success Meet","Teaser Launch","Launch "," Hot","Press Meet"," Launch","Sexy "];
+        var rExp;
+        for(word of stopWords){
+            rExp = new RegExp(word,"gi");
+            string = string.replace(rExp," ").trim();
+        }
+        string = removeNoise(string);
+        string = string.replace(/\s/g," ").trim();
+        return string;
+    }
+
+    function removeNoise(string){
+        var noiseWords = ["%2B","%25"];
+        var rExp;
+        for(word of noiseWords){
+            rExp = new RegExp(word,"gi");
+            string = string.replace(rExp," ").trim();
+            string = string.replace(/\W+/g," ").trim();
+            string = string.replace(" jpg","").trim();
+            string = string.replace(/\s/g," ").trim();
+        }
+        return string;
+    }
+
+    var compareTitle = function(a,b) {
+      if (a.cleanTitle < b.cleanTitle)
+        return -1;
+      if (a.cleanTitle > b.cleanTitle)
+        return 1;
+      return 0;
+    }
+
+
     /* parse the feed and get the images in the object */
     var parseFeed = function(obj){
         resetParams();
@@ -489,6 +525,7 @@ app.service('blogutil',function(){
         if(entry.hasOwnProperty("link")){
             obj.url = (entry.link[entry.link.length - 1].href);
         }
+        obj.cleanTitle = removeStopWords(entry.title.$t);
         if(entry.hasOwnProperty("category"))
             obj.category = (entry.category[0].hasOwnProperty("term")) ? entry.category[0].term : "";
         return obj;
@@ -505,6 +542,7 @@ app.service('blogutil',function(){
         obj.updated = (new Date(entry.updated)).getTime();
         obj.url = entry.url;
         obj.labels = entry.labels;
+        obj.cleanTitle = removeStopWords(entry.title);
         return obj;
     }
 
@@ -602,6 +640,7 @@ app.service('blogutil',function(){
         getImages : getImages,
         getFeedObj : getFeedObj,
         lazyLoadingImages : lazyLoadingImages,
-        searchObjectArray : searchObjectArray
+        searchObjectArray : searchObjectArray,
+        compareTitle : compareTitle
     }
 });

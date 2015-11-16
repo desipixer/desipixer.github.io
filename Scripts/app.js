@@ -3,11 +3,12 @@
 
 
 app.config(function ($routeProvider) {
-    $routeProvider.when('/content/:messageId', {
+    $routeProvider
+    .when('/content/:messageId', {
         controller: 'messageCtrl',
         templateUrl: 'Pages/post.html'
-    }).
-    otherwise({
+    })
+    .otherwise({
         template: '<div> Not Found </div>'
     })
 });

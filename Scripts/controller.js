@@ -60,6 +60,10 @@
 
     }
 
+    $scope.sortFeedByTitle = function(){
+        $scope.feedObj.sort(blogutil.compareTitle);
+    }
+
     $scope.getNextPosts = function () {
         //console.log($scope.siteList);
         imageService.startIndex += imageService.maxResults;
