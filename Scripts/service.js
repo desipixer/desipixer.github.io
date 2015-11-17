@@ -110,6 +110,7 @@
                     {blogId: "1579799827781024268", blogURL: "http://www.telugupeopleadda.com/", category: 1},
                     {blogId: "5935905342569794143", blogURL: "http://sabhothimages.blogspot.com/", category: 1},
                     {blogId: "801637413886327659", blogURL: "http://honeymedia.blogspot.com/", category: 1},
+                    {blogId: "809630945277969589", blogURL: "http://masalaphotoshoot.blogspot.com/", category: 1},
                      {
                         blogId: 1607837477387514460,
                         blogURL: 'http://teluguclue.blogspot.in/',
