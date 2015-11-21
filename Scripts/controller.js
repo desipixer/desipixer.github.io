@@ -117,7 +117,8 @@
                     name : data.name,
                     category: 1,
                     totalItems : data.posts.totalItems,
-                    updated : Date.parse(new Date(data.updated))
+                    updated : Date.parse(new Date(data.updated)),
+                    published : Date.parse(new Date(data.published))
                 }
                 $scope.displayData.push(tempObj);
             }
