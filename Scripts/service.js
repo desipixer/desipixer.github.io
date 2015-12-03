@@ -1,4 +1,4 @@
-﻿app.service('imageService', ['$http', '$q',"blogutil", function ($http, $q, blogutil) {
+app.service('imageService', ['$http', '$q',"blogutil", function ($http, $q, blogutil) {
     //Variables Declaration
     var entries = [];
     var blogId = "";
@@ -8,9 +8,24 @@
     var bloggerKey = "AIzaSyCIEuVxD1SFWMNBTtc24gBtuVExstlSGEQ";
     var selPostBlog = "7833828309523986982";
 
+    var objToQueryString = function(obj){
+        var str = "?";
+        for(key of Object.keys(obj)){
+            str += key+ "="+ obj[key]+ "&";
+        }
+        return str.substring(0,str.length - 1);
+    }
+
     this.getBlogId = function (blogName) {
         var deferred = $q.defer();
-        var URL = "https://www.googleapis.com/blogger/v3/blogs/byurl?key=AIzaSyAb3tFTPvsduIR2xopIVpYhwKMQ5ac_5Po&url=" + blogName;
+        var URL = "https://www.googleapis.com/blogger/v3/blogs/byurl";
+        var params = {
+            key : "AIzaSyAb3tFTPvsduIR2xopIVpYhwKMQ5ac_5Po",
+            url : blogName
+        }
+        var queryString = objToQueryString(params);
+        URL += queryString;
+        
         $http.get(URL).success(function (data) {
             blogId = data.id;
             totalItems = data.posts.totalItems;
