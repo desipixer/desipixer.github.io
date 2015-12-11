@@ -5,9 +5,17 @@
     $scope.startIndex = imageService.startIndex;
     $scope.clientKeys = loginService.clientKeys;
 
+    $scope.blog = {};
+
+
     $scope.getSite = function (blogName,startIndex) {
         imageService.getBlogId(blogName).then(function (data) {
             imageService.blogId = data.id;
+
+            $scope.blog.id = data.id;
+            $scope.blog.url = data.url;
+            $scope.blog.totalItems  = data.posts.totalItems;
+
             $scope.blogId = data.id;
             imageService.totalItems = data.posts.totalItems;
             $scope.totalItems = data.posts.totalItems;
@@ -22,6 +30,11 @@
     $scope.getBlogName = function()
     {
         imageService.getBlogId($scope.txtBlogName).then(function (data) {
+        $scope.blog.id = data.id;
+        $scope.blog.url = data.url;
+        $scope.blog.totalItems = data.posts.totalItems;
+        $scope.blog.startIndex = 1;
+
         $scope.blogId = data.id;
         imageService.blogId = data.id;
         imageService.startIndex = 1;
@@ -44,8 +57,8 @@
 
     $scope.queryText = function()
     {
-
-        imageService.getBlogId($scope.siteList).then(function (data) {
+        console.log($scope.blog.id);
+        imageService.getBlogId($scope.blog.url).then(function (data) {
             imageService.blogId = data.id;
             $scope.blogId = data.id;
             imageService.totalItems = data.posts.totalItems;
@@ -65,17 +78,14 @@
     }
 
     $scope.getNextPosts = function () {
-        //console.log($scope.siteList);
         imageService.startIndex += imageService.maxResults;
-        $scope.getSite($scope.siteList, imageService.startIndex);
+        $scope.getSite($scope.blog.url, imageService.startIndex);
     }
 
     $scope.getPreviousPosts = function () {
         if (imageService.startIndex - imageService.maxResults > 0)
-        {
             imageService.startIndex -= imageService.maxResults;
-        }
-        $scope.getSite($scope.siteList, imageService.startIndex);
+        $scope.getSite($scope.blog.url, imageService.startIndex);
     }
 
     $scope.selectedSite = function () {
@@ -235,3 +245,16 @@ app.controller('messageCtrl', function ($scope, $routeParams, $sce, imageService
 
 });
 
+app.directive('ngEnter', function () {
+    return function (scope, element, attrs) {
+        element.bind("keydown keypress", function (event) {
+            if(event.which === 13) {
+                scope.$apply(function (){
+                    scope.$eval(attrs.ngEnter);
+                });
+ 
+                event.preventDefault();
+            }
+        });
+    };
+});

@@ -65,11 +65,11 @@
    <p id="responseCode"></p>
  </td>
  <td>
-    <input ng-model="txtBlogName" style="width:350px"/> 
+    <input ng-model="txtBlogName" style="width:350px" ng-enter="getBlogName()" /> 
    <button ng-click="getBlogName()" class="btn btn-info btn-sm  "  > Get Blog </button>
  </td>
 <td>
- Search : <input ng-model="fastQueryText" />
+ Search : <input ng-model="fastQueryText" ng-enter="queryText()" />
  <button ng-click="queryText()" class="btn btn-warning btn-sm"> SEARCH </button>
 </td>   
 <td>

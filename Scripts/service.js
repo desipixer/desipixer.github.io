@@ -115,10 +115,8 @@ app.service('imageService', ['$http', '$q',"blogutil", function ($http, $q, blog
 
 
     this.getBlogList = function() {
-        var siteList = [ { blogId: 7833828309523986982,
-                        blogURL: 'http://www.desipixer.in/',
-                        category: 1
-                    },
+        var siteList = [
+                    {blogId: "7833828309523986982", blogURL: "http://www.desipixer.in/", category: 1},
                     {blogId: "3079987222818050451", blogURL: "http://movies.cinema65.com/", category: 1},
                     {blogId: "4846859112009281783", blogURL: "http://rockingfunimages.blogspot.com/", category: 1},
                     {blogId: "719302156971941098", blogURL: "http://hq-bollywood.blogspot.com/", category: 1},
@@ -136,22 +134,16 @@ app.service('imageService', ['$http', '$q',"blogutil", function ($http, $q, blog
                     {blogId: "1566500733828359729", blogURL: "http://indianactressclub.blogspot.com/", category: 1},
                     {blogId: "8904303770733117180", blogURL: "http://desigirlzall.blogspot.com/", category: 1},
                     {blogId: "6468018902177861697", blogURL: "http://totaltollywoodmovies.blogspot.com/", category: 2},
+                     {blogId: "7225871578344472338", blogURL: "http://www.urtamilcinema.com/", category: 2},
+                     {blogId: "3293309843232706023", blogURL: "http://www.searchtamilmovies.com/", category: 1},
                       {
                          blogId: "1607837477387514460",
                          blogURL: 'http://teluguclue.blogspot.in/',
                          category: 1
-                     }, {
-                         blogId: "7225871578344472338",
-                         blogURL: 'http://www.urtamilcinema.com/',
-                         category: 2
                      },  {
                          blogId: "4846859112009281783",
                          blogURL: 'http://www.celebsnext.com/',
                          category: 2
-                     }, {
-                         blogId: "3293309843232706023",
-                         blogURL: 'http://www.searchtamilmovies.com/',
-                         category: 1
                      }, {
                          blogId: "3570505240870034981",
                          blogURL: 'http://illeana-hotphotos.blogspot.com/',
