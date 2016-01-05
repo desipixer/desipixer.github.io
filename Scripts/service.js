@@ -258,7 +258,6 @@ app.service('imageService', ['$http', '$q',"blogutil", function ($http, $q, blog
                          category: 1
                      },
                      {
-<<<<<<< HEAD
                         blogId: 1607837477387514460,
                         blogURL: 'http://teluguclue.blogspot.in/',
                         category: 1
@@ -420,8 +419,8 @@ app.service('imageService', ['$http', '$q',"blogutil", function ($http, $q, blog
                     },
                     {blogId: "8733127730104997251", blogURL: "http://hotandsexysouthheroines.blogspot.com/", category: 1},
                     {blogId: "6539177596614326409", blogURL: "http://bollyystilspics.blogspot.com/", category: 1},
-                     {blogId: "375502430236704104", blogURL: "http://catchemind.blogspot.com/", category: 1}
-=======
+                     {blogId: "375502430236704104", blogURL: "http://catchemind.blogspot.com/", category: 1},
+                     {
                          blogId: "506675312802549728",
                          blogURL: 'http://actressmirchi.blogspot.com/',
                          category: 2
@@ -459,7 +458,7 @@ app.service('imageService', ['$http', '$q',"blogutil", function ($http, $q, blog
                      {blogId: "8733127730104997251", blogURL: "http://hotandsexysouthheroines.blogspot.com/", category: 1},
                      {blogId: "6539177596614326409", blogURL: "http://bollyystilspics.blogspot.com/", category: 1},
                       {blogId: "375502430236704104", blogURL: "http://catchemind.blogspot.com/", category: 1}
->>>>>>> origin/master
+
                     
                     ];
         return siteList;
