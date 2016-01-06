@@ -184,10 +184,6 @@ app.service('imageService', ['$http', '$q',"blogutil", function ($http, $q, blog
                          blogId: "1259465806147598254",
                          blogURL: 'http://way2newsblog.blogspot.com/',
                          category: 1
-                     },{
-                         blogId: "4919960343339905419",
-                         blogURL: 'http://www.indianbeast.com/',
-                         category: 1
                      }, {
                          blogId: "8630800337511284753",
                          blogURL: 'http://cinemaicon.blogspot.com/',
