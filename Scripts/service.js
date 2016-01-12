@@ -213,10 +213,6 @@ app.service('imageService', ['$http', '$q',"blogutil", function ($http, $q, blog
                          blogURL: 'http://actresscelebritygallery.blogspot.com/',
                          category: 1
                      },{
-                         blogId: "3147458353617272183",
-                         blogURL: 'http://brittanywilbur.blogspot.com/',
-                         category: 1
-                     },{
                          blogId: "9011145545740768794",
                          blogURL: 'http://telugumoviesongsfreedownloads.blogspot.com/',
                          category: 1
