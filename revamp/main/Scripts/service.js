@@ -28,7 +28,22 @@ var isValidPost = function(obj){
 	@ouput : Array of images
  */
 var getImgFromHTML = function(htmlContent){
-	return [];
+	var imgArr = [];
+	var imgTags = htmlContent.match(/<img\s[^>]*?src\s*=\s*['\"]([^'\"]*?)['\"][^>]*?>/g);
+	if(imgTags != undefined && imgTags.length > 0 ){
+		for(var i=0 ; i < imgTags.length ; i++){
+			var imgURL = imgTags[i].match(/(https?:\/\/.*\.(?:png|jpg))/ig);
+			if(imgURL != undefined && imgURL.length > 0){
+				var picURL = imgURL[0];
+				if(picURL.indexOf('blogspot.com')){
+				    var splitter = picURL.split("/")[7];
+				    picURL = picURL.replace(splitter,"s1600");
+				    imgArr.push(picURL);
+				}
+			}
+		}
+	}
+	return imgArr;
 }
 
 /* Post Object */
@@ -159,6 +174,10 @@ app.service('URLService', function(AuthService,UtilManager){
 	}
 });
 
+
+/*  contains Authentication information
+    must be pushed to server side
+*/
 app.service('AuthService', function(){
 	/* contains all authentication related information */
 	var AuthKey = "";

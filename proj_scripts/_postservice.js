@@ -19,7 +19,6 @@ var isValidPost = function(obj){
 
 
 var Post = function(obj){
-
 	this.id = obj.id.$t.match(/\d+/g)[2];
 	this.imgArray = getImgFromHTML(obj.content.$t);
 	this.key = obj.id.$t.match(/\d+/g)[1].concat("-").concat(this.id);
