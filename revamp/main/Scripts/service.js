@@ -71,7 +71,7 @@ Post.prototype.getThumbnail = function(){
 
 
 
-app.service('postService', function(){
+app.service('PostService', function(){
 	// this is some sample service
 	var  generatePost = function(obj){
 		if(isValidPost(obj)){
