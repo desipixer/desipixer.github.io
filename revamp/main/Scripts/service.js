@@ -11,10 +11,11 @@ var getPostKeys = function(){
 	@output: boolean value
 */
 var isValidPost = function(obj){
-	if(typeof obj == "Object"){
+	var containsAllKeys = true;
+	if(typeof obj == "object"){
 		var keys = getPostKeys();
-		Object.keys(obj).forEach(function(value){
-			if(!keys.contains(value)){
+		keys.forEach(function(value){
+			if(!obj.hasOwnProperty(value)){
 				return false;
 			}
 		});
@@ -53,7 +54,7 @@ var Post = function(obj){
 	this.updated = obj.updated.$t;
 	this.title = obj.title.$t;
 	this.content = obj.content.$t;
-	this.imgArray = [];
+	this.imgArray = getImgFromHTML(this.content);
 }
 
 Post.prototype.getImages = function(){
@@ -64,7 +65,11 @@ Post.prototype.getImages = function(){
 }
 
 Post.prototype.getThumbnail = function(){
-	return this.imgArray[0].replace(/s1600/g,/s320/);
+	
+	if(!this.imgArray.length > 0){
+		return [];
+	}
+	return this.imgArray[0].replace(/s1600/g,'s320');
 }
 
 
@@ -134,7 +139,7 @@ app.service('URLService', function(AuthService,UtilManager){
 	var getFeedURLByID = function(blogID){
 		var feedURL = "https://www.blogger.com/feeds/";
 		feedURL = feedURL.concat(blogID);
-		feedURL = feedURL.concat("/default");
+		feedURL = feedURL.concat("/posts/default");
 		var qsObj = {};
 		qsObj["start-index"] = 1;
 		qsObj["max-results"] = 500;
