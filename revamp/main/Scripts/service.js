@@ -55,6 +55,7 @@ var Post = function(obj){
 	this.title = obj.title.$t;
 	this.content = obj.content.$t;
 	this.imgArray = getImgFromHTML(this.content);
+	this.key = obj.id.$t.match(/\d+/g)[1].concat("-").concat(obj.id.$t.match(/\d+/g)[2]);
 }
 
 Post.prototype.getImages = function(){
@@ -195,5 +196,14 @@ app.service('AuthService', function(){
 		getKey : getKey
 	}
 
-})
+});
+
+app.service('SessionService', function(){
+	var postObj = {
+		entry : []
+	}
+	return {
+		postObj : postObj
+	}
+});
 

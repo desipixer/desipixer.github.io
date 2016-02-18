@@ -1,0 +1,15 @@
+<div class="" ng-controller="postCtrl">
+	<div class="row">
+		<span style="float:right">
+			 <input ng-model="filterText" placeholder="Search" />
+		</div>
+	<div class="row">
+
+		<div class="container">
+
+			<span ng-repeat="post in blog.entry| filter : filterText">
+				<a ng-href="/{{post.key}}" > <img ng-src="{{post.getThumbnail()}}" class="thumbImg" /></a>
+			</span>
+			</div>
+	</div>
+		</div>

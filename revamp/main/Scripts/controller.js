@@ -1,6 +1,6 @@
 /* controller.js */
 
-app.controller('postCtrl', function($scope,$http,PostService,URLService,UtilManager){
+app.controller('postCtrl', function($scope,$http,PostService,URLService,UtilManager,SessionService){
 	$scope.blog = {
 		entry : [],
 		default : {
@@ -12,15 +12,24 @@ app.controller('postCtrl', function($scope,$http,PostService,URLService,UtilMana
 	}
 	console.log("postCtrl loaded successfully");
 
-	/* Get Complete Blog */
-	$http.jsonp(URLService.getFeedURLByID($scope.blog.default.id)).success(function(data){
-		/* data loaded successfully */
-		data.feed.entry.forEach(function(value){
-			var post = PostService.generatePost(value);
-			postObj.entry.push(post);
+	if(SessionService.postObj.entry.length == 0){
+		/* Get Complete Blog */
+		$http.jsonp(URLService.getFeedURLByID($scope.blog.default.id)).success(function(data){
+			/* data loaded successfully */
+			data.feed.entry.forEach(function(value){
+				var post = PostService.generatePost(value);
+				postObj.entry.push(post);
+			});
+			$scope.blog.entry = UtilManager.getArrayByIndex(postObj.entry, 0, $scope.blog.entry.length + 50);
+			SessionService.postObj = postObj;
+
 		});
+	} else {
+		postObj = SessionService.postObj;
 		$scope.blog.entry = UtilManager.getArrayByIndex(postObj.entry, 0, $scope.blog.entry.length + 50);
-	});
+	}
+
+	
 
 	/* Search blog using SearchText */
 	$scope.searchText = function(){

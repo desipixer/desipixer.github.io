@@ -2,19 +2,23 @@
 	<head>
 		<title> DP Revamp </title>
 		  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+		      <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>
+
 		<script src="Scripts/app.js" ></script>
 		<script src="Scripts/service.js"></script>
 		<script src="Scripts/controller.js"></script>
 	</head>
-	<body ng-controller="postCtrl">
+	<body >
 		<table class="table">
-
+		<tr>
+		<td> <a ui-sref="home">Home</a></td>
+		<td> <a ui-sref="post">POST</a></td>
+		</tr>
 		</table>
 		<div class="container">
-			<span ng-repeat="post in blog.entry">
-				<img ng-src="{{post.getThumbnail()}}" class="thumbImg" />
-			</span>
+		    <div ui-view></div>
 		</div>
+		
 		<link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" />
 		<link href="Styles/main.css" rel="stylesheet" />
 	</body>
