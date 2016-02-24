@@ -7,15 +7,7 @@ app.service('imageService', ['$http', '$q',"blogutil", function ($http, $q, blog
     var maxResults = 400;
     var bloggerKey = "AIzaSyCIEuVxD1SFWMNBTtc24gBtuVExstlSGEQ";
     var selPostBlog = "7833828309523986982";
-    var blogPostMap = {};
-
-    var objToQueryString = function(obj){
-        var str = "?";
-        for(key of Object.keys(obj)){
-            str += key+ "="+ obj[key]+ "&";
-        }
-        return str.substring(0,str.length - 1);
-    }
+    
 
     this.getBlogId = function (blogName) {
         var deferred = $q.defer();
@@ -24,7 +16,7 @@ app.service('imageService', ['$http', '$q',"blogutil", function ($http, $q, blog
             key : "AIzaSyAb3tFTPvsduIR2xopIVpYhwKMQ5ac_5Po",
             url : blogName
         }
-        var queryString = objToQueryString(params);
+        var queryString = blogutil.objToQueryString(params);
         URL += queryString;
         
         $http.get(URL).success(function (data) {
@@ -55,11 +47,6 @@ app.service('imageService', ['$http', '$q',"blogutil", function ($http, $q, blog
                deferred.resolve(data);
                var arr1 = [];
                angular.forEach(data.feed.entry, function (entryX) {
-
-                    var tPostID = entryX.id.$t.split("post-")[1];
-                    var tKey = (tblogID+"-"+tPostID).toString();
-                    blogPostMap[tKey] = entryX;
-
                    arr1.push(entryX);
                });
                angular.copy(arr1, entries);
@@ -820,6 +807,15 @@ app.service('blogutil',function(){
         }
     }
 
+    var objToQueryString = function(obj){
+        var str = "?";
+        for(key of Object.keys(obj)){
+            str += key+ "="+ obj[key]+ "&";
+        }
+        return str.substring(0,str.length - 1);
+    }
+
+
     return {
         parseFeed : parseFeed,
         getThumbs : getThumbs,
@@ -827,6 +823,7 @@ app.service('blogutil',function(){
         getFeedObj : getFeedObj,
         lazyLoadingImages : lazyLoadingImages,
         searchObjectArray : searchObjectArray,
-        compareTitle : compareTitle
+        compareTitle : compareTitle,
+        objToQueryString :objToQueryString
     }
 });
