@@ -63,7 +63,7 @@ app.controller('postCtrl', function($scope,$http,PostService,URLService,UtilMana
     		image_url : "http://1.bp.blogspot.com/-FhB-Y26YrPA/UVrsIUOEq7I/AAAAAAAAJbk/vfpGSI-4Jig/s1600/Samantha+Hot+Sexy+Photos+3.jpg",
     		note : "South Actress Samantha Latest Hot Cute Photos Stills ★ Desipixer ★",
     		link : "http://www.desipixer.in/2015/10/south-actress-samantha-latest-hot-cute.html",
-    		"board": "desipixer/desipixer_board"
+    		"board": "566046315604518961"
     	}
     	pinService.Pinterest.createPin(data,fndataPost);
     }
