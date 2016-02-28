@@ -63,7 +63,7 @@ app.controller('postCtrl', function($scope,$http,PostService,URLService,UtilMana
     		image_url : "http://1.bp.blogspot.com/-FhB-Y26YrPA/UVrsIUOEq7I/AAAAAAAAJbk/vfpGSI-4Jig/s1600/Samantha+Hot+Sexy+Photos+3.jpg",
     		note : "South Actress Samantha Latest Hot Cute Photos Stills ★ Desipixer ★",
     		link : "http://www.desipixer.in/2015/10/south-actress-samantha-latest-hot-cute.html",
-    		board : 'desipixer-board'
+    		"board": {"description": "Desi Actress Pictures\nTollywood\nBollywood\nKollywood", "url": "/desipixer/desipixer-board/", "follower_count": 0, "image_thumbnail_url": "http://media-cache-ec0.pinimg.com/upload/566046315604518961_board_thumbnail_2016-02-28-21-29-44_85462_60.jpg", "pin_count": 1, "id": "566046315604518961", "name": "desipixer-board"}
     	}
     	pinService.Pinterest.createPin(data,fndataPost);
     }
