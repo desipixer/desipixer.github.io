@@ -68,6 +68,17 @@ app.controller('postCtrl', function($scope,$http,PostService,URLService,UtilMana
     	pinService.Pinterest.createPin(data,fndataPost);
     }
 
+    $scope.pinImage = function(post){
+    	console.log(post);
+    	var data = {
+    		image_url : post.imgArray[0],
+    		note : post.title,
+    		link : post.url,
+    		board : "566046315604518961"
+    	}
+    	pinService.Pinterest.createPin(data,fndataPost);
+    }
+
     function fndataPost(data){
     	console.log(data);
     }

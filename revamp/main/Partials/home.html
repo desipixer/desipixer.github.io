@@ -3,12 +3,14 @@
 		<span style="float:right">
 			 <input ng-model="filterText" placeholder="Search" />
 		</div>
+	
 	<div class="row">
 	<button class="btn btn-danger" ng-click="pinLogin()"> Pinterest </button>
 	<button class="btn btn-danger" ng-click="createPin()"> Create pin </button>
 			<div class="container">
 			<span ng-repeat="post in blog.entry| filter : filterText">
 				<a ng-href="/{{post.key}}" > <img ng-src="{{post.getThumbnail()}}" class="thumbImg" title="{{post.title}}" /></a>
+				 <span class="imgCount" > <img src="Images/Pinterest.png" ng-click="pinImage(post)"/> </span>
 			</span>
 			</div>
 	</div>

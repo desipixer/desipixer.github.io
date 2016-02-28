@@ -56,6 +56,7 @@ var Post = function(obj){
 	this.content = obj.content.$t;
 	this.imgArray = getImgFromHTML(this.content);
 	this.key = obj.id.$t.match(/\d+/g)[1].concat("-").concat(obj.id.$t.match(/\d+/g)[2]);
+	this.url = obj.link[obj.link.length - 1].href;
 }
 
 Post.prototype.getImages = function(){
