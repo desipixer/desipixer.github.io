@@ -255,7 +255,7 @@ app.service('pinService', function(){
 	     *  @param {Function} callback - function fired on completion
 	     */
 	    createPin: function(data, callback) {
-	        PDK.request('/pins/', 'POST', data, callback);
+	        PDK.request('/v1/pins/', 'POST', data, callback);
 	    },
 	    /*
 	     *  Use SDK to request current users boards
