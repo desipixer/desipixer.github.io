@@ -1,6 +1,6 @@
 /* controller.js */
 
-app.controller('postCtrl', function($scope,$http,PostService,URLService,UtilManager,SessionService){
+app.controller('postCtrl', function($scope,$http,PostService,URLService,UtilManager,SessionService,pinService){
 	$scope.blog = {
 		entry : [],
 		default : {
@@ -52,5 +52,14 @@ app.controller('postCtrl', function($scope,$http,PostService,URLService,UtilMana
             $scope.$apply();
         }
     };
+
+    $scope.pinLogin = function(){
+    	console.log("Trying to login into Pinterest");
+    	pinService.Pinterest.login(showStatus);
+    }
+
+    function showStatus(data){
+    	console.log(data);
+    }
 
 })

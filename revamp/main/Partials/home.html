@@ -4,11 +4,10 @@
 			 <input ng-model="filterText" placeholder="Search" />
 		</div>
 	<div class="row">
-
-		<div class="container">
-
+	<button class="btn btn-danger" ng-click="pinLogin()"> Pinterest </button>
+			<div class="container">
 			<span ng-repeat="post in blog.entry| filter : filterText">
-				<a ng-href="/{{post.key}}" > <img ng-src="{{post.getThumbnail()}}" class="thumbImg" /></a>
+				<a ng-href="/{{post.key}}" > <img ng-src="{{post.getThumbnail()}}" class="thumbImg" title="{{post.title}}" /></a>
 			</span>
 			</div>
 	</div>

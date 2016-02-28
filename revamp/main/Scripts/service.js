@@ -207,3 +207,67 @@ app.service('SessionService', function(){
 	}
 });
 
+
+app.service('pinService', function(){
+	var appID = "4820759117729638536";
+
+	var redirect = window.location.origin + window.location.pathname;
+
+	var Const = {
+	    ONE_WEEK: 1000 * 60 * 60 * 24 * 7,
+	    POPUP_OPTIONS: 'status=no,resizable=yes,scrollbars=yes,personalbar=no,directories=no,location=no,toolbar=no,menubar=no,width=700,height=500,left=0,top=0',
+	    IG_OAUTH: 'https://instagram.com/oauth/authorize/?client_id=886a47a524e14842bb4dde8b4d2823c9&redirect_uri='+ redirect +'&response_type=token',
+	    IG_FEED: 'https://api.instagram.com/v1/users/self/media/recent/?count=12&callback=_instaFeed&access_token=',
+	    IG_COOKIE: 'ig_token',
+	    PIN_APP: '4820759117729638536',
+	    PIN_FIELDS: 'id,name,image[small]',
+	    PIN_SCOPE: 'read_public, write_public'
+	};
+
+
+
+	PDK.init({ appId: Const.PIN_APP , cookie: true });
+
+	var Pinterest = {
+	    /*
+	     *  Use the SDK to login to Pinterest
+	     *  @param {Function} callback - function fired on completion
+	     */
+	    login: function(callback) {
+	        PDK.login({ scope : Const.PIN_SCOPE }, callback);
+	    },
+	    /*
+	     *  Use the SDK to logout of Pinterest
+	     */
+	    logout: function() {
+	        PDK.logout();
+	    },
+	    /*
+	     *  Use DK to determine auth state of user
+	     *  @returns {Boolean}
+	     */
+	    loggedIn: function() {
+	        return !!PDK.getSession();
+	    },
+	    /*
+	     *  Use SDK to create a new Pin
+	     *  @param {Object}   data     - {board, note, link, image_url}
+	     *  @param {Function} callback - function fired on completion
+	     */
+	    createPin: function(data, callback) {
+	        PDK.request('/pins/', 'POST', data, callback);
+	    },
+	    /*
+	     *  Use SDK to request current users boards
+	     *  @param {Function} callback - function fired on completion
+	     */
+	    myBoards: function(callback) {
+	        PDK.me('boards', { fields: Const.PIN_FIELDS }, callback);
+	    }
+	};
+
+	return {
+		Pinterest : Pinterest
+	}
+})
+
