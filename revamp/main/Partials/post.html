@@ -1,7 +1,12 @@
 <div class="container">
 	<div>
 
-	<button class="btn btn-danger" ng-click="pinLogin()"> Login </button>
+
+	<div class="row">
+	  <div class="col-md-6"><button class="btn btn-danger" ng-click="pinLogin()"> Login </button></div>
+	  <div class="col-md-6"><input ng-model="filterTxt" placeholder="Search" /> <button ng-click="filterArray()" class="btn btn-info"> Search </button></div>
+	</div>
+	 
 	<div class="container">
 		<span ng-repeat="imgEntry in blog.imgArray" class="imageContainer">
 			<img ng-src="{{imgEntry.getThumb()}}" class="thumbImg" title ="{{imgEntry.title}}" />

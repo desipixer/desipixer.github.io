@@ -45,13 +45,25 @@ app.service('imageService',function(URLService, AuthService, pinService, UtilMan
 		return imgObj;
 	}
 
-
+	var filterArray = function(arr,attr,filterText){
+		var tempArr = [];
+		if(arr.length == 0) return [];
+		arr.forEach(function(value){
+			if(value.hasOwnProperty(attr)){
+				if(value[attr].toLowerCase().indexOf(filterText.toLowerCase()) !== -1){
+					tempArr.push(value);
+				}
+			}
+		})
+		return tempArr;
+	}
 
 
 
 	return {
 		imgArray : imgArray,
-		createImageArray : createImageArray
+		createImageArray : createImageArray,
+		filterArray : filterArray
 	}
 })
 

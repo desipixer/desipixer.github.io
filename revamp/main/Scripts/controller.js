@@ -99,7 +99,10 @@ app.controller('imgController', function($scope,$http,imageService,URLService, U
 		default : {
 			id : "7833828309523986982"
 		},
-		imgArray : []
+		imgArray : [],
+		scroll : {
+			disabled : false
+		}
 	};
 
 	if(imageService.imgArray.length == 0){
@@ -116,11 +119,13 @@ app.controller('imgController', function($scope,$http,imageService,URLService, U
 	}
 
 	window.onscroll = function(ev) {
-        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-           $scope.blog.imgArray = UtilManager.getArrayByIndex(imageService.imgArray, 0, $scope.blog.imgArray.length + 50);
-            console.log("bottom");
-            $scope.$apply();
-        }
+		if(!$scope.blog.scroll.disabled){
+			if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+			   $scope.blog.imgArray = UtilManager.getArrayByIndex(imageService.imgArray, 0, $scope.blog.imgArray.length + 50);
+			    console.log("bottom");
+			    $scope.$apply();
+			}
+		}
     };
 
     $scope.pinImage = function(entry){
@@ -135,11 +140,24 @@ app.controller('imgController', function($scope,$http,imageService,URLService, U
     	});
     }
 
+    
+
     $scope.pinLogin = function(){    	
     	pinService.Pinterest.login(function(data){
     		console.log("Logged In");
     		console.log(data);
     	});
+    }
+
+    $scope.filterArray = function(){
+    	if($scope.filterTxt.length > 0) {
+    		$scope.blog.imgArray = imageService.filterArray(imageService.imgArray,"title",$scope.filterTxt);
+    		$scope.blog.scroll.disabled = true;
+    	} else {
+    		$scope.blog.imgArray = UtilManager.getArrayByIndex(imageService.imgArray, 0, $scope.blog.imgArray.length + 50);
+    		$scope.blog.scroll.disabled = false;
+    	}
+    	
     }
 
 })
