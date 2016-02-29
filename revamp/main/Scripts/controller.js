@@ -135,4 +135,11 @@ app.controller('imgController', function($scope,$http,imageService,URLService, U
     	});
     }
 
+    $scope.pinLogin = function(){    	
+    	pinService.Pinterest.login(function(data){
+    		console.log("Logged In");
+    		console.log(data);
+    	});
+    }
+
 })

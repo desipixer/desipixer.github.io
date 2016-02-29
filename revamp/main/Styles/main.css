@@ -4,3 +4,19 @@
 	height : 320px;
 	width : 240px;
 }
+
+.imgCount {
+      position: absolute; 
+      width: 20px; 
+      height : 20px;
+      right: 0; 
+      top: 0; 
+      bottom: 0; 
+      left:0;
+      background: black; 
+      color:white
+}
+
+.imageContainer {
+   position : relative;
+}

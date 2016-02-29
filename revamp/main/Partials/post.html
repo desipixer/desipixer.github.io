@@ -1,7 +1,9 @@
 <div class="container">
 	<div>
-		<span ng-repeat="imgEntry in blog.imgArray">
+	<button class="btn btn-danger" ng-click="pinLogin()"> Login </button>
+		<span ng-repeat="imgEntry in blog.imgArray" class="imageContainer">
 			<img ng-src="{{imgEntry.getThumb()}}" class="thumbImg" title ="{{imgEntry.title}}" />
+			<span class="imgCount" ><a href='#'> <img src="Images/Pinterest.png" ng-click="pinImage(post)"/></a> </span>
 		</span>
 	</div>
 </div>
