@@ -45,6 +45,8 @@ app.controller('postCtrl', function($scope,$http,PostService,URLService,UtilMana
 		});
 	}
 
+	
+
 	window.onscroll = function(ev) {
         if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
            $scope.blog.entry = UtilManager.getArrayByIndex(postObj.entry, 0, $scope.blog.entry.length + 50);

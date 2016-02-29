@@ -10,7 +10,7 @@
 			<div class="container">
 			<span ng-repeat="post in blog.entry| filter : filterText">
 				<a ng-href="/{{post.key}}" > <img ng-src="{{post.getThumbnail()}}" class="thumbImg" title="{{post.title}}" /></a>
-				 <span class="imgCount" > <img src="Images/Pinterest.png" ng-click="pinImage(post)"/> </span>
+				 <span class="imgCount" ><a href='#'> <img src="Images/Pinterest.png" ng-click="pinImage(post)"/></a> </span>
 			</span>
 			</div>
 	</div>
