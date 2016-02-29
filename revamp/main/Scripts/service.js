@@ -163,7 +163,7 @@ app.service('URLService', function(AuthService,UtilManager){
 	var getSearchQueryURL = function(blogID, searchText){
 		var feedURL = "https://www.blogger.com/feeds/";
 		feedURL = feedURL.concat(blogID);
-		feedURL = feedURL.concat("/default");
+		feedURL = feedURL.concat("/posts/default");
 		var qsObj = {};
 		qsObj["start-index"] = 1;
 		qsObj["max-results"] = 500;

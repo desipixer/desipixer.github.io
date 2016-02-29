@@ -140,6 +140,21 @@ app.controller('imgController', function($scope,$http,imageService,URLService, U
     	});
     }
 
+    /* Search blog using SearchText */
+	$scope.searchText = function(){
+		
+		$scope.blog.imgArray = [];
+		imageService.imgArray = [];
+		$http.jsonp(URLService.getSearchQueryURL($scope.blog.default.id, $scope.searchTxt)).success(function(data){
+			/* data loaded successfully */
+			data.feed.entry.forEach(function(value){
+				var imgArray = imageService.createImageArray(value);
+				imageService.imgArray = imageService.imgArray.concat(imgArray);
+			});
+			$scope.blog.imgArray = UtilManager.getArrayByIndex(imageService.imgArray, 0, $scope.blog.imgArray.length + 50);
+		});
+	}
+
     
 
     $scope.pinLogin = function(){    	
