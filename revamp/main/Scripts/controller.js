@@ -127,7 +127,7 @@ app.controller('imgController', function($scope,$http,imageService,URLService, U
     	var data = {
     		image_url : entry.src,
     		note : entry.title,
-    		link : post.url,
+    		link : entry.url,
     		board : "566046315604518961"
     	}
     	pinService.Pinterest.createPin(data,function(){
