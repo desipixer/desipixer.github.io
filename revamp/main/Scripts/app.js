@@ -11,6 +11,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
         })
 		.state('post', {
 			url : '/post',
-			templateUrl : 'Partials/post.html'
+			templateUrl : 'Partials/post.html',
+			controller : 'imgController'
 		})
 })

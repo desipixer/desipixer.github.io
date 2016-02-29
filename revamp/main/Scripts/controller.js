@@ -45,7 +45,7 @@ app.controller('postCtrl', function($scope,$http,PostService,URLService,UtilMana
 		});
 	}
 
-	
+
 
 	window.onscroll = function(ev) {
         if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
@@ -87,6 +87,52 @@ app.controller('postCtrl', function($scope,$http,PostService,URLService,UtilMana
 
     function showStatus(data){
     	console.log(data);
+    }
+
+});
+
+
+
+app.controller('imgController', function($scope,$http,imageService,URLService, UtilManager, pinService){
+
+	$scope.blog = {
+		default : {
+			id : "7833828309523986982"
+		},
+		imgArray : []
+	};
+
+	if(imageService.imgArray.length == 0){
+		$http.jsonp(URLService.getFeedURLByID($scope.blog.default.id)).success(function(data){
+			/* data loaded successfully */
+			data.feed.entry.forEach(function(value){
+				var imgArray = imageService.createImageArray(value);
+				imageService.imgArray = imageService.imgArray.concat(imgArray);
+			});
+			$scope.blog.imgArray = UtilManager.getArrayByIndex(imageService.imgArray, 0, $scope.blog.imgArray.length + 50);
+		});
+	} else {
+		$scope.blog.imgArray = UtilManager.getArrayByIndex(imageService.imgArray, 0, $scope.blog.imgArray.length + 50);
+	}
+
+	window.onscroll = function(ev) {
+        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+           $scope.blog.imgArray = UtilManager.getArrayByIndex(imageService.imgArray, 0, $scope.blog.imgArray.length + 50);
+            console.log("bottom");
+            $scope.$apply();
+        }
+    };
+
+    $scope.pinImage = function(entry){
+    	var data = {
+    		image_url : entry.src,
+    		note : entry.title,
+    		link : post.url,
+    		board : "566046315604518961"
+    	}
+    	pinService.Pinterest.createPin(data,function(){
+    		console.log("Successfully posted : "+ entry.title);
+    	});
     }
 
 })

@@ -5,8 +5,8 @@
 		</div>
 	
 	<div class="row">
-	<button class="btn btn-danger" ng-click="pinLogin()"> Pinterest </button>
-	<button class="btn btn-danger" ng-click="createPin()"> Create pin </button>
+	<button class="btn btn-danger" ng-click="pinLogin()"> Login </button>
+	
 			<div class="container">
 			<span ng-repeat="post in blog.entry| filter : filterText">
 				<a ng-href="/{{post.key}}" > <img ng-src="{{post.getThumbnail()}}" class="thumbImg" title="{{post.title}}" /></a>
