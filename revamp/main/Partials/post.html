@@ -1,4 +1,4 @@
-<div class="container">
+<div>
 	<div>
 
 
@@ -8,7 +8,7 @@
 	  <div class="col-md-4"><input ng-model="searchTxt" placeholder="Search" /> <button ng-click="searchText()" class="btn btn-info"> Search </button></div>
 	</div>
 	 
-	<div class="container">
+	<div class="">
 		<span ng-repeat="imgEntry in blog.imgArray" class="imageContainer">
 			<img ng-src="{{imgEntry.getThumb()}}" class="thumbImg" title ="{{imgEntry.title}}" />
 			<span class="imgCount" ><img src="Images/Pinterest.png" ng-click="pinImage(imgEntry)" style="cursor:pointer"/></span>

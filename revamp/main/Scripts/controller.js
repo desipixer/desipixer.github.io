@@ -142,7 +142,7 @@ app.controller('imgController', function($scope,$http,imageService,URLService, U
 
     /* Search blog using SearchText */
 	$scope.searchText = function(){
-		
+		$scope.blog.scroll.disabled = false;
 		$scope.blog.imgArray = [];
 		imageService.imgArray = [];
 		$http.jsonp(URLService.getSearchQueryURL($scope.blog.default.id, $scope.searchTxt)).success(function(data){

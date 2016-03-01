@@ -6,7 +6,19 @@
     $scope.clientKeys = loginService.clientKeys;
 
     $scope.blog = {};
+    if($scope.location == undefined ){
+        $scope.location = {
+            x : 0,
+            y : 0 
+        }
+    }
 
+    window.scroll($scope.location.x, $scope.location.y);
+
+    window.onscroll = function(ev){
+        $scope.location.x = window.scrollX;
+        $scope.location.y = window.scrollY;
+    }
 
     $scope.getSite = function (blogName,startIndex) {
         imageService.getBlogId(blogName).then(function (data) {
