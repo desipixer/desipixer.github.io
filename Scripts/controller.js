@@ -170,7 +170,7 @@
         gapi.client.setApiKey('AIzaSyCIEuVxD1SFWMNBTtc24gBtuVExstlSGEQ');
     }
 
-
+    
     /***** default site loaded *******/
     $scope.getSite("http://www.desipixer.in",1);
 

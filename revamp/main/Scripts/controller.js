@@ -60,16 +60,6 @@ app.controller('postCtrl', function($scope,$http,PostService,URLService,UtilMana
     	pinService.Pinterest.login(showStatus);
     }
 
-    $scope.createPin = function(){
-    	var data = {
-    		image_url : "http://1.bp.blogspot.com/-FhB-Y26YrPA/UVrsIUOEq7I/AAAAAAAAJbk/vfpGSI-4Jig/s1600/Samantha+Hot+Sexy+Photos+3.jpg",
-    		note : "South Actress Samantha Latest Hot Cute Photos Stills ★ Desipixer ★",
-    		link : "http://www.desipixer.in/2015/10/south-actress-samantha-latest-hot-cute.html",
-    		"board": "566046315604518961"
-    	}
-    	pinService.Pinterest.createPin(data,fndataPost);
-    }
-
     $scope.pinImage = function(post){
     	console.log(post);
     	var data = {
@@ -136,7 +126,7 @@ app.controller('imgController', function($scope,$http,imageService,URLService, U
     		board : "566046315604518961"
     	}
     	pinService.Pinterest.createPin(data,function(){
-    		console.log("Successfully posted : "+ entry.title);
+    		console.log("Successfully posted : "+ entry.url.split('/').pop());
     	});
     }
 
