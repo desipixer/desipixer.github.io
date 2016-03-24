@@ -1,0 +1,17 @@
+<div class="">
+	<div class="row">
+		<span style="float:right">
+			 <input ng-model="filterText" placeholder="Search" />
+		</div>
+	
+	<div class="row">
+	
+	
+			<div class="container">
+			<span ng-repeat="entry in data| filter : filterText">
+				<a ng-href="/{{entry.link[link.length - 1].href}}" > <img ng-src="{{entry.media$thumbnail.url.replace('s72','s320')}}" class="thumbImg" title="{{entry.title.$t}}" /></a>
+				
+			</span>
+			</div>
+	</div>
+		</div>

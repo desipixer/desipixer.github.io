@@ -1,0 +1,8 @@
+<div>
+	 <ul class="nav nav-tabs">
+    <li ui-sref=".state1" ui-sref-active="active"><a>State 1</a></li>
+    <li ng-repeat="type in viewModel.types"
+        ui-sref="typeState({type:type})"
+        ui-sref-active="active"><a>{{type}}</a></li>
+</ul>
+</div>

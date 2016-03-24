@@ -165,4 +165,8 @@ app.controller('imgController', function($scope,$http,imageService,URLService, U
     	
     }
 
+    $scope.shuffle = function(){
+    	UtilManager.shuffle($scope.blog.imgArray);
+    }
+
 })
