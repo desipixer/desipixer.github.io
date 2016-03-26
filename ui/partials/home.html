@@ -1,0 +1,19 @@
+<div>
+	<div>
+		<span><input ng-model="searchItems" placeholder="Search something.. "  class="form-control"	/> </span>
+	</div>
+	<div>
+		<table class="table" >
+		<tr>
+		<td>
+			Site : <select ng-model="selSite" ng-options="site.blogId as site.blogURL for site in sitesList" ng-init="siteList = sitesList[0]" ng-change="selSiteChange()"></select>
+		</td>
+		</tr>
+		</table>
+	</div>
+	<div>
+		<span ng-repeat="obj in blog.thumbnails | filter : searchItems">
+			<a ng-href="#/post/{{obj.id}}"> <img ng-src="{{obj.thumb}}" class="dpThumb" title="{{obj.title.$t}}" /> </a>
+		 </span>
+	</div>
+</div>
