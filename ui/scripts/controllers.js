@@ -44,6 +44,7 @@ app.controller('postCtrl', [ '$scope','$http','$stateParams','dp.service.site', 
 	var filtered = _.filter(siteService.activeSite.blog, function(obj) {
 		return (obj.id == $scope.id);
 	});
-	$scope.imgArray = _.uniq(filtered[0].imgArray);
 
+	$scope.imgArray = _.uniq(filtered[0].imgArray);
+	$scope.imgObj = filtered.length > 0 ? filtered[0] : [];
 }]);

@@ -4,3 +4,10 @@
 	width : 240px;
 	height : 320px;
 }
+
+.dpThumbPost {
+	max-height:100%;
+	max-width : 100%;
+	width : 360px;
+	height : 480px;
+}
