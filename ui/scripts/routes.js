@@ -20,6 +20,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			templateUrl : 'partials/post.id.html',
 			controller : 'postCtrl'
 		})
+		.state('main', {
+			url : '/',
+			controller : function($state){
+				$state.go('home')
+			}
+		})
 		.state('404', {
 			url : '/404',
 			templateUrl : 'partials/404.html'
