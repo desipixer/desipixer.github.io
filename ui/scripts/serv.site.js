@@ -1,5 +1,11 @@
 /* services for the app goes here */
 app.service('dp.service.site', function(){
+
+	var current = {
+		blog : null,
+		id : null
+	}
+
 	/* returns default list of sites */
 	var defaultSiteList = [
 		{
@@ -40,6 +46,7 @@ app.service('dp.service.site', function(){
 
 	return {
 		defaultSiteList : defaultSiteList,
-		activeSite : activeSite
+		activeSite : activeSite,
+		current : current
 	}
 })

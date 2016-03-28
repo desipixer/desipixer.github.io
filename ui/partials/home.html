@@ -12,8 +12,8 @@
 		</table>
 	</div>
 	<div>
-		<span ng-repeat="obj in blog.thumbnails | filter : searchItems">
-			<a ng-href="#/post/{{obj.id}}"> <img ng-src="{{obj.thumb}}" class="dpThumb" title="{{obj.title.$t}}" /> </a>
+		<span ng-repeat="entry in blog | filter : searchItems">
+			<a ng-href="#/post/{{entry.id}}"> <img ng-src="{{entry.thumb}}" class="dpThumb" title="{{entry.title.$t}}" /> </a>
 		 </span>
 	</div>
 </div>
