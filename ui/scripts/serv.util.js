@@ -42,15 +42,38 @@ app.service('dp.service.util' , function(){
 			obj.url = ( obj.link.length > 0 ) ? obj.link[obj.link.length - 1].href : '#';
 			var id = obj.id.$t.match(/\d+/g);
 			obj.id = id[1].concat(id[2]);
-			obj.imgArray = parseImageFromHTML(obj.content.$t);
+			obj.imgArray = _.uniq(parseImageFromHTML(obj.content.$t));
 			return true;
 		});
+
+		/* parse categories */
+		var arr = [];
+		_.filter(obj.feed.category, function(obj){
+			arr.push(obj.term);
+			return true;
+		})
+		obj.category = arr;
+
+
 		return obj;
+	}
+
+	var searchArray = function(arr, searchText){
+		if(arr.length <= 0)
+			return [];
+		if(searchText.length < 3)
+			return [];
+		return _.filter(arr, function(obj){
+			if(obj.toLowerCase().indexOf(searchText.toLowerCase()) != -1){
+				return true;
+			}
+		});
 	}
 
 	return {
 		parseImageFromHTML : parseImageFromHTML,
 		parseFeedObj : parseFeedObj,
-		parseBlogFeed : parseBlogFeed
+		parseBlogFeed : parseBlogFeed,
+		searchArray : searchArray
 	}
 });

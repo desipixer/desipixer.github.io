@@ -20,9 +20,19 @@ app.service('dp.service.http', ['$http','$q', 'dp.service.url', 'settings', func
 		return deferred.promise;
 	}
 
+	var searchText = function(id, searchText){
+		var deferred = $q.defer();
+		var reqURL = urlService.getFeedSearchUrl(id, searchText);
+		$http.jsonp(reqURL).success(function(data){
+			deferred.resolve(data);
+		})
+		return deferred.promise; 
+	}
+
 	return {
 		getDefaultBlog : getDefaultBlog,
-		getSelectedBlog : getSelectedBlog
+		getSelectedBlog : getSelectedBlog,
+		searchText : searchText
 	}
 
 }]);

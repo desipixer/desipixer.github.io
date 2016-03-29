@@ -1,6 +1,6 @@
 /* handles all url parsing and handling */
 
-app.service('dp.service.url', [ 'dp.service.auth', function(authService) {
+app.service('dp.service.url', [ 'dp.service.auth', 'settings',  function(authService, settings) {
 	
 	var getBlogNameById = function(id){
 		if(id == undefined)
@@ -25,6 +25,22 @@ app.service('dp.service.url', [ 'dp.service.auth', function(authService) {
 		return "https://www.blogger.com/feeds/".concat(id).concat("/posts/default").concat(qsToString(qs));
 	}
 
+	var getFeedSearchUrl = function(id, searchText){
+		if(id == undefined){
+			return null;
+		}
+		var qs = {
+			"start-index" : settings.startIndex,
+			"max-results" : settings.maxResults,
+			"alt" : "json",
+			"callback" : "JSON_CALLBACK",
+			"q" : searchText
+		}
+		if(searchText == null)
+			delete qs.q;
+		return "https://www.blogger.com/feeds/".concat(id).concat("/posts/default").concat(qsToString(qs));
+	}
+
 	var qsToString = function(obj){
 		var str = "?";
         for(key of Object.keys(obj)){
@@ -35,6 +51,7 @@ app.service('dp.service.url', [ 'dp.service.auth', function(authService) {
 
 	return {
 		getBlogNameById : getBlogNameById,
-		getFeedUrlFromBlogId : getFeedUrlFromBlogId
+		getFeedUrlFromBlogId : getFeedUrlFromBlogId,
+		getFeedSearchUrl : getFeedSearchUrl
 	}
 }])

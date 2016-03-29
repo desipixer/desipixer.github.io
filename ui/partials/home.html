@@ -3,6 +3,11 @@
 		<span><input ng-model="searchItems" placeholder="Search something.. "  class="form-control"	/> </span>
 	</div>
 	<div>
+	<div>
+		<select ng-model="vmCategory" ng-init="vmCategory = category[0]" ng-change="searchCategory()">
+			<option ng-repeat="entry in category">{{entry}}</option>
+		</select>
+	</div>
 		<table class="table" >
 		<tr>
 		<td>

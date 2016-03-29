@@ -8,6 +8,8 @@ app.controller('homeCtrl', ['$scope', 'dp.service.http', 'dp.service.site', 'dp.
 
 	if(siteService.current.blog != null){
 		$scope.blog = siteService.current.blog;
+		$scope.category = siteService.current.category;
+		$scope.selSite = siteService.current.id;
 	}
 
 	$scope.selSiteChange = function(){
@@ -15,8 +17,12 @@ app.controller('homeCtrl', ['$scope', 'dp.service.http', 'dp.service.site', 'dp.
 			httpService.getSelectedBlog($scope.selSite).then(function(data){
 				var data = utilService.parseBlogFeed(data);
 				$scope.blog = data.entryArr;
+				$scope.category = data.category.sort();
+				
 				siteService.current.blog = $scope.blog;
 				siteService.current.id = $scope.selSite;
+				siteService.current.category = $scope.category;
+				
 			})
 		}
 	}
@@ -25,6 +31,19 @@ app.controller('homeCtrl', ['$scope', 'dp.service.http', 'dp.service.site', 'dp.
 		$scope.selSite = siteService.defaultSiteList[0].blogId;
 		$scope.selSiteChange();
 		siteService.current.id = $scope.selSite;
+	}
+
+	$scope.searchCategory = function(){
+		console.log($scope.vmCategory);
+		httpService.searchText($scope.selSite, $scope.vmCategory).then(function(data){
+				var data = utilService.parseBlogFeed(data);
+				$scope.blog = data.entryArr;
+				$scope.category = data.category.sort();
+
+				siteService.current.blog = $scope.blog;
+				siteService.current.id = $scope.selSite;
+				siteService.current.category = $scope.category;
+			})
 	}
 
 }]);

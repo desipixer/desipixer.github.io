@@ -12,3 +12,16 @@ app.directive('helloWorld', function(){
 		replace : true
 	}
 })
+
+
+app.directive('autoComplete', function(){
+	return {
+		restrict : 'AE',
+		replace : true,
+		link : function(scope,elem, attrs){
+			elem.bind('change', function(){
+				
+			})
+		}
+	}
+})
