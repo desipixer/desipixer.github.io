@@ -12,10 +12,27 @@ app.service('dp.service.auth', function() {
 
 	var getClientSecret = function(){
 		return clientSecret;
+	}
+
+	var wordpress = {
+		getToken : function(){
+			return "84916482ebe3";
+		}
+	}
+
+	var blogger = {
+		getToken : function(){
+			return apiKey;
+		},
+		getClientSecret : function(){
+			return clientSecret;
+		}
 	}	
 
 	return {
 		getAPIKey : getAPIKey,
-		getClientSecret : getClientSecret
+		getClientSecret : getClientSecret,
+		wordpress : wordpress,
+		blogger : blogger
 	}
 });

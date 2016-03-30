@@ -3,6 +3,7 @@
 	max-width : 240px;
 	width : 240px;
 	height : 320px;
+	padding : 2px;
 }
 
 .dpThumbPost {
@@ -10,4 +11,8 @@
 	max-width : 100%;
 	width : 360px;
 	height : 480px;
+}
+
+.image-container {
+	margin : 10px;
 }

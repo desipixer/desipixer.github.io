@@ -35,6 +35,11 @@ app.service('dp.service.util' , function(){
 		if(typeof feedObj == "string"){
 			obj = JSON.parse(feedObj);
 		}
+
+		/* Get plain blog id */
+		var id = obj.feed.id.$t.match(/\d+/g);
+		obj.id = id[1];
+
 		obj.entryArr = _.filter(obj.feed.entry, function(obj){
 			if(obj.hasOwnProperty("media$thumbnail")){
 				obj.thumb = obj["media$thumbnail"].url.replace('s72','s320');

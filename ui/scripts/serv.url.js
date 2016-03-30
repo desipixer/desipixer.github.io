@@ -12,29 +12,19 @@ app.service('dp.service.url', [ 'dp.service.auth', 'settings',  function(authSer
 		return "https://www.googleapis.com/blogger/v3/blogs/".concat(id).concat("/posts").concat(qsToString(qs));
 	}
 
-	var getFeedUrlFromBlogId = function(id, startIndex, maxResults){
-		if(id == undefined){
+	var getBlogFeedUrl = function(id, startIndex, maxResults, searchText){
+		if(id == undefined)
 			return null;
-		}
+		id = (id == null ) ? settings.default.id  : id;
+		startIndex = (startIndex == null ) ? settings.default.startIndex  : startIndex;
+		maxResults = (maxResults == null ) ? settings.default.maxResults  : maxResults;
+		
 		var qs = {
 			"start-index" : startIndex,
 			"max-results" : maxResults,
 			"alt" : "json",
+			"q" : searchText,
 			"callback" : "JSON_CALLBACK"
-		}
-		return "https://www.blogger.com/feeds/".concat(id).concat("/posts/default").concat(qsToString(qs));
-	}
-
-	var getFeedSearchUrl = function(id, searchText){
-		if(id == undefined){
-			return null;
-		}
-		var qs = {
-			"start-index" : settings.startIndex,
-			"max-results" : settings.maxResults,
-			"alt" : "json",
-			"callback" : "JSON_CALLBACK",
-			"q" : searchText
 		}
 		if(searchText == null)
 			delete qs.q;
@@ -51,7 +41,6 @@ app.service('dp.service.url', [ 'dp.service.auth', 'settings',  function(authSer
 
 	return {
 		getBlogNameById : getBlogNameById,
-		getFeedUrlFromBlogId : getFeedUrlFromBlogId,
-		getFeedSearchUrl : getFeedSearchUrl
+		getBlogFeedUrl : getBlogFeedUrl
 	}
 }])

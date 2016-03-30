@@ -1,23 +1,20 @@
 <div>
-	<div>
-		<span><input ng-model="searchItems" placeholder="Search something.. "  class="form-control"	/> </span>
+	
+	<div class="row">
+	  <div class="col-md-3">SITE : 
+	  <select ng-model="selSite" ng-options="site.blogId as site.blogURL for site in sitesList" ng-init="siteList = sitesList[0]" ng-change="selSiteChange()" class="form-control"></select>
+	  </div>
+	  <div class="col-md-3">FILTER : <input ng-model="filterItems" placeholder="Filter something.." class="form-control"></div>
+	  <div class="col-md-3">SEARCH : <input ng-model="searchItems" placeholder="Search something.. " class="form-control" ng-enter="searchTextChanged()" /> </div>
+	 	<div class="col-md-3">
+	  CATEGORY : 
+	   		<select ng-model="vmCategory" ng-init="vmCategory = blog.category[0]" ng-change="searchCategory()" class="form-control">
+				<option ng-repeat="entry in blog.category.sort()">{{entry}}</option>
+			</select>
+	  </div>
 	</div>
-	<div>
-	<div>
-		<select ng-model="vmCategory" ng-init="vmCategory = category[0]" ng-change="searchCategory()">
-			<option ng-repeat="entry in category">{{entry}}</option>
-		</select>
-	</div>
-		<table class="table" >
-		<tr>
-		<td>
-			Site : <select ng-model="selSite" ng-options="site.blogId as site.blogURL for site in sitesList" ng-init="siteList = sitesList[0]" ng-change="selSiteChange()"></select>
-		</td>
-		</tr>
-		</table>
-	</div>
-	<div>
-		<span ng-repeat="entry in blog | filter : searchItems">
+	<div class="image-container">
+		<span ng-repeat="entry in blog.entryArr | filter : filterItems">
 			<a ng-href="#/post/{{entry.id}}"> <img ng-src="{{entry.thumb}}" class="dpThumb" title="{{entry.title.$t}}" /> </a>
 		 </span>
 	</div>
