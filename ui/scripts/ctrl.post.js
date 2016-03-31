@@ -9,7 +9,6 @@ app.controller('postCtrl', [ '$scope','$http','$stateParams','dp.service.site', 
 	$scope.imgObj = filtered.length > 0 ? filtered[0] : [];
 
 	$scope.publishPost = function(){
-		console.log(filtered[0]);
 		if(filtered == undefined){
 			return;
 		}
@@ -17,7 +16,7 @@ app.controller('postCtrl', [ '$scope','$http','$stateParams','dp.service.site', 
 			postService.createPostRequest(filtered[0], data).then(function(data){
 				$('#responseCode').show().css('color', 'green').text('POSTED').fadeOut(4000);
 			}, function(err){
-				console.err(err);
+				console.log(err);
 				$('#responseCode').show().css('color', 'red').text('ERROR').fadeOut(4000);
 			});
 		});

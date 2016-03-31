@@ -15,7 +15,7 @@ app.service('dp.service.http', ['$http','$q', 'dp.service.url', 'settings', func
 		$http.post(url,data,config).success(function(data,status){
 			deferred.resolve(data);
 		}).error(function(err){
-			console.err(err);
+			console.log(err);
 		});
 		return deferred.promise;
 	}
