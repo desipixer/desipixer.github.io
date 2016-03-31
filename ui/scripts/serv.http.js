@@ -10,9 +10,19 @@ app.service('dp.service.http', ['$http','$q', 'dp.service.url', 'settings', func
 		return deferred.promise;
 	}
 
+	var publishPost = function(url, data, config){
+		var deferred = $q.defer();
+		$http.post(url,data,config).success(function(data,status){
+			deferred.resolve(data);
+		}).error(function(err){
+			console.err(err);
+		});
+		return deferred.promise;
+	}
 
 	return {
-		getBlogById : getBlogById
+		getBlogById : getBlogById,
+		publishPost : publishPost
 	}
 
 }]);

@@ -31,6 +31,10 @@ app.service('dp.service.url', [ 'dp.service.auth', 'settings',  function(authSer
 		return "https://www.blogger.com/feeds/".concat(id).concat("/posts/default").concat(qsToString(qs));
 	}
 
+	var getPostUrl = function(blogId){
+		return "https://www.googleapis.com/blogger/v3/blogs/".concat(blogId).concat("/posts");
+	}
+
 	var qsToString = function(obj){
 		var str = "?";
         for(key of Object.keys(obj)){
@@ -41,6 +45,7 @@ app.service('dp.service.url', [ 'dp.service.auth', 'settings',  function(authSer
 
 	return {
 		getBlogNameById : getBlogNameById,
-		getBlogFeedUrl : getBlogFeedUrl
+		getBlogFeedUrl : getBlogFeedUrl,
+		getPostUrl : getPostUrl
 	}
 }])

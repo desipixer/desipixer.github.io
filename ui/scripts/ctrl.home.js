@@ -39,6 +39,11 @@ app.controller('homeCtrl', ['$scope', 'dp.service.http', 'dp.service.site', 'dp.
 	}
 
 	window.onscroll = function(ev) {
+		if($scope.searchItems != undefined){
+			if($scope.searchItems.length > 0)
+				return;
+		}
+		
         if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
            settings.startIndex += settings.maxResults;
            httpService.getBlogById($scope.selSite, settings.startIndex , settings.maxResults , null).then(function(data){

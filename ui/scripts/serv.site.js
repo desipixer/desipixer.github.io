@@ -32,6 +32,21 @@ app.service('dp.service.site', function(){
 		    "blogId": "5935905342569794143",
 		    "blogURL": "http://sabhothimages.blogspot.com/",
 		    "category": 1
+		},
+		{
+		    "blogId": "3293309843232706023",
+		    "blogURL": "http://www.searchtamilmovies.com/",
+		    "category": 1
+		},
+		{
+		    "blogId": "2951969169923408846",
+		    "blogURL": "http://fultohot.blogspot.com/",
+		    "category": 1
+		},
+		{
+		    "blogId": "4846859112009281783",
+		    "blogURL": "http://www.celebsnext.com/",
+		    "category": 2
 		}
 	];
 

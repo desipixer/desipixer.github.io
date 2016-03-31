@@ -1,5 +1,13 @@
 <div>
 	<div>
+		<div class="row">
+			<div class="col-md-3">
+				<button class="btn btn-primary" ng-click="publishPost()"> POST </button>
+			</div>
+		 	<div class="col-md-3"><b><span id="responseCode" ></span></b> </span></div>
+		 	<div class="col-md-3"> </div>
+			 
+			</div>
 		<div> <h2> {{imgObj.title.$t }} </h2> </div>
 		<div>
 		<span ng-repeat="img in imgObj.imgArray">
