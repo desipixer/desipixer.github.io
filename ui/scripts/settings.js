@@ -5,7 +5,7 @@ app.service('settings', function(){
 		default : {
 			id : "7833828309523986982",
 			name : "http://desipixer.in",
-			maxResults : 300,
+			maxResults : 150,
 			startIndex : 1
 		},
 		maxResults : 150,

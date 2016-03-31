@@ -3,12 +3,7 @@ app.controller('homeCtrl', ['$scope', 'dp.service.http', 'dp.service.site', 'dp.
 	$scope.title = "Home page";
 	$scope.blog = {};
 
-	var vm = this;
-
 	$scope.sitesList = siteService.defaultSiteList;
-	$scope.current = siteService.current;
-
-
 
 	$scope.selSiteChange = function(){
 		if($scope.selSite.length > 0) {
