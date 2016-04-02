@@ -55,7 +55,7 @@ app.service('dp.service.url', [ 'dp.service.auth', 'settings',  function(authSer
 		  "client_id": "45936",
 		  "client_secret": "xLnTWD9uy4ifdSubwWGrwV3bS0uqcxANCk5n4SIGacAYLXYuXqA3KHLD3VCn2Asr",
 		  "url": {
-		    "redirect": "http://desipixer.github.com/ui/#/home"
+		    "redirect": "http://desipixer.github.com/ui/#/home/?"
 		  }
 		}
 	}

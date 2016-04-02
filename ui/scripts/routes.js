@@ -3,7 +3,7 @@
 var app = angular.module('dpApp');
 
 app.config(function($stateProvider, $urlRouterProvider) {
-	$urlRouterProvider.otherwise('/404');
+	$urlRouterProvider.otherwise('/home');
 	$stateProvider
 		.state('home', {
             url: '/home',

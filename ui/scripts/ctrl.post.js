@@ -26,7 +26,7 @@ app.controller('postCtrl', [ '$scope','$http','$stateParams','dp.service.site', 
 		var wpSettings = urlService.wordpress.settings;
 
 		var params = {
-			redirect : 'http://desipixer.github.io/ui/#/home'
+			redirect : 'http://desipixer.github.io/ui/#/home/?'
 		}
 		debugger;
 		var wpOAuth = WPCOMCORS(1);
@@ -34,7 +34,7 @@ app.controller('postCtrl', [ '$scope','$http','$stateParams','dp.service.site', 
 
 		wpOAuth.get(function(data){
 			console.log(data);
-			
+
 		})
 
 		
