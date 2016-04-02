@@ -28,8 +28,18 @@ app.service('dp.service.auth', ['$q', function($q) {
 		},
 		getClientId : function(){
 			return this.clientId;
+		},
+		settings : {
+		  "client_id": "45936",
+		  "client_secret": "xLnTWD9uy4ifdSubwWGrwV3bS0uqcxANCk5n4SIGacAYLXYuXqA3KHLD3VCn2Asr",
+		  "url": {
+		    "redirect": "http://desipixer.github.com/ui/#/home"
+		  }
 		}
 	}
+
+
+
 
 
 	var blogger = {
