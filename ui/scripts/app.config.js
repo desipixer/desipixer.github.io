@@ -5,3 +5,8 @@ app.config(function(){
 	window.sessionStorage.clear();
 	sessionStorage.setItem('dp','0.0.1');
 });
+
+
+requirejs.config({
+	baseUrl : 'api/wordpress'
+})
