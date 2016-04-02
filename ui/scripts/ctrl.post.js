@@ -23,32 +23,21 @@ app.controller('postCtrl', [ '$scope','$http','$stateParams','dp.service.site', 
 	}
 
 	$scope.getToken = function(){
-		/*$.ajax({
-		    url: urlService.wordpress.createTokenUrl(),
-		    type: "POST",
-		    crossDomain: true,
-		    dataType: "json",
-		    success:function(result){
-		        //alert(JSON.stringify(result));
-		        console.log(result);
-		    },
-		    error:function(xhr,status,error){
-		        alert(status);
-		    }
-		});*/
+		var wpSettings = urlService.wordpress.settings;
 
-		var wpcom = WPCOM();
-		wpcom
-		.site('desipixer.wordpress.com')
-		.postsList({
-			number : 4,
-		}, function(err,data){
-			if(err)
-				console.log(err);
-			data.posts.forEach(function(value,index){
-				console.log(value);
-			})
-		});
+		var params = {
+			redirect : 'http://desipixer.github.com/ui/#/home'
+		}
+		debugger;
+		var wpOAuth = WPCOMCORS(1);
+		wpOAuth(wpSettings.client_id, params);
+
+		wpOAuth.get(function(data){
+			console.log(data);
+		})
+
+		
+
 	}
 
 
