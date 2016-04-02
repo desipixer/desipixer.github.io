@@ -1,4 +1,4 @@
-app.controller('postCtrl', [ '$scope','$http','$stateParams','dp.service.site', 'dp.service.post', function($scope, $http, $stateParams, siteService, postService) {
+app.controller('postCtrl', [ '$scope','$http','$stateParams','dp.service.site', 'dp.service.post','dp.service.url', function($scope, $http, $stateParams, siteService, postService, urlService) {
 	$scope.title = "Post page";
 	$scope.id = ($stateParams.id !== undefined) ? $stateParams.id : "default";
 	var filtered = _.filter(siteService.blog.entryArr, function(obj) {
@@ -21,6 +21,15 @@ app.controller('postCtrl', [ '$scope','$http','$stateParams','dp.service.site', 
 			});
 		});
 	}
+
+	$scope.getToken = function(){
+		$http.post(urlService.wordpress.createTokenUrl()).success(function(data){
+			console.log(data);
+		}).error(function(err){
+			console.log(err);
+		});
+	}
+
 
 	$scope.login = function() { 
 		return postService.login();

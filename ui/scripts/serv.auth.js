@@ -17,14 +17,17 @@ app.service('dp.service.auth', ['$q', function($q) {
 	}
 
 	var wordpress = {
+		clientSecret : "xLnTWD9uy4ifdSubwWGrwV3bS0uqcxANCk5n4SIGacAYLXYuXqA3KHLD3VCn2Asr",
+		token : "",
+		clientId : "45936",
 		getToken : function(){
 			return "84916482ebe3";
 		},
 		getClientSecret : function(){
-			return "";
+			return this.clientSecret;
 		},
 		getClientId : function(){
-			return "";
+			return this.clientId;
 		}
 	}
 

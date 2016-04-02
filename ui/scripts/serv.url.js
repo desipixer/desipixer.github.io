@@ -43,9 +43,20 @@ app.service('dp.service.url', [ 'dp.service.auth', 'settings',  function(authSer
         return str.substring(0,str.length - 1);
 	}
 
+	var wordpress = {
+		createTokenUrl : function(){
+			var clientId = authService.wordpress.getClientId();
+			var redirectURI = "http://desipixer.github.com";
+			var blog = "desipixer.wordpress.com";
+			var responseType = "token";
+			return "https://public-api.wordpress.com/oauth2/authorize?client_id=".concat(clientId).concat("&redirect_uri=").concat(redirectURI).concat("&response_type=").concat(responseType).concat("&blog=").concat(blog);
+		}
+	}
+
 	return {
 		getBlogNameById : getBlogNameById,
 		getBlogFeedUrl : getBlogFeedUrl,
-		getPostUrl : getPostUrl
+		getPostUrl : getPostUrl,
+		wordpress : wordpress
 	}
 }])
