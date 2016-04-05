@@ -182,11 +182,6 @@ app.service('imageService', ['$http', '$q',"blogutil", function ($http, $q, blog
                             "category": 1
                         },
                         {
-                            "blogId": "1216148922285536921",
-                            "blogURL": "http://bollywoodglitz24.blogspot.com/",
-                            "category": 1
-                        },
-                        {
                             "blogId": "1566500733828359729",
                             "blogURL": "http://indianactressclub.blogspot.com/",
                             "category": 1
