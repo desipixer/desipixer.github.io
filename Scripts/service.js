@@ -297,11 +297,6 @@ app.service('imageService', ['$http', '$q',"blogutil", function ($http, $q, blog
                             "category": 2
                         },
                         {
-                            "blogId": "5648086490419664967",
-                            "blogURL": "http://actresscelebritygallery.blogspot.com/",
-                            "category": 1
-                        },
-                        {
                             "blogId": "9011145545740768794",
                             "blogURL": "http://telugumoviesongsfreedownloads.blogspot.com/",
                             "category": 1
