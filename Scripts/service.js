@@ -152,43 +152,8 @@ app.service('imageService', ['$http', '$q',"blogutil", function ($http, $q, blog
                             "category": 1
                         },
                         {
-                            "blogId": "3253248415049615881",
-                            "blogURL": "http://imagesofbeautyness.blogspot.com/",
-                            "category": 1
-                        },
-                        {
-                            "blogId": "2143860244095823240",
-                            "blogURL": "http://southwoodgallery.blogspot.com/",
-                            "category": 1
-                        },
-                        {
-                            "blogId": "4684429767246952780",
-                            "blogURL": "http://cinemapixss.blogspot.com/",
-                            "category": 1
-                        },
-                        {
                             "blogId": "530660620295703790",
                             "blogURL": "http://wallpaperhd6.blogspot.in/",
-                            "category": 1
-                        },
-                        {
-                            "blogId": "5369598462899686878",
-                            "blogURL": "http://hotever4u.blogspot.com/",
-                            "category": 1
-                        },
-                        {
-                            "blogId": "2553089477348570965",
-                            "blogURL": "http://indianstunningactress.blogspot.com/",
-                            "category": 1
-                        },
-                        {
-                            "blogId": "1566500733828359729",
-                            "blogURL": "http://indianactressclub.blogspot.com/",
-                            "category": 1
-                        },
-                        {
-                            "blogId": "8904303770733117180",
-                            "blogURL": "http://desigirlzall.blogspot.com/",
                             "category": 1
                         },
                         {
@@ -207,29 +172,9 @@ app.service('imageService', ['$http', '$q',"blogutil", function ($http, $q, blog
                             "category": 1
                         },
                         {
-                            "blogId": "1607837477387514460",
-                            "blogURL": "http://teluguclue.blogspot.in/",
-                            "category": 1
-                        },
-                        {
                             "blogId": "4846859112009281783",
                             "blogURL": "http://www.celebsnext.com/",
                             "category": 2
-                        },
-                        {
-                            "blogId": "3570505240870034981",
-                            "blogURL": "http://illeana-hotphotos.blogspot.com/",
-                            "category": 1
-                        },
-                        {
-                            "blogId": "4257078420076874919",
-                            "blogURL": "http://ssmusictheblog.blogspot.com/",
-                            "category": 1
-                        },
-                        {
-                            "blogId": "3788148058786940579",
-                            "blogURL": "http://photofunmasti.blogspot.com/",
-                            "category": 1
                         },
                         {
                             "blogId": "3568736907693451574",
@@ -247,28 +192,8 @@ app.service('imageService', ['$http', '$q',"blogutil", function ($http, $q, blog
                             "category": 1
                         },
                         {
-                            "blogId": "78242048938000965",
-                            "blogURL": "http://www.tollyscreen.com/",
-                            "category": 1
-                        },
-                        {
                             "blogId": "7521091312921738775",
                             "blogURL": "http://cinehike.blogspot.com/",
-                            "category": 1
-                        },
-                        {
-                            "blogId": "4340330498874514770",
-                            "blogURL": "http://www.removideos.com/",
-                            "category": 1
-                        },
-                        {
-                            "blogId": "1259465806147598254",
-                            "blogURL": "http://way2newsblog.blogspot.com/",
-                            "category": 1
-                        },
-                        {
-                            "blogId": "8630800337511284753",
-                            "blogURL": "http://cinemaicon.blogspot.com/",
                             "category": 1
                         },
                         {
@@ -282,44 +207,9 @@ app.service('imageService', ['$http', '$q',"blogutil", function ($http, $q, blog
                             "category": 1
                         },
                         {
-                            "blogId": "8369777321912001295",
-                            "blogURL": "http://onlypopularvideos.blogspot.com/",
-                            "category": 1
-                        },
-                        {
-                            "blogId": "7251757096163318078",
-                            "blogURL": "http://bollywood5k.blogspot.com/",
-                            "category": 1
-                        },
-                        {
                             "blogId": "7468784626602203128",
                             "blogURL": "http://telugu.zustcinema.com/",
                             "category": 2
-                        },
-                        {
-                            "blogId": "9011145545740768794",
-                            "blogURL": "http://telugumoviesongsfreedownloads.blogspot.com/",
-                            "category": 1
-                        },
-                        {
-                            "blogId": "5489822191765425450",
-                            "blogURL": "http://actress-photo-shoot.blogspot.com/",
-                            "category": 1
-                        },
-                        {
-                            "blogId": "8261689056909797037",
-                            "blogURL": "http://lgmoviee.blogspot.com/",
-                            "category": 1
-                        },
-                        {
-                            "blogId": "3905178814471876545",
-                            "blogURL": "http://sareebelownavelshow.blogspot.com/",
-                            "category": 1
-                        },
-                        {
-                            "blogId": "1739735805822337775",
-                            "blogURL": "http://www.vtelugu.in/",
-                            "category": 1
                         },
                         {
                             "blogId": "5656041982218593755",
@@ -329,116 +219,6 @@ app.service('imageService', ['$http', '$q',"blogutil", function ($http, $q, blog
                         {
                             "blogId": "5067574769190905623",
                             "blogURL": "http://actresshdgallery.blogspot.com/",
-                            "category": 1
-                        },
-                        {
-                            "blogId": "8089698501885637773",
-                            "blogURL": "http://www.123photos.in/",
-                            "category": 1
-                        },
-                        {
-                            "blogId": "5187513159820363840",
-                            "blogURL": "http://www.spicycinegallery.com/",
-                            "category": 1
-                        },
-                        {
-                            "blogId": "506675312802549728",
-                            "blogURL": "http://actressmirchi.blogspot.com/",
-                            "category": 2
-                        },
-                        {
-                            "blogId": "8288428012409826912",
-                            "blogURL": "http://samanthapix.blogspot.com/",
-                            "category": 1
-                        },
-                        {
-                            "blogId": "4729247519531040631",
-                            "blogURL": "http://rakulpixer.blogspot.com/",
-                            "category": 1
-                        },
-                        {
-                            "blogId": "6614264041233815321",
-                            "blogURL": "http://kajalpixer.blogspot.com/",
-                            "category": 1
-                        },
-                        {
-                            "blogId": "2016762340977866228",
-                            "blogURL": "http://shriyapixer.blogspot.com/",
-                            "category": 1
-                        },
-                        {
-                            "blogId": "9026317655696914243",
-                            "blogURL": "http://samanthapixer.blogspot.com/",
-                            "category": 1
-                        },
-                        {
-                            "blogId": "7770041580109253182",
-                            "blogURL": "http://tamannapixer.blogspot.com/",
-                            "category": 1
-                        },
-                        {
-                            "blogId": "8733127730104997251",
-                            "blogURL": "http://hotandsexysouthheroines.blogspot.com/",
-                            "category": 1
-                        },
-                        {
-                            "blogId": "6539177596614326409",
-                            "blogURL": "http://bollyystilspics.blogspot.com/",
-                            "category": 1
-                        },
-                        {
-                            "blogId": "375502430236704104",
-                            "blogURL": "http://catchemind.blogspot.com/",
-                            "category": 1
-                        },
-                        {
-                            "blogId": "506675312802549728",
-                            "blogURL": "http://actressmirchi.blogspot.com/",
-                            "category": 2
-                        },
-                        {
-                            "blogId": "8288428012409826912",
-                            "blogURL": "http://samanthapix.blogspot.com/",
-                            "category": 1
-                        },
-                        {
-                            "blogId": "4729247519531040631",
-                            "blogURL": "http://rakulpixer.blogspot.com/",
-                            "category": 1
-                        },
-                        {
-                            "blogId": "6614264041233815321",
-                            "blogURL": "http://kajalpixer.blogspot.com/",
-                            "category": 1
-                        },
-                        {
-                            "blogId": "2016762340977866228",
-                            "blogURL": "http://shriyapixer.blogspot.com/",
-                            "category": 1
-                        },
-                        {
-                            "blogId": "9026317655696914243",
-                            "blogURL": "http://samanthapixer.blogspot.com/",
-                            "category": 1
-                        },
-                        {
-                            "blogId": "7770041580109253182",
-                            "blogURL": "http://tamannapixer.blogspot.com/",
-                            "category": 1
-                        },
-                        {
-                            "blogId": "8733127730104997251",
-                            "blogURL": "http://hotandsexysouthheroines.blogspot.com/",
-                            "category": 1
-                        },
-                        {
-                            "blogId": "6539177596614326409",
-                            "blogURL": "http://bollyystilspics.blogspot.com/",
-                            "category": 1
-                        },
-                        {
-                            "blogId": "375502430236704104",
-                            "blogURL": "http://catchemind.blogspot.com/",
                             "category": 1
                         }
                     ];
@@ -464,6 +244,7 @@ app.service('imageService', ['$http', '$q',"blogutil", function ($http, $q, blog
     {blogId: "2313063316259818401", blogURL: "http://cinestillz.blogspot.com/", category: 1},
      {blogId: "1689491623003449378", blogURL: "http://pixerhub.blogspot.com/", category: 1},
      {blogId: "2360413207505978741", blogURL: "http://pixerblog.blogspot.com/", category: 1},
+     {blogId: "7527460989335381985", blogURL: "http://pixerone.blogspot.com/", category: 1},
     { 
         blogId: "8288428012409826912",
         blogURL: 'http://samanthapix.blogspot.com/',

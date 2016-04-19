@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+  <title>Sites</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+  <script src="scripts.js"></script>
+</head>
+<body>
+ <div ng-controller="siteCtrl">
+    <div>
+    <table class="table">
+    <thead>
+            <th> BLOG ID </th>
+            <th> BLOG NAME </th>
+    </thead>
+        <tbody>
+            <tr ng-repeat="site in siteList" >
+                <td>
+                    {{site.blogId}}
+                </td>
+                 <td>
+                    <a ng-href="site.blogURL"> {{site.blogURL}} </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+
+ </div>
+<link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" />
+</body>
+</html>
