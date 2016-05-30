@@ -1,0 +1,14 @@
+.main-title {
+	min-height : 40px;
+	color : red;
+}
+
+.tab-title {
+	color : #003399;
+	font-size : 33px;
+}
+
+.thumb-img {
+	width : 240px;
+	height : 320px;
+}
