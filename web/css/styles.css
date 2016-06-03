@@ -12,3 +12,9 @@
 	width : 240px;
 	height : 320px;
 }
+
+.form-span input[type="text"][class*="span"] { float: left; }
+
+.div-menu {
+	padding : 10px;
+}

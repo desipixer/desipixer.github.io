@@ -1,7 +1,23 @@
 <div>
     <div>
-    <h4> {{postObj.title}} </h4>
-    </div>
+	    <div class="row">
+	    					<div class="col-md-2">
+	    						<button class="btn btn-success" ng-click="publishPost()"> POST </button>
+	    					</div>
+	    					<div class="col-md-6">
+	    						<h4> {{postObj.title}} </h4>
+	    					</div>
+	    					<div class="col-md-2 btn-group">
+	    						<button class="btn btn-primary" ng-click="goToUrl()"> URL </button>
+	    						<button class="btn btn-danger" ng-click="shareToGplus()"> Google+ </button>
+	    					</div>
+	    					
+	    					<div class="col-md-1 ">
+	    						<div id="divPostStatus"> </div>
+	    					</div>
+	    				</div>
+	   		 
+	    </div>
     <div>
 	<span ng-repeat="image in postObj.images">
 		<a ng-href="{{image}}" target="_blank" ><img ng-src="{{image.replace('s1600','s480')}}" title="{{postObj.title}}" alt="{{postObj.title}}" /></a>
