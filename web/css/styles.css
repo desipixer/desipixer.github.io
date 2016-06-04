@@ -18,3 +18,8 @@
 .div-menu {
 	padding : 10px;
 }
+
+.image-post {
+	max-width : 320px;
+	max-height: 480px;
+}
