@@ -5,7 +5,7 @@ var Image = function(title,url,src){
 }
 
 Image.prototype.getThumb = function(){
-	return this.src.replace('s1600','s320');
+	return this.src.replace('s1600','s480');
 }
 
 
