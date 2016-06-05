@@ -7,13 +7,13 @@
 					<select ng-model="selSite" ng-options="site.blogId as site.blogURL for site in sites" ng-init="selSite = sites[0]" ng-change="selSiteChange()" class="form-control"></select>
 				</div>
 				<div class="col-xs-3">
-					<input ng-model="txtSearchSite" placeholder="Search Site Name ..." class="form-control" />
+					<input ng-model="txtSearchSite" placeholder="Search Site Name ..." class="form-control" ng-enter="searchSite()" />
 				</div>
 				<div class="col-xs-1">
 					<button ng-click="searchSite()" class="btn btn-primary" >Search</button>
 				</div>
 				<div class="col-xs-3">
-					<input ng-model="txtSearch" placeholder="Search something.." class="form-control"  />
+					<input ng-model="txtSearch" placeholder="Search something.." class="form-control" ng-enter="searchKeyWords()"  />
 				</div>
 				<div class="col-xs-1">
 					<button ng-click="searchKeyWords()" class="btn btn-click">Search</button> 
