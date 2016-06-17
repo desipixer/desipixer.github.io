@@ -147,11 +147,6 @@ app.service('imageService', ['$http', '$q',"blogutil", function ($http, $q, blog
                             "category": 1
                         },
                         {
-                            "blogId": "809630945277969589",
-                            "blogURL": "http://masalaphotoshoot.blogspot.com/",
-                            "category": 1
-                        },
-                        {
                             "blogId": "530660620295703790",
                             "blogURL": "http://wallpaperhd6.blogspot.in/",
                             "category": 1
