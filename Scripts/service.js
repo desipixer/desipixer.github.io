@@ -210,11 +210,6 @@ app.service('imageService', ['$http', '$q',"blogutil", function ($http, $q, blog
                             "blogId": "5656041982218593755",
                             "blogURL": "http://filmgain.blogspot.com/",
                             "category": 1
-                        },
-                        {
-                            "blogId": "5067574769190905623",
-                            "blogURL": "http://actresshdgallery.blogspot.com/",
-                            "category": 1
                         }
                     ];
         return siteList;
