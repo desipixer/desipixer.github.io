@@ -113,7 +113,7 @@ app.service('imageService', ['$http', '$q',"blogutil", function ($http, $q, blog
         var siteList = [
                         {
                             "blogId": "7833828309523986982",
-                            "blogURL": "http://www.desipixer.in/",
+                            "blogURL": "http://www.desipixer.blogspot.com/",
                             "category": 1
                         },
                         {
@@ -218,7 +218,7 @@ app.service('imageService', ['$http', '$q',"blogutil", function ($http, $q, blog
     this.postBlogs = [
     { 
         blogId: "7833828309523986982",
-        blogURL: 'http://www.desipixer.in/',
+        blogURL: 'http://www.desipixer.blogspot.com/',
         category: 1
     },
     {
