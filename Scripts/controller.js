@@ -172,7 +172,7 @@
 
     
     /***** default site loaded *******/
-    $scope.getSite("http://www.desipixer.in",1);
+    $scope.getSite("http://www.desipixer.blogspot.com",1);
 
 
 
