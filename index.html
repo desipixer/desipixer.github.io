@@ -14,6 +14,8 @@
   <script src="Scripts/app.js"></script>
   <script src="Scripts/service.js"></script>
   <script src="Scripts/controller.js"></script>
+  <script src="lib/js/lightbox.min.js"></script>
+  <link href="lib/css/lightbox.min.css" rel="stylesheet">	
 
   <style>
    img {
@@ -21,6 +23,12 @@
      width : 250px;
    }
  </style>
+ <script>
+ 	lightbox.option({
+      'resizeDuration': 100,
+      'wrapAround': true
+    })
+ </script>
 </head>
 <body>
   <div ng-controller="homeCtrl">
