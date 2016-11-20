@@ -13,3 +13,14 @@
       background: black; 
       color:white
 }
+
+.imgDownload {
+      position: absolute; 
+      width: 20px; 
+      height : 20px;
+      right: 0; 
+      bottom: 5; 
+      left:0;
+      background: black; 
+      color:white
+}

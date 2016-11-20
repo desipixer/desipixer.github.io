@@ -191,8 +191,8 @@ app.controller('messageCtrl', function ($scope, $routeParams, $sce, imageService
         var imageArray = obj.thumbs;
         var imageSrc = "";
         imageArray.forEach(function(element,index){
-            imageSrc = imageSrc + "<a href='" + obj.images[index] + "' data-lightbox='image-set' target='_blank'><img src='" + element + "' /></a>";
-        });
+            imageSrc = imageSrc + "<span class='imageContainer'><a href='" + obj.images[index] + "' data-lightbox='image-set' target='_blank'><img src='" + element + "' /></a><span class='imgDownload'><button class='btn btn-primary' onclick='imagesDownload(\""+ $sce.trustAsHtml(obj.images[index])  +"\")'><span class='glyphicon glyphicon-download-alt' style='cursor:pointer' aria-hidden='true'></span></button></span></span>";
+        })
         return imageSrc;
     }
 
