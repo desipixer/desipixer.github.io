@@ -210,7 +210,13 @@ app.service('imageService', ['$http', '$q',"blogutil", function ($http, $q, blog
                             "blogId": "5656041982218593755",
                             "blogURL": "http://filmgain.blogspot.com/",
                             "category": 1
-                        }
+                        },
+                        {blogId: "7874248432678435813", blogURL: "http://www.c65.in/", category: 2},
+                        {blogId: "5338625676592862668", blogURL: "http://cinytown.blogspot.com/", category: 1},
+                        {blogId: "3430584311590741572", blogURL: "http://tollywoodboost.blogspot.com/", category: 1},
+                        {blogId: "2222622162581355396", blogURL: "http://www.tufan9.com/", category: 1},
+                        {blogId: "5945193835116701787", blogURL: "https://aardemasti.blogspot.com", category: 2},
+                        {blogId: "5186853171678363994", blogURL: "https://latestmovieimagess.blogspot.com", category: 1}
                     ];
         return siteList;
     }
