@@ -6,19 +6,19 @@
 			<script src="scripts/vendor.js"></script>
 		</head>
 		<body>
-			<div class="main-title">
-				<h2>DP</h2>
-			</div>
 			<div ng-controller="dpMainCtrl">
+				<div class="main-title">
+					<a ui-sref="home"><h2>DP</h2></a>
+				</div>
 				<div class="row">
-					<div class="col-sm-1">
+					<div class="col-sm-1" style="display:none">
 						<ul class="nav nav-tabs nav-stacked nav-pills" role="tablist">
 							<li>
 								<a ui-sref="home">Home</a>
 							</li>
 						</ul>
 					</div>
-					<div class="col-sm-11">
+					<div>
 						<div class="tab-content">
 							<div ui-view></div>
 						</div>
