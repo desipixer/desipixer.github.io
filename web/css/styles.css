@@ -9,8 +9,8 @@
 }
 
 .thumb-img {
-	width : 240px;
-	height : 320px;
+	width : 320px;
+	height : 480px;
 }
 
 .form-span input[type="text"][class*="span"] { float: left; }
@@ -22,4 +22,31 @@
 .image-post {
 	max-width : 320px;
 	max-height: 480px;
+}
+
+.imageContainer {
+   position : relative;
+}
+
+.imgCount {
+      position: absolute; 
+      width: 20px; 
+      height : 20px;
+      right: 0; 
+      top: 0; 
+      bottom: 0; 
+      left:0;
+      background: black; 
+      color:white
+}
+
+.imgDownload {
+      position: absolute; 
+      width: 20px; 
+      height : 20px;
+      right: 0; 
+      bottom: 5; 
+      left:0;
+      background: black; 
+      color:white
 }
