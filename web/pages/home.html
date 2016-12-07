@@ -2,7 +2,7 @@
 	<div></div>
 	<div>
 		
-			<div class="row div-menu">
+			<div class="row div-menu" style="padding-top:70px">
 				<div class="col-md-4">
 					<select ng-model="selSite" ng-options="site.blogId as site.blogURL for site in sites" ng-init="selSite = sites[0]" ng-change="selSiteChange()" class="form-control"></select>
 				</div>
@@ -13,10 +13,7 @@
 					<button ng-click="searchSite()" class="btn btn-primary" >Search</button>
 				</div>
 				<div class="col-xs-3">
-					<input ng-model="txtSearch" placeholder="Search something.." class="form-control" ng-enter="searchKeyWords()"  />
-				</div>
-				<div class="col-xs-1">
-					<button ng-click="searchKeyWords()" class="btn btn-click">Search</button> 
+					<input ng-model="txtSearch" placeholder="&#xF002;" style="font-family:Arial, FontAwesome" class="form-control" ng-enter="searchKeyWords()"  />
 				</div>
 			</div>
 			<div class="row div-menu">
