@@ -191,9 +191,25 @@ app.controller('messageCtrl', function ($scope, $routeParams, $sce, imageService
         var imageArray = obj.thumbs;
         var imageSrc = "";
         imageArray.forEach(function(element,index){
-            imageSrc = imageSrc + "<span class='imageContainer'><a href='" + obj.images[index] + "' data-lightbox='image-set' target='_blank'><img src='" + element + "' /></a><span class='imgDownload'><a href='"+ element.replace('s320','s1600') +"' download><button class='btn btn-primary' ><span class='glyphicon glyphicon-download-alt' style='cursor:pointer' aria-hidden='true'></span></button></a></span></span>";
+            imageSrc = imageSrc + "<span class='imageContainer'><a href='" + obj.images[index] + "' data-lightbox='image-set' target='_blank'><img src='" + element + "' /></a><span class='imgDownload'><a id='hrefDownload' href='"+ element.replace('s320','s1600') +"' download><button class='btn btn-primary' ><span class='glyphicon glyphicon-download-alt' style='cursor:pointer' aria-hidden='true'></span></button></a></span></span>";
         })
         return imageSrc;
+    }
+
+    $scope.downloadAllImages = function(){
+        console.log('Downloading all images from ');
+        // get all images and process download by jquery
+        $('a#hrefDownload').each(function(){
+            var href = $(this).attr('href');
+            var link = document.createElement('a');
+            link.href = href;
+            link.download = 'Download.jpg';
+            document.body.appendChild(link);
+            link.click();
+        })
+
+        
+
     }
 
     $scope.selectedBlog = function(){
