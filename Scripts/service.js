@@ -27,35 +27,36 @@ app.service('imageService', ['$http', '$q',"blogutil", function ($http, $q, blog
         //console.log(deferred.promise);
         return deferred.promise;
     }
-    this.getPosts = function (blogId,startIndex)
-    {
-       
-       var deferred = $q.defer();
+    this.getPosts = function (blogId, startIndex) {
 
-       /* blog present in list of blogs */
-       var IsBlogInList = blogutil.searchObjectArray(this.getBlogList(),"blogId",blogId);
-       if(IsBlogInList !== null &&  IsBlogInList.category == 2){
-           var URL = "https://www.googleapis.com/blogger/v3/blogs/"+ blogId +"/posts?fetchImages=true&key=AIzaSyBZvR46qyUilZ6Fl5vn9oPnLZtYHnqSknE&maxResults=500";
-           $http.get(URL).success(function(data){
-               deferred.resolve(data);
-           });
-       }
-       else
-       {
-           var URL = "https://www.blogger.com/feeds/" + blogId + "/posts/default?start-index=" + startIndex + "&max-results="+ maxResults +"&alt=json&callback=JSON_CALLBACK";
-           $http.jsonp(URL).success(function (data) {
-               deferred.resolve(data);
-               var arr1 = [];
-               angular.forEach(data.feed.entry, function (entryX) {
-                   arr1.push(entryX);
-               });
-               angular.copy(arr1, entries);
+        var deferred = $q.defer();
 
+        /* blog present in list of blogs */
+        var IsBlogInList = blogutil.searchObjectArray(this.getBlogList(), "blogId", blogId);
+        if (IsBlogInList !== null && IsBlogInList.category == 2) {
+            var URL = "https://www.googleapis.com/blogger/v3/blogs/" + blogId + "/posts?fetchImages=true&key=AIzaSyBZvR46qyUilZ6Fl5vn9oPnLZtYHnqSknE&maxResults=500";
+            try {
+                $http.get(URL).success(function (data) {
+                    deferred.resolve(data);
+                });
+            }
+            catch (ex) {
+                console.log("ERROR >> " + ex);
+            }
+        }
+        else {
+            var URL = "https://www.blogger.com/feeds/" + blogId + "/posts/default?start-index=" + startIndex + "&max-results=" + maxResults + "&alt=json&callback=JSON_CALLBACK";
+            $http.jsonp(URL).success(function (data) {
+                deferred.resolve(data);
+                var arr1 = [];
+                angular.forEach(data.feed.entry, function (entryX) {
+                    arr1.push(entryX);
+                });
+                angular.copy(arr1, entries);
+            });
+        }
 
-           });
-       }    
-
-       return deferred.promise;
+        return deferred.promise;
     }
 
     this.getSearchPosts= function(blogId,startIndex,searchText)
@@ -162,11 +163,6 @@ app.service('imageService', ['$http', '$q',"blogutil", function ($http, $q, blog
                             "category": 2
                         },
                         {
-                            "blogId": "3293309843232706023",
-                            "blogURL": "http://www.searchtamilmovies.com/",
-                            "category": 1
-                        },
-                        {
                             "blogId": "4846859112009281783",
                             "blogURL": "http://www.celebsnext.com/",
                             "category": 2
@@ -195,11 +191,6 @@ app.service('imageService', ['$http', '$q',"blogutil", function ($http, $q, blog
                             "blogId": "4985646326158465936",
                             "blogURL": "http://www.tollywoodblog.in/",
                             "category": 2
-                        },
-                        {
-                            "blogId": "7682538289737929837",
-                            "blogURL": "http://www.voovov.com/",
-                            "category": 1
                         },
                         {
                             "blogId": "7468784626602203128",

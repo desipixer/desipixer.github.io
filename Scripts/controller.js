@@ -41,7 +41,16 @@
 
     $scope.getBlogName = function()
     {
-        imageService.getBlogId($scope.txtBlogName).then(function (data) {
+
+        // Get only the origin and get blog ID
+        var blogUrl = new URL($scope.txtBlogName);
+        if(blogUrl){
+            console.log(blogUrl.origin);
+        } else {
+            return;
+        }
+
+        imageService.getBlogId(blogUrl.origin).then(function (data) {
         $scope.blog.id = data.id;
         $scope.blog.url = data.url;
         $scope.blog.totalItems = data.posts.totalItems;
