@@ -1,9 +1,10 @@
 ﻿<!DOCTYPE html>
 <html ng-app="myApp">
+
 <head>
   <title>DP Portal</title>
 
-  <link rel="shortcut icon" href="Images/icon.png" type="image/x-icon"> 
+  <link rel="shortcut icon" href="Images/icon.png" type="image/x-icon">
 
   <script src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
@@ -17,89 +18,92 @@
   <script src="Scripts/misc.js"></script>
   <script src="lib/js/lightbox.min.js"></script>
   <!-- <script src="lib/js/FileSaver.js"></script> -->
-  <link href="lib/css/lightbox.min.css" rel="stylesheet">	
+  <link href="lib/css/lightbox.min.css" rel="stylesheet">
 
   <style>
-   img {
-     height : 320px;
-     width : 250px;
-   }
- </style>
- <script>
- 	lightbox.option({
+    img {
+      height: 320px;
+      width: 250px;
+    }
+  </style>
+  <script>
+    lightbox.option({
       'resizeDuration': 0,
-      'imageFadeDuration' : 0,
+      'imageFadeDuration': 0,
       'wrapAround': true
     })
- </script>
+  </script>
 </head>
+
 <body>
   <div ng-controller="homeCtrl">
 
-   <table class="table table-condensed">
-    <tr>
-     <td>
-      <a href="/" ><button class="btn btn-info btn-sm"> HOME </button> </a>
-    </td>
-    <td>
-      <p>BLOG ID : {{blogId}} </p> 
-    </td>
-    
+    <table class="table table-condensed">
+      <tr>
+        <td>
+          <a href="/"><button class="btn btn-info btn-sm"> HOME </button> </a>
+        </td>
+        <td>
+          <p>BLOG ID : {{blogId}} </p>
+        </td>
 
-    <td>
-      <select ng-model="siteList" ng-options="site.blogURL as site.blogURL for site in sitesList" ng-init="siteList = sitesList[0]" ng-change="selectedSite()"></select>
-      <button ng-click="sortBlogs()" class="btn btn-sm" > SORT </button>
-    </td>
 
-    <td>
-      Filter : <input ng-model="searchText" /> <button ng-click="sortFeedByTitle()" class="btn btn-success" > Title Sort </button>
-    </td>
+        <td>
+          <select ng-model="siteList" ng-options="site.blogURL as site.blogURL for site in sitesList" ng-init="siteList = sitesList[0]"
+            ng-change="selectedSite()"></select>
+          <button ng-click="sortBlogs()" class="btn btn-sm"> SORT </button>
+        </td>
 
-    <td>
-      <button id="btnLogin" ng-click="userLogin()" ng-hide="IsLoggedIn()" class="btn btn-primary btn-sm">
+        <td>
+          Filter : <input ng-model="searchText" /> <button ng-click="sortFeedByTitle()" class="btn btn-success"> Title Sort </button>
+        </td>
+
+        <td>
+          <button id="btnLogin" ng-click="userLogin()" ng-hide="IsLoggedIn()" class="btn btn-primary btn-sm">
        Login
      </button>
-     <button ng-hide="!(IsLoggedIn())" class="btn btn-danger btn-sm">
+          <button ng-hide="!(IsLoggedIn())" class="btn btn-danger btn-sm">
        LogOut
      </button>
-   </td>
+        </td>
 
- </tr>
- <tr>
-  <td>
-    <button ng-click="getPreviousPosts(siteList)"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Prev</button>
-    <button ng-click="getNextPosts(siteList)" > Next <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button>
-  </td>
-  <td>
-   <p class="">TOTAL ITEMS : {{totalItems}} </p>
- 
-   <p id="responseCode"></p>
- </td>
- <td>
-    <input ng-model="txtBlogName" style="width:350px" ng-enter="getBlogName()" /> 
-   <button ng-click="getBlogName()" class="btn btn-info btn-sm  "  > Get Blog </button>
- </td>
-<td>
- Search : <input ng-model="fastQueryText" ng-enter="queryText()" />
- <button ng-click="queryText()" class="btn btn-warning btn-sm"> SEARCH </button>
-</td>   
-<td>
-    <p > Index :  {{startIndex}} </p> 
-</td>
-</tr>
-</table>
+      </tr>
+      <tr>
+        <td>
+          <button ng-click="getPreviousPosts(siteList)"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Prev</button>
+          <button ng-click="getNextPosts(siteList)"> Next <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button>
+        </td>
+        <td>
+          <p class="">TOTAL ITEMS : {{totalItems}} </p>
 
-<div ng-hide="isActive('')">
-  <span ng-repeat="entry in feedObj | filter : searchText" class="imageContainer" ng-hide="entry.thumbs.length < 2">
+          <p id="responseCode"></p>
+        </td>
+        <td>
+          <input ng-model="txtBlogName" style="width:350px" ng-enter="getBlogName()" />
+          <button ng-click="getBlogName()" class="btn btn-info btn-sm  "> Get Blog </button>
+        </td>
+        <td>
+          Search : <input ng-model="fastQueryText" ng-enter="queryText()" />
+          <button ng-click="queryText()" class="btn btn-warning btn-sm"> SEARCH </button>
+        </td>
+        <td>
+          <p> Index : {{startIndex}} </p>
+        </td>
+      </tr>
+    </table>
+
+    <div ng-hide="isActive('')">
+      <span ng-repeat="entry in feedObj | filter : searchText" class="imageContainer" ng-hide="entry.thumbs.length < 2">
     <a ng-href="#content/{{entry.id}}">    <img ng-src="{{entry.thumbs[0]}}" title="{{entry.title}}" /></a>
     <span class="imgCount" > {{ entry.thumbs.length }} </span>
-  </span>
-</div>
-<div ng-view>
+      </span>
+    </div>
+    <div ng-view>
 
-</div>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" />
-<link href="Styles/styles.css" rel="stylesheet" />
+    </div>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="Styles/styles.css" rel="stylesheet" />
 </body>
+
 </html>
