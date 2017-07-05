@@ -207,7 +207,6 @@ app.service('imageService', ['$http', '$q', "blogutil", function ($http, $q, blo
             { blogId: "2222622162581355396", blogURL: "http://www.tufan9.com/", category: 1 },
             { blogId: "5945193835116701787", blogURL: "https://aardemasti.blogspot.com", category: 2 },
             { blogId: "5186853171678363994", blogURL: "https://latestmovieimagess.blogspot.com", category: 1 },
-            { blogId: "4758457913364204558", blogURL: "http://cinestargallery.blogspot.com/", category: 1 },
             { blogId: "3835582922244616101", blogURL: "http://filmeeclub.blogspot.in/", category: 1 }
         ];
         return siteList;
@@ -263,6 +262,10 @@ app.service('imageService', ['$http', '$q', "blogutil", function ($http, $q, blo
             blogURL: 'http://tamannapixer.blogspot.com/',
             category: 1
         }
+    ];
+
+    var deprecatedBlogs = [
+        { blogId: "4758457913364204558", blogURL: "http://cinestargallery.blogspot.com/", category: 1 }
     ];
 
     return {
