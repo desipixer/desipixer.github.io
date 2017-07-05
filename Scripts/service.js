@@ -372,6 +372,18 @@ app.service('postService', ['$http', '$q', 'loginService', function ($http, $q, 
 }]);
 
 
+app.service('authUtil', function(){
+    var k = Object.freeze({
+        k : "AIzaSyAb3tFTPvsduIR2xopIVpYhwKMQ5ac_5Po"
+    });
+    var getKey = function(){
+        return k.k;
+    }
+    return {
+        k : auth.getKey()
+    }
+});
+
 app.service('blogutil', function () {
 
     /* variables that stores the images */

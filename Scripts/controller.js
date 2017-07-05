@@ -150,17 +150,30 @@
                 }
                 $scope.displayData.push(tempObj);
             }
-
             var sortDate = function (obj1, obj2) {
                 return obj2.updated - obj1.updated;
             }
-
             $scope.displayData.sort(sortDate);
-
             $scope.sitesList = $scope.displayData;
+        }, function(error){
+            //ERROR in getting result for this blog.
+            console.log("ERROR >> "+ error);
         });
     }
 
+    /**
+     * Sorts an object by its attribute.
+     * for example obj1.updated - obj2.updated
+     * @param {*} obj1 object 1
+     * @param {*} obj2 object 2
+     * @param {*} attr its key value/ attribute
+     */
+    function sortObjectByAttribute(obj1, obj2, attr){
+        if(obj1.hasOwnProperty(attr) && obj2.hasOwnProperty(attr)){
+            return obj1[attr] - obj2[attr];
+        }
+        return null;
+    }
 
     $scope.renderHtml = function (htmlCode) {
         return $sce.trustAsHtml(htmlCode);
