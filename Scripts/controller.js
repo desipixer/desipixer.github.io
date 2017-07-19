@@ -241,7 +241,7 @@ app.controller('messageCtrl', function ($scope, $routeParams, $sce, imageService
         var imageSrc = "";
 
         imageArray.forEach(function (element, index) {
-            imageSrc = imageSrc + "<a href='" + element + "'  target='_blank'><img src='" + element + "' /></a>";
+            imageSrc = imageSrc + "<a href='" + element + "'  target='_blank'><img src='" + element + "' class='desipixer' title='Desi Actress Pictures and Photos, Latest' alt='desipixer' /></a>";
         });
         return imageSrc;
     }
