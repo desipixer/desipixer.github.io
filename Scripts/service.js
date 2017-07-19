@@ -261,11 +261,12 @@ app.service('imageService', ['$http', '$q', "blogutil", function ($http, $q, blo
             blogId: "7770041580109253182",
             blogURL: 'http://tamannapixer.blogspot.com/',
             category: 1
+        },
+        {
+            blogId: "6586894154019969761",
+            blogURL: 'http://desipixerz.blogspot.com/',
+            category: 1
         }
-    ];
-
-    var deprecatedBlogs = [
-        { blogId: "4758457913364204558", blogURL: "http://cinestargallery.blogspot.com/", category: 1 }
     ];
 
     return {
