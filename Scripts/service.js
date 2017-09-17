@@ -267,6 +267,11 @@ app.service('imageService', ['$http', '$q', "blogutil", function ($http, $q, blo
             blogId: "6586894154019969761",
             blogURL: 'http://desipixerz.blogspot.com/',
             category: 1
+        },
+        {
+            blogId: "2727757258846553498",
+            blogURL: 'https://pixer-master.blogspot.com/',
+            category: 1
         }
     ];
 
