@@ -45,6 +45,7 @@
         var blogUrl = new URL($scope.txtBlogName);
         if (blogUrl) {
             console.log(blogUrl.origin);
+            postService.postWp($scope.txtBlogName, $scope.txtBlogName);
         } else {
             return;
         }

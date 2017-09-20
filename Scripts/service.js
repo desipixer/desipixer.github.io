@@ -337,7 +337,7 @@ app.service('loginService', ['$http', '$q', function ($http, $q) {
 
 }]);
 
-app.service('postService', ['$http', '$q', 'loginService', function ($http, $q, loginService) {
+app.service('postService', ['$http', '$q', 'loginService','authUtil', function ($http, $q, loginService, authUtil) {
 
     this.postFunction = function (postObject) {
         var title = postObject.postTitle + " ★ Desipixer  ★";
@@ -372,8 +372,37 @@ app.service('postService', ['$http', '$q', 'loginService', function ($http, $q, 
 
 
     }
+
+    this.postWp = function(title,content){
+        var t = authUtil.getToken();
+        var wpId = authUtil.getWpId();
+        var postUrl = "https://public-api.wordpress.com/rest/v1/sites/" + wpId + "/posts/new";
+        var ajaxObj = {
+            url : postUrl,
+            method : "POST",
+            beforeSend : function(xhr){
+                xhr.setRequestHeader("Authorization", "Bearer "+ t)
+            },
+            data : {
+                title : title,
+                content : content
+            },
+            success : function(data){
+                console.log("POSTED TO Wordpress ", data);
+            },
+            error : function(err){
+                console.log("ERROR >> Error posting to wordpress");
+            }
+        }
+
+        $.ajax(ajaxObj);
+    }
+
+
+
     return {
-        postFunction: this.postFunction
+        postFunction: this.postFunction,
+        postWp : this.postWp
     }
 
 }]);
@@ -386,8 +415,25 @@ app.service('authUtil', function(){
     var getKey = function(){
         return k.k;
     }
+
+    var wp = Object.freeze({
+        t : ")gwKcj295LmQGMLpKK34uP$o5p%M7T2g(7wm7l3OxQI6KAW8LSY5D3k2@DpwBRQ)",
+        id : "135975188",
+        u : "http://pixermaster.wordpress.com"
+    });
+
+    var getToken = function(){
+        return wp.t;
+    };
+
+    var getWpId = function(){
+        return wp.id;
+    }
+
     return {
-        k : auth.getKey()
+        k : getKey(),
+        getToken : getToken,
+        getWpId : getWpId
     }
 });
 
