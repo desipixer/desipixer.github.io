@@ -51,16 +51,21 @@ app.controller('postCtrl', [ '$scope','$http','$stateParams','dp.service.site', 
 	$scope.accessToken = postService.accessToken ;
 
 	
-		window.mySwipe = new Swipe(document.getElementById('slider'), {
-			startSlide: 0,
-			speed: 400,
-			auto: 3000,
-			draggable: true,
-			continuous: true,
-			disableScroll: false,
-			stopPropagation: false,
-			callback: function(index, elem, dir) {},
-			transitionEnd: function(index, elem) {}
-		  });
+		// window.mySwipe = new Swipe(document.getElementById('slider'), {
+		// 	startSlide: 0,
+		// 	speed: 400,
+		// 	auto: 3000,
+		// 	draggable: true,
+		// 	continuous: true,
+		// 	disableScroll: false,
+		// 	stopPropagation: false,
+		// 	callback: function(index, elem, dir) {},
+		// 	transitionEnd: function(index, elem) {}
+		//   });
+
+		var swiper = new Swiper('.swiper-container', {
+			pagination: '.swiper-pagination',
+			paginationClickable: true
+		});
 	
 }]);

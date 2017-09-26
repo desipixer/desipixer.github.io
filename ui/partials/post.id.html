@@ -15,11 +15,14 @@
 		<!-- <span ng-repeat="img in imgObj.imgArray">
 			<a ng-href="{{img}}" target="_blank"><img ng-src="{{img.replace('s1600','s640')}}" class="dpThumbPost" /></a>
 		</span> -->
-		<div id="slider" class="swipe" style="visibility: visible;">
-			<div class="swipe-wrap">
-			  <div ng-repeat="img in imgObj.imgArray"><img ng-src="{{img.replace('s1600','s640')}}" class="dpThumbPost" /></div>
+		<div id="slider" class="swiper-container">
+			<div class="swiper-wrapper">
+			  <div ng-repeat="img in imgObj.imgArray" class="swiper-slide"><img ng-src="{{img.replace('s1600','s640')}}" class="dpThumbPost" /></div>
 			</div>
 		  </div>
 		</div>
+		
+		
+	
 	</div>
 </div>
