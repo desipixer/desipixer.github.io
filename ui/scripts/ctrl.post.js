@@ -5,7 +5,7 @@ app.controller('postCtrl', [ '$scope','$http','$stateParams','dp.service.site', 
 		return (obj.id == $scope.id);
 	});
 
-	$scope.imgArray = _.uniq(filtered[0].imgArray) ;
+	//$scope.imgArray = _.uniq(filtered[0].imgArray) ;
 	$scope.imgObj = filtered.length > 0 ? filtered[0] : [];
 
 	$scope.publishPost = function(){
@@ -49,4 +49,18 @@ app.controller('postCtrl', [ '$scope','$http','$stateParams','dp.service.site', 
 	$scope.loggedIn = ($scope.accessToken != null);
 
 	$scope.accessToken = postService.accessToken ;
+
+	
+		window.mySwipe = new Swipe(document.getElementById('slider'), {
+			startSlide: 0,
+			speed: 400,
+			auto: 3000,
+			draggable: true,
+			continuous: true,
+			disableScroll: false,
+			stopPropagation: false,
+			callback: function(index, elem, dir) {},
+			transitionEnd: function(index, elem) {}
+		  });
+	
 }]);

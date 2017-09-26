@@ -7,6 +7,6 @@ app.config(function(){
 });
 
 
-requirejs.config({
-	baseUrl : 'api/wordpress'
-})
+// requirejs.config({
+// 	baseUrl : 'api/wordpress'
+// })

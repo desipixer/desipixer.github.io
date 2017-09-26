@@ -12,9 +12,14 @@
 			</div>
 		<div> <h2> {{imgObj.title.$t }} </h2> </div>
 		<div>
-		<span ng-repeat="img in imgObj.imgArray">
+		<!-- <span ng-repeat="img in imgObj.imgArray">
 			<a ng-href="{{img}}" target="_blank"><img ng-src="{{img.replace('s1600','s640')}}" class="dpThumbPost" /></a>
-		</span>
+		</span> -->
+		<div id="slider" class="swipe" style="visibility: visible;">
+			<div class="swipe-wrap">
+			  <div ng-repeat="img in imgObj.imgArray"><img ng-src="{{img.replace('s1600','s640')}}" class="dpThumbPost" /></div>
+			</div>
+		  </div>
 		</div>
 	</div>
 </div>
