@@ -76,6 +76,73 @@
 
     }
 
+    /**
+     * Get all posts from the blogger. 
+     * Implemented only for blogger feeds.
+     */
+    $scope.getBlogPostAll = function(){
+        var blogUrl = new URL($scope.txtBlogName);
+        if (blogUrl) {
+            console.log(blogUrl.origin);
+            postService.postWp($scope.txtBlogName, $scope.txtBlogName);
+        } else {
+            return;
+        }
+
+
+        imageService.getBlogId(blogUrl.origin).then(function (data) {
+            $scope.blog.id = data.id;
+            $scope.blog.url = data.url;
+            $scope.blog.totalItems = data.posts.totalItems;
+            $scope.blog.startIndex = 1;
+
+            $scope.blogId = data.id;
+            imageService.blogId = data.id;
+            imageService.startIndex = 1;
+            imageService.totalItems = data.posts.totalItems;
+            $scope.totalItems = data.posts.totalItems;
+            console.log({
+                blogId: data.id,
+                blogURL: $scope.txtBlogName,
+                category: 1
+            });
+            imageService.getPosts(data.id, imageService.startIndex).then(function (data) {
+                $scope.blogPosts = data;
+                blogutil.parseFeed(data);
+                $scope.feedObj = blogutil.getFeedObj(data);
+                $scope.startIndex = imageService.startIndex;
+            });
+        });
+
+    }
+
+    /**
+     * Get all posts using blog feeds API
+     */
+    $scope.getPostsAll = function(){
+        var blogName = $scope.txtBlogName || imageService.defaults.blogName;
+        if(blogName){
+            try {
+                blogName = new URL(blogName).origin;
+            } catch(ex){
+                console.log("URL in invalid format.");
+            }
+            imageService.getBlogId(blogName).then(function(data){
+                $scope.blogId = imageService.blogId = data.id;
+                $scope.totalItems = imageService.totalItems = data.posts.totalItems;
+
+                imageService.getAllPosts(imageService.blogId, imageService.startIndex, imageService.maxResults, []).then(function(data){
+                    $scope.blogPosts = data;
+                    blogutil.parseEntries(data);
+                    $scope.feedObj = blogutil.getFeedObj(data);
+                    //$scope.startIndex = imageService.startIndex;
+                })
+            })
+        } else {
+            console.log("Error : BLOG NAME INVALID");
+        }
+    }
+
     $scope.queryText = function () {
         console.log($scope.blog.id);
         imageService.getBlogId($scope.blog.url).then(function (data) {

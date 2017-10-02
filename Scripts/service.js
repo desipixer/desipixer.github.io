@@ -7,6 +7,10 @@ app.service('imageService', ['$http', '$q', "blogutil", function ($http, $q, blo
     var maxResults = 400;
     var bloggerKey = "AIzaSyCIEuVxD1SFWMNBTtc24gBtuVExstlSGEQ";
     var selPostBlog = "7833828309523986982";
+    var defaults = Object.freeze({
+        "blogId" : "7833828309523986982",
+        "blogName" : "http://desipixer.blogspot.com"
+    });
 
 
     this.getBlogId = function (blogName) {
@@ -27,6 +31,76 @@ app.service('imageService', ['$http', '$q', "blogutil", function ($http, $q, blo
         //console.log(deferred.promise);
         return deferred.promise;
     }
+
+    var deferredX = $q.defer();
+    function getAllPosts(blogId, startIndex, maxResults, arr){
+        
+        var startIndex = startIndex || 1;
+        var maxResults = maxResults || 500;
+        //entries = entries || [];
+        try {
+            var URL = "https://www.blogger.com/feeds/" + blogId + "/posts/default?start-index=" + startIndex + "&max-results=" + maxResults + "&alt=json&callback=JSON_CALLBACK";
+            $http.jsonp(URL).success(function (data) {
+                //deferred.resolve(data);
+                var arr1 = [];
+                angular.forEach(data.feed.entry, function (entryX) {
+                    arr1.push(entryX);
+                });
+                arr = arr.concat(arr1);
+                if(totalItems > startIndex) {
+                    getAllPosts(blogId, startIndex + 500, maxResults, arr);
+                } else {
+                    deferredX.resolve(arr);
+                    entries = arr;
+                    return deferredX.promise;
+                }
+            });
+        } catch(ex){
+            console.log("ERROR >>", ex);
+        }
+        
+        return deferredX.promise;
+    }
+
+    /**
+     * Get all posts using this method.
+     */
+    function getAllPosts2(blogId, startIndex, maxResults, entries){
+        blogId = blogId || defaults.blogId;
+        startIndex = startIndex || defaults.startIndex;
+        maxResults = maxResults || defaults.maxResults;
+        if(startIndex == 0){
+            entries = [];
+        }
+        var feedUrl = getBlogFeedUrl(blogId, startIndex, maxResults);
+        if(feedUrl){
+            try {
+                $http.get(feedUrl).success(function(data){
+                    var arr1 = [];
+                    angular.forEach(data.feed.entry, function (entryX) {
+                        arr1.push(entryX);
+                    });
+                    angular.copy(arr1, entries);
+                    if(startIndex < totalItems){
+                        getAllPosts(blogId, startIndex + 500, maxResults, entries);
+                    } else {
+                        deferred.resolve(entries);
+                    }
+                });
+            } catch(ex){
+                console.log("ERROR >> getAllPosts() ", ex);
+            }
+        } else {
+            console.log("ERROR ")
+        }
+        return deferred.promise;
+    }
+
+    function getBlogFeedUrl(blogId, startIndex, maxResults){
+        return "https://www.blogger.com/feeds/"+ blogId +"/posts/default?start-index="+ startIndex + "&max-results=" + maxResults + "&alt=json&callback=JSON_CALLBACK";
+    }
+
+
     this.getPosts = function (blogId, startIndex) {
 
         var deferred = $q.defer();
@@ -287,7 +361,9 @@ app.service('imageService', ['$http', '$q', "blogutil", function ($http, $q, blo
         getSearchPosts: this.getSearchPosts,
         postBlogs: this.postBlogs,
         selPostBlog: selPostBlog,
-        maxResults: maxResults
+        maxResults: maxResults,
+        defaults : defaults,
+        getAllPosts : getAllPosts
     }
 
 }]);
@@ -510,6 +586,16 @@ app.service('blogutil', function () {
 
     }
 
+    var parseEntries = function(obj){
+        feedObj = [];
+        obj.forEach(function (element, index) {
+            if (element.content.$t !== undefined) {
+                var htmlContent = element.content.$t;
+                feedObj.push(parseEntry(element));
+            }
+        });
+    }
+
     /* returns filtered result of an entry */
     var parseEntry = function (entry) {
         var obj = {};
@@ -641,6 +727,7 @@ app.service('blogutil', function () {
 
     return {
         parseFeed: parseFeed,
+        parseEntries : parseEntries,
         getThumbs: getThumbs,
         getImages: getImages,
         getFeedObj: getFeedObj,
