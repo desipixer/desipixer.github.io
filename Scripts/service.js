@@ -346,6 +346,11 @@ app.service('imageService', ['$http', '$q', "blogutil", function ($http, $q, blo
             blogId: "2727757258846553498",
             blogURL: 'https://pixer-master.blogspot.com/',
             category: 1
+        },
+        {
+            blogId: "260546303850303554",
+            blogURL: 'https://mehreen-pirzada.blogspot.com/',
+            category: 1
         }
     ];
 
