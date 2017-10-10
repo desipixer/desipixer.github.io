@@ -480,10 +480,22 @@ app.service('postService', ['$http', '$q', 'loginService','authUtil', function (
     }
 
 
+    var getPostHTML = function (obj) {
+        var imageArray = obj.images;
+        var imageSrc = "";
+
+        imageArray.forEach(function (element, index) {
+            imageSrc = imageSrc + "<a href='" + element + "'  target='_blank'><img src='" + element + "' class='desipixer' title='Desi Actress Pictures and Photos, Latest' alt='desipixer' /></a>";
+        });
+        return imageSrc;
+    }
+
+
 
     return {
         postFunction: this.postFunction,
-        postWp : this.postWp
+        postWp : this.postWp,
+        getPostHTML : getPostHTML
     }
 
 }]);

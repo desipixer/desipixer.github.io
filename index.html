@@ -97,6 +97,7 @@
       <span ng-repeat="entry in feedObj | filter : searchText" class="imageContainer" ng-hide="entry.thumbs.length < 2">
     <a ng-href="#content/{{entry.id}}">    <img ng-src="{{entry.thumbs[0]}}" title="{{entry.title}}" /></a>
     <span class="imgCount" > {{ entry.thumbs.length }} </span>
+    <span class="postContentButton"> <button class="btn btn-success" ng-click="postContent(this)"> POST </button> </span>
       </span>
     </div>
     <div ng-view>

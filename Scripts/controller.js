@@ -257,6 +257,17 @@
         gapi.client.setApiKey('AIzaSyCIEuVxD1SFWMNBTtc24gBtuVExstlSGEQ');
     }
 
+    /**
+     * Post content from Index
+     */
+    $scope.postContent = function(obj){
+        var postObject = {};
+        postObject.blogId = imageService.selPostBlog;
+        postObject.postTitle = obj.entry.title;
+        postObject.postContent = '<div>'+ postService.getPostHTML(obj.entry) +'</div>';
+        console.log(postObject);
+        postService.postFunction(postObject);
+    }
 
     /***** default site loaded *******/
     $scope.getSite("http://www.desipixer.blogspot.com", 1);
