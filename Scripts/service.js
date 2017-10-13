@@ -351,7 +351,12 @@ app.service('imageService', ['$http', '$q', "blogutil", function ($http, $q, blo
             blogId: "260546303850303554",
             blogURL: 'https://mehreen-pirzada.blogspot.com/',
             category: 1
-        }
+        },
+        {blogId: "8286550106938870562", blogURL: "https://trisha-pix.blogspot.com", category: 1},
+        {blogId: "8014469095416202791", blogURL: "https://anu-emmanuel.blogspot.com", category: 1},
+        {blogId: "175938421274342604", blogURL: "https://shraddha-kapoor-photos.blogspot.com/", category: 1},
+        {blogId: "8415970476188871245", blogURL: "https://bikini-bolly.blogspot.com/", category: 1}
+        
     ];
 
     return {
