@@ -282,7 +282,10 @@ app.service('imageService', ['$http', '$q', "blogutil", function ($http, $q, blo
             { blogId: "5945193835116701787", blogURL: "https://aardemasti.blogspot.com", category: 2 },
             { blogId: "5186853171678363994", blogURL: "https://latestmovieimagess.blogspot.com", category: 1 },
             { blogId: "3835582922244616101", blogURL: "http://filmeeclub.blogspot.in/", category: 1 },
-            {blogId: "3512841850294928870", blogURL: "http://bollywoodtadkamasala.blogspot.com", category: 2}
+            {blogId: "3512841850294928870", blogURL: "http://bollywoodtadkamasala.blogspot.com", category: 2},
+            {blogId: "8136369645221096595", blogURL: "http://bollywoodmirchitadka.blogspot.com", category: 1},
+            {blogId: "5023340210550464138", blogURL: "http://www.manahungama.com/", category: 1}
+            
         ];
         return siteList;
     }
@@ -355,7 +358,9 @@ app.service('imageService', ['$http', '$q', "blogutil", function ($http, $q, blo
         {blogId: "8286550106938870562", blogURL: "https://trisha-pix.blogspot.com", category: 1},
         {blogId: "8014469095416202791", blogURL: "https://anu-emmanuel.blogspot.com", category: 1},
         {blogId: "175938421274342604", blogURL: "https://shraddha-kapoor-photos.blogspot.com/", category: 1},
-        {blogId: "8415970476188871245", blogURL: "https://bikini-bolly.blogspot.com/", category: 1}
+        {blogId: "8415970476188871245", blogURL: "https://bikini-bolly.blogspot.com/", category: 1},
+        {blogId: "148589868162243740", blogURL: "https://dishapatani-pix.blogspot.com/", category: 1},
+        {blogId: "7345164977335901912", blogURL: "https://bolly-glam.blogspot.com/", category: 1}        
         
     ];
 
