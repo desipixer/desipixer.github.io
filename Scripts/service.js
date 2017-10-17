@@ -362,7 +362,8 @@ app.service('imageService', ['$http', '$q', "blogutil", function ($http, $q, blo
         {blogId: "148589868162243740", blogURL: "https://dishapatani-pix.blogspot.com/", category: 1},
         {blogId: "7345164977335901912", blogURL: "https://bolly-glam.blogspot.com/", category: 1},       
         {blogId: "7768880182878796665", blogURL: "https://cute-goddess.blogspot.com/", category: 1},
-        {blogId: "2579625611323391584", blogURL: "https://cute-desi.blogspot.com/", category: 1}
+        {blogId: "2579625611323391584", blogURL: "https://cute-desi.blogspot.com/", category: 1},
+        {blogId: "6853274516672689018", blogURL: "https://glam-desi.blogspot.com/", category: 1}
     ];
 
     return {
