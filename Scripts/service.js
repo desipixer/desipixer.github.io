@@ -360,8 +360,9 @@ app.service('imageService', ['$http', '$q', "blogutil", function ($http, $q, blo
         {blogId: "175938421274342604", blogURL: "https://shraddha-kapoor-photos.blogspot.com/", category: 1},
         {blogId: "8415970476188871245", blogURL: "https://bikini-bolly.blogspot.com/", category: 1},
         {blogId: "148589868162243740", blogURL: "https://dishapatani-pix.blogspot.com/", category: 1},
-        {blogId: "7345164977335901912", blogURL: "https://bolly-glam.blogspot.com/", category: 1}        
-        
+        {blogId: "7345164977335901912", blogURL: "https://bolly-glam.blogspot.com/", category: 1},       
+        {blogId: "7768880182878796665", blogURL: "https://cute-goddess.blogspot.com/", category: 1},
+        {blogId: "2579625611323391584", blogURL: "https://cute-desi.blogspot.com/", category: 1}
     ];
 
     return {
