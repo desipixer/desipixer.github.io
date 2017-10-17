@@ -8,8 +8,8 @@ app.service('imageService', ['$http', '$q', "blogutil", function ($http, $q, blo
     var bloggerKey = "AIzaSyCIEuVxD1SFWMNBTtc24gBtuVExstlSGEQ";
     var selPostBlog = "7833828309523986982";
     var defaults = Object.freeze({
-        "blogId" : "7833828309523986982",
-        "blogName" : "http://desipixer.blogspot.com"
+        "blogId": "7833828309523986982",
+        "blogName": "http://desipixer.blogspot.com"
     });
 
 
@@ -33,8 +33,9 @@ app.service('imageService', ['$http', '$q', "blogutil", function ($http, $q, blo
     }
 
     var deferredX = $q.defer();
-    function getAllPosts(blogId, startIndex, maxResults, arr){
-        
+
+    function getAllPosts(blogId, startIndex, maxResults, arr) {
+
         var startIndex = startIndex || 1;
         var maxResults = maxResults || 500;
         //entries = entries || [];
@@ -47,7 +48,7 @@ app.service('imageService', ['$http', '$q', "blogutil", function ($http, $q, blo
                     arr1.push(entryX);
                 });
                 arr = arr.concat(arr1);
-                if(totalItems > startIndex) {
+                if (totalItems > startIndex) {
                     getAllPosts(blogId, startIndex + 500, maxResults, arr);
                 } else {
                     deferredX.resolve(arr);
@@ -55,39 +56,39 @@ app.service('imageService', ['$http', '$q', "blogutil", function ($http, $q, blo
                     return deferredX.promise;
                 }
             });
-        } catch(ex){
+        } catch (ex) {
             console.log("ERROR >>", ex);
         }
-        
+
         return deferredX.promise;
     }
 
     /**
      * Get all posts using this method.
      */
-    function getAllPosts2(blogId, startIndex, maxResults, entries){
+    function getAllPosts2(blogId, startIndex, maxResults, entries) {
         blogId = blogId || defaults.blogId;
         startIndex = startIndex || defaults.startIndex;
         maxResults = maxResults || defaults.maxResults;
-        if(startIndex == 0){
+        if (startIndex == 0) {
             entries = [];
         }
         var feedUrl = getBlogFeedUrl(blogId, startIndex, maxResults);
-        if(feedUrl){
+        if (feedUrl) {
             try {
-                $http.get(feedUrl).success(function(data){
+                $http.get(feedUrl).success(function (data) {
                     var arr1 = [];
                     angular.forEach(data.feed.entry, function (entryX) {
                         arr1.push(entryX);
                     });
                     angular.copy(arr1, entries);
-                    if(startIndex < totalItems){
+                    if (startIndex < totalItems) {
                         getAllPosts(blogId, startIndex + 500, maxResults, entries);
                     } else {
                         deferred.resolve(entries);
                     }
                 });
-            } catch(ex){
+            } catch (ex) {
                 console.log("ERROR >> getAllPosts() ", ex);
             }
         } else {
@@ -96,8 +97,8 @@ app.service('imageService', ['$http', '$q', "blogutil", function ($http, $q, blo
         return deferred.promise;
     }
 
-    function getBlogFeedUrl(blogId, startIndex, maxResults){
-        return "https://www.blogger.com/feeds/"+ blogId +"/posts/default?start-index="+ startIndex + "&max-results=" + maxResults + "&alt=json&callback=JSON_CALLBACK";
+    function getBlogFeedUrl(blogId, startIndex, maxResults) {
+        return "https://www.blogger.com/feeds/" + blogId + "/posts/default?start-index=" + startIndex + "&max-results=" + maxResults + "&alt=json&callback=JSON_CALLBACK";
     }
 
 
@@ -113,12 +114,10 @@ app.service('imageService', ['$http', '$q', "blogutil", function ($http, $q, blo
                 $http.get(URL).success(function (data) {
                     deferred.resolve(data);
                 });
-            }
-            catch (ex) {
+            } catch (ex) {
                 console.log("ERROR >> " + ex);
             }
-        }
-        else {
+        } else {
             var URL = "https://www.blogger.com/feeds/" + blogId + "/posts/default?start-index=" + startIndex + "&max-results=" + maxResults + "&alt=json&callback=JSON_CALLBACK";
             $http.jsonp(URL).success(function (data) {
                 deferred.resolve(data);
@@ -184,8 +183,7 @@ app.service('imageService', ['$http', '$q', "blogutil", function ($http, $q, blo
 
 
     this.getBlogList = function () {
-        var siteList = [
-            {
+        var siteList = [{
                 "blogId": "7833828309523986982",
                 "blogURL": "http://www.desipixer.blogspot.com/",
                 "category": 1
@@ -275,23 +273,121 @@ app.service('imageService', ['$http', '$q', "blogutil", function ($http, $q, blo
                 "blogURL": "http://filmgain.blogspot.com/",
                 "category": 1
             },
-            { blogId: "7874248432678435813", blogURL: "http://www.c65.in/", category: 2 },
-            { blogId: "5338625676592862668", blogURL: "http://cinytown.blogspot.com/", category: 1 },
-            { blogId: "3430584311590741572", blogURL: "http://tollywoodboost.blogspot.com/", category: 1 },
-            { blogId: "2222622162581355396", blogURL: "http://www.tufan9.com/", category: 1 },
-            { blogId: "5945193835116701787", blogURL: "https://aardemasti.blogspot.com", category: 2 },
-            { blogId: "5186853171678363994", blogURL: "https://latestmovieimagess.blogspot.com", category: 1 },
-            { blogId: "3835582922244616101", blogURL: "http://filmeeclub.blogspot.in/", category: 1 },
-            {blogId: "3512841850294928870", blogURL: "http://bollywoodtadkamasala.blogspot.com", category: 2},
-            {blogId: "8136369645221096595", blogURL: "http://bollywoodmirchitadka.blogspot.com", category: 1},
-            {blogId: "5023340210550464138", blogURL: "http://www.manahungama.com/", category: 1}
-            
+            {
+                blogId: "7874248432678435813",
+                blogURL: "http://www.c65.in/",
+                category: 2
+            },
+            {
+                blogId: "5338625676592862668",
+                blogURL: "http://cinytown.blogspot.com/",
+                category: 1
+            },
+            {
+                blogId: "3430584311590741572",
+                blogURL: "http://tollywoodboost.blogspot.com/",
+                category: 1
+            },
+            {
+                blogId: "2222622162581355396",
+                blogURL: "http://www.tufan9.com/",
+                category: 1
+            },
+            {
+                blogId: "5945193835116701787",
+                blogURL: "https://aardemasti.blogspot.com",
+                category: 2
+            },
+            {
+                blogId: "5186853171678363994",
+                blogURL: "https://latestmovieimagess.blogspot.com",
+                category: 1
+            },
+            {
+                blogId: "3835582922244616101",
+                blogURL: "http://filmeeclub.blogspot.in/",
+                category: 1
+            },
+            {
+                blogId: "3512841850294928870",
+                blogURL: "http://bollywoodtadkamasala.blogspot.com",
+                category: 2
+            },
+            {
+                blogId: "8136369645221096595",
+                blogURL: "http://bollywoodmirchitadka.blogspot.com",
+                category: 1
+            },
+            {
+                blogId: "5023340210550464138",
+                blogURL: "http://www.manahungama.com/",
+                category: 1
+            },
+            {
+                blogId: "8286550106938870562",
+                blogURL: "https://trisha-pix.blogspot.com",
+                category: 1
+            },
+            {
+                blogId: "8014469095416202791",
+                blogURL: "https://anu-emmanuel.blogspot.com",
+                category: 1
+            },
+            {
+                blogId: "175938421274342604",
+                blogURL: "https://shraddha-kapoor-photos.blogspot.com/",
+                category: 1
+            },
+            {
+                blogId: "8415970476188871245",
+                blogURL: "https://bikini-bolly.blogspot.com/",
+                category: 1
+            },
+            {
+                blogId: "148589868162243740",
+                blogURL: "https://dishapatani-pix.blogspot.com/",
+                category: 1
+            },
+            {
+                blogId: "7345164977335901912",
+                blogURL: "https://bolly-glam.blogspot.com/",
+                category: 1
+            },
+            {
+                blogId: "7768880182878796665",
+                blogURL: "https://cute-goddess.blogspot.com/",
+                category: 1
+            },
+            {
+                blogId: "2579625611323391584",
+                blogURL: "https://cute-desi.blogspot.com/",
+                category: 1
+            },
+            {
+                blogId: "6853274516672689018",
+                blogURL: "https://glam-desi.blogspot.com/",
+                category: 1
+            },
+            {
+                blogId: "7420263674707529141",
+                blogURL: "https://hq-tollywood.blogspot.com/",
+                category: 1
+            },
+            {
+                blogId: "7646450543978764525",
+                blogURL: "https://desipixer-all.blogspot.com/",
+                category: 1
+            },
+            {
+                blogId: "873009466583458846",
+                blogURL: "https://idlepix.blogspot.com/",
+                category: 1
+            }
         ];
         return siteList;
     }
 
-    this.postBlogs = [
-        {
+    this.postBlogs = [{
             blogId: "7833828309523986982",
             blogURL: 'http://www.desipixer.blogspot.com/',
             category: 1
@@ -306,10 +402,26 @@ app.service('imageService', ['$http', '$q', "blogutil", function ($http, $q, blo
             blogURL: 'http://tamilpicz.blogspot.com/',
             category: 1
         },
-        { blogId: "2313063316259818401", blogURL: "http://cinestillz.blogspot.com/", category: 1 },
-        { blogId: "1689491623003449378", blogURL: "http://pixerhub.blogspot.com/", category: 1 },
-        { blogId: "2360413207505978741", blogURL: "http://pixerblog.blogspot.com/", category: 1 },
-        { blogId: "7527460989335381985", blogURL: "http://pixerone.blogspot.com/", category: 1 },
+        {
+            blogId: "2313063316259818401",
+            blogURL: "http://cinestillz.blogspot.com/",
+            category: 1
+        },
+        {
+            blogId: "1689491623003449378",
+            blogURL: "http://pixerhub.blogspot.com/",
+            category: 1
+        },
+        {
+            blogId: "2360413207505978741",
+            blogURL: "http://pixerblog.blogspot.com/",
+            category: 1
+        },
+        {
+            blogId: "7527460989335381985",
+            blogURL: "http://pixerone.blogspot.com/",
+            category: 1
+        },
         {
             blogId: "8288428012409826912",
             blogURL: 'http://samanthapix.blogspot.com/',
@@ -355,15 +467,66 @@ app.service('imageService', ['$http', '$q', "blogutil", function ($http, $q, blo
             blogURL: 'https://mehreen-pirzada.blogspot.com/',
             category: 1
         },
-        {blogId: "8286550106938870562", blogURL: "https://trisha-pix.blogspot.com", category: 1},
-        {blogId: "8014469095416202791", blogURL: "https://anu-emmanuel.blogspot.com", category: 1},
-        {blogId: "175938421274342604", blogURL: "https://shraddha-kapoor-photos.blogspot.com/", category: 1},
-        {blogId: "8415970476188871245", blogURL: "https://bikini-bolly.blogspot.com/", category: 1},
-        {blogId: "148589868162243740", blogURL: "https://dishapatani-pix.blogspot.com/", category: 1},
-        {blogId: "7345164977335901912", blogURL: "https://bolly-glam.blogspot.com/", category: 1},       
-        {blogId: "7768880182878796665", blogURL: "https://cute-goddess.blogspot.com/", category: 1},
-        {blogId: "2579625611323391584", blogURL: "https://cute-desi.blogspot.com/", category: 1},
-        {blogId: "6853274516672689018", blogURL: "https://glam-desi.blogspot.com/", category: 1}
+        {
+            blogId: "8286550106938870562",
+            blogURL: "https://trisha-pix.blogspot.com",
+            category: 1
+        },
+        {
+            blogId: "8014469095416202791",
+            blogURL: "https://anu-emmanuel.blogspot.com",
+            category: 1
+        },
+        {
+            blogId: "175938421274342604",
+            blogURL: "https://shraddha-kapoor-photos.blogspot.com/",
+            category: 1
+        },
+        {
+            blogId: "8415970476188871245",
+            blogURL: "https://bikini-bolly.blogspot.com/",
+            category: 1
+        },
+        {
+            blogId: "148589868162243740",
+            blogURL: "https://dishapatani-pix.blogspot.com/",
+            category: 1
+        },
+        {
+            blogId: "7345164977335901912",
+            blogURL: "https://bolly-glam.blogspot.com/",
+            category: 1
+        },
+        {
+            blogId: "7768880182878796665",
+            blogURL: "https://cute-goddess.blogspot.com/",
+            category: 1
+        },
+        {
+            blogId: "2579625611323391584",
+            blogURL: "https://cute-desi.blogspot.com/",
+            category: 1
+        },
+        {
+            blogId: "6853274516672689018",
+            blogURL: "https://glam-desi.blogspot.com/",
+            category: 1
+        },
+        {
+            blogId: "7420263674707529141",
+            blogURL: "https://hq-tollywood.blogspot.com/",
+            category: 1
+        },
+        {
+            blogId: "7646450543978764525",
+            blogURL: "https://desipixer-all.blogspot.com/",
+            category: 1
+        },
+        {
+            blogId: "873009466583458846",
+            blogURL: "https://idlepix.blogspot.com/",
+            category: 1
+        }
     ];
 
     return {
@@ -379,8 +542,8 @@ app.service('imageService', ['$http', '$q', "blogutil", function ($http, $q, blo
         postBlogs: this.postBlogs,
         selPostBlog: selPostBlog,
         maxResults: maxResults,
-        defaults : defaults,
-        getAllPosts : getAllPosts
+        defaults: defaults,
+        getAllPosts: getAllPosts
     }
 
 }]);
@@ -430,7 +593,7 @@ app.service('loginService', ['$http', '$q', function ($http, $q) {
 
 }]);
 
-app.service('postService', ['$http', '$q', 'loginService','authUtil', function ($http, $q, loginService, authUtil) {
+app.service('postService', ['$http', '$q', 'loginService', 'authUtil', function ($http, $q, loginService, authUtil) {
 
     this.postFunction = function (postObject) {
         var title = postObject.postTitle + " ★ Desipixer  ★";
@@ -438,7 +601,10 @@ app.service('postService', ['$http', '$q', 'loginService','authUtil', function (
         var blogId = postObject.blogId;
         loginService.getToken().then(function (data) {
             var accessToken = data.access_token;
-            var myJSObject = { "content": content, "title": title };
+            var myJSObject = {
+                "content": content,
+                "title": title
+            };
             var POSTURL = "https://www.googleapis.com/blogger/v3/blogs/" + blogId + "/posts";
             var ajaxObj = {
                 beforeSend: function (xhr) {
@@ -451,8 +617,7 @@ app.service('postService', ['$http', '$q', 'loginService','authUtil', function (
                 dataType: "json",
                 success: function (successcode) {
                     console.log("Posted Successfully");
-                    $('#responseCode').show().css('color', 'green').text('POSTED').fadeOut(4000);
-                    ;
+                    $('#responseCode').show().css('color', 'green').text('POSTED').fadeOut(4000);;
                 },
                 error: function (errcode) {
                     console.log(errcode);
@@ -466,24 +631,24 @@ app.service('postService', ['$http', '$q', 'loginService','authUtil', function (
 
     }
 
-    this.postWp = function(title,content){
+    this.postWp = function (title, content) {
         var t = authUtil.getToken();
         var wpId = authUtil.getWpId();
         var postUrl = "https://public-api.wordpress.com/rest/v1/sites/" + wpId + "/posts/new";
         var ajaxObj = {
-            url : postUrl,
-            method : "POST",
-            beforeSend : function(xhr){
-                xhr.setRequestHeader("Authorization", "Bearer "+ t)
+            url: postUrl,
+            method: "POST",
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader("Authorization", "Bearer " + t)
             },
-            data : {
-                title : title,
-                content : content
+            data: {
+                title: title,
+                content: content
             },
-            success : function(data){
+            success: function (data) {
                 console.log("POSTED TO Wordpress ", data);
             },
-            error : function(err){
+            error: function (err) {
                 console.log("ERROR >> Error posting to wordpress");
             }
         }
@@ -506,39 +671,39 @@ app.service('postService', ['$http', '$q', 'loginService','authUtil', function (
 
     return {
         postFunction: this.postFunction,
-        postWp : this.postWp,
-        getPostHTML : getPostHTML
+        postWp: this.postWp,
+        getPostHTML: getPostHTML
     }
 
 }]);
 
 
-app.service('authUtil', function(){
+app.service('authUtil', function () {
     var k = Object.freeze({
-        k : "AIzaSyAb3tFTPvsduIR2xopIVpYhwKMQ5ac_5Po"
+        k: "AIzaSyAb3tFTPvsduIR2xopIVpYhwKMQ5ac_5Po"
     });
-    var getKey = function(){
+    var getKey = function () {
         return k.k;
     }
 
     var wp = Object.freeze({
-        t : ")gwKcj295LmQGMLpKK34uP$o5p%M7T2g(7wm7l3OxQI6KAW8LSY5D3k2@DpwBRQ)",
-        id : "135975188",
-        u : "http://pixermaster.wordpress.com"
+        t: ")gwKcj295LmQGMLpKK34uP$o5p%M7T2g(7wm7l3OxQI6KAW8LSY5D3k2@DpwBRQ)",
+        id: "135975188",
+        u: "http://pixermaster.wordpress.com"
     });
 
-    var getToken = function(){
+    var getToken = function () {
         return wp.t;
     };
 
-    var getWpId = function(){
+    var getWpId = function () {
         return wp.id;
     }
 
     return {
-        k : getKey(),
-        getToken : getToken,
-        getWpId : getWpId
+        k: getKey(),
+        getToken: getToken,
+        getWpId: getWpId
     }
 });
 
@@ -615,7 +780,7 @@ app.service('blogutil', function () {
 
     }
 
-    var parseEntries = function(obj){
+    var parseEntries = function (obj) {
         feedObj = [];
         obj.forEach(function (element, index) {
             if (element.content.$t !== undefined) {
@@ -717,8 +882,7 @@ app.service('blogutil', function () {
         }
         if (length > imgContainer.length || length < 0) {
             return imgContainer;
-        }
-        else {
+        } else {
             return imgContainer.slice(length, length + num);
         }
     }
@@ -739,8 +903,7 @@ app.service('blogutil', function () {
         }
         if (obj.length == 0) {
             return null;
-        }
-        else {
+        } else {
             return obj;
         }
     }
@@ -756,7 +919,7 @@ app.service('blogutil', function () {
 
     return {
         parseFeed: parseFeed,
-        parseEntries : parseEntries,
+        parseEntries: parseEntries,
         getThumbs: getThumbs,
         getImages: getImages,
         getFeedObj: getFeedObj,
