@@ -20,3 +20,14 @@
 .imageContainer {
    position : relative;
 }
+
+
+.wpPost {
+      position: absolute; 
+      width: 26px; 
+      height : 26px;
+      /*top: 0; */
+      /*bottom: 0;*/ 
+      right:0px;
+      background: white; 
+}

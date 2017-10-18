@@ -13,6 +13,7 @@
 		<span ng-repeat="imgEntry in blog.imgArray" class="imageContainer">
 			<img ng-src="{{imgEntry.getThumb()}}" class="thumbImg" title ="{{imgEntry.title}}" />
 			<span class="imgCount" ><img src="Images/Pinterest.png" ng-click="pinImage(imgEntry)" style="cursor:pointer"/></span>
+			<span class="wpPost" ><img src="Images/wp.png" ng-click="wpPostImage(imgEntry)" style="cursor:pointer"/></span>
 		</span>
 		</div>
 	</div>

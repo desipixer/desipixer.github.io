@@ -1,6 +1,6 @@
 /* controller.js */
 
-app.controller('postCtrl', function($scope,$http,PostService,URLService,UtilManager,SessionService,pinService){
+app.controller('postCtrl', function($scope,$http,PostService,URLService,UtilManager,SessionService,pinService,wpService){
 	$scope.blog = {
 		entry : [],
 		default : {
@@ -83,7 +83,7 @@ app.controller('postCtrl', function($scope,$http,PostService,URLService,UtilMana
 
 
 
-app.controller('imgController', function($scope,$http,imageService,URLService, UtilManager, pinService){
+app.controller('imgController', function($scope,$http,imageService,URLService, UtilManager, pinService, wpService){
 
 	$scope.blog = {
 		default : {
@@ -128,7 +128,12 @@ app.controller('imgController', function($scope,$http,imageService,URLService, U
     	pinService.Pinterest.createPin(data,function(){
     		console.log("Successfully posted : "+ entry.url.split('/').pop());
     	});
-    }
+	}
+	
+	$scope.wpPostImage = function(entry){
+		console.log(entry);
+		wpService.postEntry(entry);
+	}
 
     /* Search blog using SearchText */
 	$scope.searchText = function(){
