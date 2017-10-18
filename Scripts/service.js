@@ -205,6 +205,13 @@ app.service('imageService', ['$http', '$q', "blogutil", function ($http, $q, blo
         {blogId: "4759663320355493354", blogURL: "http://www.ciniwood.com/", category: 1},
         {blogId: "1973587200631535140", blogURL: "https://www.allcinemanews.com", category: 1},
         {blogId: "577611548061517157", blogURL: "http://actresscelebrities.blogspot.com/", category: 1},
+        {blogId: "6693996329548407390", blogURL: "http://www.marathifilmnagar.com", category: 1},
+        {blogId: "7259490184027416168", blogURL: "http://www.bullet9.in/", category: 1},
+        {blogId: "6405066402994653241", blogURL: "https://expensivestars.blogspot.com/", category: 1},
+        {blogId: "3190717212472334030", blogURL: "http://www.stunningactress.com", category: 1},
+        {blogId: "8176786623048835025", blogURL: "http://bollywood-replica-saree.blogspot.com/", category: 1},
+        
+
         {
             "blogId": "719302156971941098",
             "blogURL": "http://hq-bollywood.blogspot.com/",
