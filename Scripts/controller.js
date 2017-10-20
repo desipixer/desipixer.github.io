@@ -120,7 +120,8 @@
      * Get all posts using blog feeds API
      */
     $scope.getPostsAll = function(){
-        var blogName = $scope.txtBlogName || imageService.defaults.blogName;
+        var blogName = $scope.txtBlogName || $scope.siteList;
+        console.log("Selected blog ", blogName);
         if(blogName){
             try {
                 blogName = new URL(blogName).origin;
