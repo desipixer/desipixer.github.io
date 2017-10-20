@@ -198,19 +198,26 @@ app.service('imageService', ['$http', '$q', "blogutil", function ($http, $q, blo
             "blogURL": "http://rockingfunimages.blogspot.com/",
             "category": 1
         },
+        {
+            blogId: "3430584311590741572",
+            blogURL: "http://tollywoodboost.blogspot.com/",
+            category: 1
+        },
+        { blogId: "4759663320355493354", blogURL: "http://www.ciniwood.com/", category: 1 },
+        { blogId: "7259490184027416168", blogURL: "http://www.bullet9.in/", category: 1 },
         { blogId: "5961536704372440322", blogURL: "http://actressphotoshootworld.blogspot.com/", category: 1 },
         { blogId: "1722427737859638493", blogURL: "https://mastimoviesz.blogspot.com", category: 1 },
         { blogId: "7295395999065760083", blogURL: "http://www.mirchitoday.com/", category: 1 },
         { blogId: "4952007432472224346", blogURL: "http://gkphotoes.blogspot.com/", category: 1 },
-        {blogId: "4759663320355493354", blogURL: "http://www.ciniwood.com/", category: 1},
-        {blogId: "1973587200631535140", blogURL: "https://www.allcinemanews.com", category: 1},
-        {blogId: "577611548061517157", blogURL: "http://actresscelebrities.blogspot.com/", category: 1},
-        {blogId: "6693996329548407390", blogURL: "http://www.marathifilmnagar.com", category: 1},
-        {blogId: "7259490184027416168", blogURL: "http://www.bullet9.in/", category: 1},
-        {blogId: "6405066402994653241", blogURL: "https://expensivestars.blogspot.com/", category: 1},
-        {blogId: "3190717212472334030", blogURL: "http://www.stunningactress.com", category: 1},
-        {blogId: "8176786623048835025", blogURL: "http://bollywood-replica-saree.blogspot.com/", category: 1},
-        
+
+        { blogId: "1973587200631535140", blogURL: "https://www.allcinemanews.com", category: 1 },
+        { blogId: "577611548061517157", blogURL: "http://actresscelebrities.blogspot.com/", category: 1 },
+        { blogId: "6693996329548407390", blogURL: "http://www.marathifilmnagar.com", category: 1 },
+
+        { blogId: "6405066402994653241", blogURL: "https://expensivestars.blogspot.com/", category: 1 },
+        { blogId: "3190717212472334030", blogURL: "http://www.stunningactress.com", category: 1 },
+        { blogId: "8176786623048835025", blogURL: "http://bollywood-replica-saree.blogspot.com/", category: 1 },
+
 
         {
             "blogId": "719302156971941098",
@@ -297,11 +304,7 @@ app.service('imageService', ['$http', '$q', "blogutil", function ($http, $q, blo
             blogURL: "http://cinytown.blogspot.com/",
             category: 1
         },
-        {
-            blogId: "3430584311590741572",
-            blogURL: "http://tollywoodboost.blogspot.com/",
-            category: 1
-        },
+
         {
             blogId: "2222622162581355396",
             blogURL: "http://www.tufan9.com/",
@@ -536,6 +539,7 @@ app.service('imageService', ['$http', '$q', "blogutil", function ($http, $q, blo
         blogURL: "https://desipixer-all.blogspot.com/",
         category: 1
     },
+    { blogId: "3119958128609957983", blogURL: "https://desi-saree.blogspot.com/", category: 1 },
     {
         blogId: "873009466583458846",
         blogURL: "https://idlepix.blogspot.com/",
