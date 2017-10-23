@@ -544,7 +544,10 @@ app.service('imageService', ['$http', '$q', "blogutil", function ($http, $q, blo
         blogId: "873009466583458846",
         blogURL: "https://idlepix.blogspot.com/",
         category: 1
-    }
+    },
+    {blogId: "2578217001206641559", blogURL: "https://desipixer02.blogspot.com/", category: 1},
+    {blogId: "1585528825343121306", blogURL: "https://desipixer03.blogspot.com/", category: 1},
+    {blogId: "8460581893105899988", blogURL: "https://desipixer04.blogspot.com/", category: 1}
     ];
 
     return {
