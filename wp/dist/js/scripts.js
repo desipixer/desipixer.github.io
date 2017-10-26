@@ -260,8 +260,8 @@ app.service('service.util', ['$http', 'service.auth', '$q', function ($http, aut
  * Parse all the contents and build the JSON
  */
 app.controller('myCtrl', ['$scope', '$http', 'service.util', '$q', 'service.auth', function ($scope, $http, serviceUtil, $q, authService) {
-    $scope.siteId = "719302156971941098";
-    $scope.siteName = "https://desipixer.blogspot.com";
+    $scope.siteId = "873009466583458846";
+    $scope.siteName = "https://idlepix.blogspot.com";
     $scope.getSite = function () {
         if ($scope.siteId) {
             var siteId = $scope.siteId;
@@ -296,8 +296,8 @@ app.controller('myCtrl', ['$scope', '$http', 'service.util', '$q', 'service.auth
 
     }
 
-    var wpBlogId = authService.getWpAuth().id;
-    var bearerToken = authService.getWpAuth().k;
+    var wpBlogId = authService.getWpAuth.id;
+    var bearerToken = authService.getWpAuth.k;
     /**
 		 * Iterates through the array and post it
 		 * @param {*} arr 
