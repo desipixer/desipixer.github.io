@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> DL JSON </title>
+    <meta name=viewport content="width=device-width, initial-scale=1">
+</head>
+
+<body ng-app="myApp">
+    <div ng-controller="myCtrl" style="padding:40px">
+        <div class="container" style="padding-bottom : 50px">
+            <span> Enter Site Name : </span>
+            <input type="text" ng-model="siteName" class="" style="width: 400px" placeholder="Enter blog name" />
+            <button class="btn btn-info" ng-click="getSiteName()"> GET BLOG ID </button>
+        </div>
+        <div class="container">
+            <span> Enter Site ID : </span>
+            <input type="text" ng-model="siteId" class="" style="width: 200px" placeholder="Enter blogId" />
+            <button class="btn btn-primary" ng-click="getSite()"> GET </button>
+            <span style="padding-left:20px; color:{{statusColor}}"> {{status}} </span>
+        </div>
+        <div>
+
+            {{responseObj}}
+        </div>
+
+    </div>
+    <script src="scripts/vendor.js"></script>
+    <script src="js/scripts.js"></script>
+    <!-- Global style definitions -->
+    <link rel="stylesheet" href="lib/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="lib/css/font-awesome.min.css" />
+</body>
+
+</html>
