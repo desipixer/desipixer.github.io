@@ -187,7 +187,7 @@ app.service('service.util', ['$http', 'service.auth', '$q', function ($http, aut
 		}
 
 		function cleanFileName(str) {
-			str = decodeURIComponent(str);
+			//str = decodeURIComponent(str);
 			var suffix = "";
 			var suffixMatch = str.match(/(\.jpg)|(\.png)/g);
 			if (suffixMatch !== undefined && suffixMatch !== null) {
