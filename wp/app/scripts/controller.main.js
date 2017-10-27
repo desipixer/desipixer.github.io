@@ -24,6 +24,8 @@ app.controller('myCtrl', ['$scope', '$http', 'service.util', '$q', 'service.auth
         }
     };
 
+    
+
     $scope.postToWp = function (data) {
         if (data) {
             var startIndex = 0;
@@ -62,6 +64,7 @@ app.controller('myCtrl', ['$scope', '$http', 'service.util', '$q', 'service.auth
             var title = arr[start].title + " - desipixer";
             var content = arr[start].getImagesHtml();
             var categories = serviceUtil.getMatchingCategories(title);
+            
             /** POST FUNCTION EXECUTES HERE */
             $http({
                 method: 'POST',
@@ -78,7 +81,7 @@ app.controller('myCtrl', ['$scope', '$http', 'service.util', '$q', 'service.auth
             }).success(function (data) {
                 console.log("COUNT : " + ++count);
                 $scope.responseUrl = data.URL || "";
-
+                $scope.postContent = vkbeautify.json(JSON.stringify(data), 4 ); 
                 //Post next from the array
                 postImages(arr, ++start, end, count, errCount);
 

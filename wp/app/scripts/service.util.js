@@ -2,8 +2,10 @@ app.service('service.util', ['$http', 'service.auth', '$q', function ($http, aut
 
     var actressList = [];
     var isDescriptionEnabled = true;
-    var postDescription = 'Desipixer is a Tamil, Telugu, Hindi film website givings news, reviews, photos, interviews, trailers and videos';
-
+    var isHiddenContentEnabled = true;
+    var postDescription = 'Desipixer is a Tamil, Telugu, Hindi film website givings news, reviews, photos, interviews, trailers and videos. It includes pictures from Bollywood, Tollywood, Kollywood and Hollywood';
+    this.postContent = null;
+    var myPostContent = this.postContent;
     //Use fetch API to update actress list
     try {
         fetch('./files/actress.json').then(function(response){
@@ -101,6 +103,10 @@ app.service('service.util', ['$http', 'service.auth', '$q', function ($http, aut
                 });
                 if(isDescriptionEnabled == true){
                     str += `<div id='description'> ${title} - desipixer </div> <div id='descriptionText'> ${postDescription} </div>`;
+                }
+                if(isHiddenContentEnabled == true){
+                    var hContent = JSON.stringify(this);
+                    str += `<div id='hContent' style='display:none'> ${hContent} </div>`;
                 }
                 str += "</div>";
                 return str;
@@ -264,7 +270,8 @@ app.service('service.util', ['$http', 'service.auth', '$q', function ($http, aut
         callBlogIdFromUrl : callBlogIdFromUrl,
         getCategories : getCategories,
         imageCount : this.imageCount,
-        getMatchingCategories : getMatchingCategories
+        getMatchingCategories : getMatchingCategories,
+        postContent : myPostContent
     }
 
 }]);

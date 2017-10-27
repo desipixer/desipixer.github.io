@@ -19,13 +19,19 @@
             <button class="btn btn-primary" ng-click="getSite()"> GET </button>
             <span style="padding-left:20px; color:{{statusColor}}"> {{status}} </span>
         </div>
+        
+        <div class="container" style="padding-top:10px">
+            <input type="checkbox" ng-model="showOutput" /> Hide Output
+        </div>
         <div class="container" style="padding-top:20px">
             {{responseObj}}
         </div>
         <div class="container" style="padding-top:50px">
             <a ng-href='{{responseUrl}}' target="_blank">{{responseUrl}}</a>
         </div>
-
+        <div class="container" style="padding-top:50px">
+            <textarea ng-model="postContent" ng-hide="showOutput" style="width:1000px;height:800px"></textarea>
+        </div>
     </div>
     <script src="scripts/vendor.js"></script>
     <script src="js/scripts.js"></script>

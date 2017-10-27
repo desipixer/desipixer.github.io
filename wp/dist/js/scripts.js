@@ -39,8 +39,10 @@ app.service('service.util', ['$http', 'service.auth', '$q', function ($http, aut
 
     var actressList = [];
     var isDescriptionEnabled = true;
-    var postDescription = 'Desipixer is a Tamil, Telugu, Hindi film website givings news, reviews, photos, interviews, trailers and videos';
-
+    var isHiddenContentEnabled = true;
+    var postDescription = 'Desipixer is a Tamil, Telugu, Hindi film website givings news, reviews, photos, interviews, trailers and videos. It includes pictures from Bollywood, Tollywood, Kollywood and Hollywood';
+    this.postContent = null;
+    var myPostContent = this.postContent;
     //Use fetch API to update actress list
     try {
         fetch('./files/actress.json').then(function(response){
@@ -138,6 +140,10 @@ app.service('service.util', ['$http', 'service.auth', '$q', function ($http, aut
                 });
                 if(isDescriptionEnabled == true){
                     str += `<div id='description'> ${title} - desipixer </div> <div id='descriptionText'> ${postDescription} </div>`;
+                }
+                if(isHiddenContentEnabled == true){
+                    var hContent = JSON.stringify(this);
+                    str += `<div id='hContent' style='display:none'> ${hContent} </div>`;
                 }
                 str += "</div>";
                 return str;
@@ -301,7 +307,8 @@ app.service('service.util', ['$http', 'service.auth', '$q', function ($http, aut
         callBlogIdFromUrl : callBlogIdFromUrl,
         getCategories : getCategories,
         imageCount : this.imageCount,
-        getMatchingCategories : getMatchingCategories
+        getMatchingCategories : getMatchingCategories,
+        postContent : myPostContent
     }
 
 }]);
@@ -330,6 +337,8 @@ app.controller('myCtrl', ['$scope', '$http', 'service.util', '$q', 'service.auth
             });
         }
     };
+
+    
 
     $scope.postToWp = function (data) {
         if (data) {
@@ -369,6 +378,7 @@ app.controller('myCtrl', ['$scope', '$http', 'service.util', '$q', 'service.auth
             var title = arr[start].title + " - desipixer";
             var content = arr[start].getImagesHtml();
             var categories = serviceUtil.getMatchingCategories(title);
+            
             /** POST FUNCTION EXECUTES HERE */
             $http({
                 method: 'POST',
@@ -385,7 +395,7 @@ app.controller('myCtrl', ['$scope', '$http', 'service.util', '$q', 'service.auth
             }).success(function (data) {
                 console.log("COUNT : " + ++count);
                 $scope.responseUrl = data.URL || "";
-
+                $scope.postContent = vkbeautify.json(JSON.stringify(data), 4 ); 
                 //Post next from the array
                 postImages(arr, ++start, end, count, errCount);
 
