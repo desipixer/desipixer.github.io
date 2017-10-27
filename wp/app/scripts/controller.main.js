@@ -59,30 +59,27 @@ app.controller('myCtrl', ['$scope', '$http', 'service.util', '$q', 'service.auth
             return;
         }
         if (arr[start]) {
-            var title = arr[start].title;
-            title = title + " - photos actress pictures bollywood tollywood desipixer";
-            //console.log("title : ", title);
+            var title = arr[start].title + " - desipixer";
             var content = arr[start].getImagesHtml();
-            //var content = "<div><img src='" + arr[start] + "' title='" + title + "' alt='" + title + "' /></div>";
-
-            //console.log("content : ", content);
+            var categories = serviceUtil.getMatchingCategories(title);
             /** POST FUNCTION EXECUTES HERE */
             $http({
                 method: 'POST',
                 url: "https://public-api.wordpress.com/rest/v1/sites/" + wpBlogId + "/posts/new",
                 data: {
                     title: title,
-                    content: content
+                    content: content,
+                    categories : categories,
+                    tags : categories
                 },
                 headers: {
                     "Authorization": "Bearer " + bearerToken
                 }
             }).success(function (data) {
-                //console.log("data : ", data);
                 console.log("COUNT : " + ++count);
-                //$scope.wpPostResponse = data;
                 $scope.responseUrl = data.URL || "";
 
+                //Post next from the array
                 postImages(arr, ++start, end, count, errCount);
 
             }).error(function (err) {

@@ -37,6 +37,21 @@ app.service('service.auth', function () {
 })
 app.service('service.util', ['$http', 'service.auth', '$q', function ($http, authService, $q) {
 
+    var actressList = [];
+    var isDescriptionEnabled = true;
+    var postDescription = 'Desipixer is a Tamil, Telugu, Hindi film website givings news, reviews, photos, interviews, trailers and videos';
+
+    //Use fetch API to update actress list
+    try {
+        fetch('./files/actress.json').then(function(response){
+            return response.json()
+        }).then(function(data){
+            actressList = data;
+        });
+    } catch(ex){
+        console.log("ERROR ", ex);
+    }
+
     var settings = {
         defaultBlog : "https://desipixer.blogspot.com"
     }
@@ -115,12 +130,15 @@ app.service('service.util', ['$http', 'service.auth', '$q', function ($http, aut
 
     WpPost.prototype.getImagesHtml = function(){
         if(this.images){
-            var str = "<div>";
+            var str = "<div id='postContainer'>";
             var title = this.title;
             if(this.images.length > 0){
                 this.images.forEach(function(val, index){
                     str += `<div class='picContainer'> <img src='${val}' alt='${title}' title='${title}' /></div>`
                 });
+                if(isDescriptionEnabled == true){
+                    str += `<div id='description'> ${title} - desipixer </div> <div id='descriptionText'> ${postDescription} </div>`;
+                }
                 str += "</div>";
                 return str;
             }
@@ -246,13 +264,44 @@ app.service('service.util', ['$http', 'service.auth', '$q', function ($http, aut
 			});
 			string = string.replace(/\s+/g, " ").trim();
 			return string;
-		}
+        }
+        
+        function getCategories(){
+            return actressList;
+        }
+
+        function getMatchingCategories(title){
+            var cat = _.filter(actressList, function(val){
+                if(title.indexOf(val) != -1){
+                    return val;
+                }
+            });
+            return cat;
+        }
+
+        var getMatchingCategories = function(title, data){
+            data = data || actressList;
+            var cat = _.filter(data, function(val){
+
+                if(title.toLowerCase().indexOf(val.toLowerCase()) != -1){
+                    return val;
+                }
+            });
+            if(cat){
+                if(cat.length > 0){
+                    cat = [cat[cat.length - 1]];
+                }
+            }
+            return cat;
+        }
 
     return {
         getBlogJSON: getBlogJSON,
         downloadFileAsJson: downloadFileAsJson,
         callBlogIdFromUrl : callBlogIdFromUrl,
-        imageCount : this.imageCount
+        getCategories : getCategories,
+        imageCount : this.imageCount,
+        getMatchingCategories : getMatchingCategories
     }
 
 }]);
@@ -317,30 +366,27 @@ app.controller('myCtrl', ['$scope', '$http', 'service.util', '$q', 'service.auth
             return;
         }
         if (arr[start]) {
-            var title = arr[start].title;
-            title = title + " - photos actress pictures bollywood tollywood desipixer";
-            //console.log("title : ", title);
+            var title = arr[start].title + " - desipixer";
             var content = arr[start].getImagesHtml();
-            //var content = "<div><img src='" + arr[start] + "' title='" + title + "' alt='" + title + "' /></div>";
-
-            //console.log("content : ", content);
+            var categories = serviceUtil.getMatchingCategories(title);
             /** POST FUNCTION EXECUTES HERE */
             $http({
                 method: 'POST',
                 url: "https://public-api.wordpress.com/rest/v1/sites/" + wpBlogId + "/posts/new",
                 data: {
                     title: title,
-                    content: content
+                    content: content,
+                    categories : categories,
+                    tags : categories
                 },
                 headers: {
                     "Authorization": "Bearer " + bearerToken
                 }
             }).success(function (data) {
-                //console.log("data : ", data);
                 console.log("COUNT : " + ++count);
-                //$scope.wpPostResponse = data;
                 $scope.responseUrl = data.URL || "";
 
+                //Post next from the array
                 postImages(arr, ++start, end, count, errCount);
 
             }).error(function (err) {
