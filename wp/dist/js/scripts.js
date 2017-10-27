@@ -319,11 +319,11 @@ app.controller('myCtrl', ['$scope', '$http', 'service.util', '$q', 'service.auth
         if (arr[start]) {
             var title = arr[start].title;
             title = title + " - photos actress pictures bollywood tollywood desipixer";
-            console.log("title : ", title);
+            //console.log("title : ", title);
             var content = arr[start].getImagesHtml();
             //var content = "<div><img src='" + arr[start] + "' title='" + title + "' alt='" + title + "' /></div>";
 
-            console.log("content : ", content);
+            //console.log("content : ", content);
             /** POST FUNCTION EXECUTES HERE */
             $http({
                 method: 'POST',
@@ -336,10 +336,10 @@ app.controller('myCtrl', ['$scope', '$http', 'service.util', '$q', 'service.auth
                     "Authorization": "Bearer " + bearerToken
                 }
             }).success(function (data) {
-                console.log("data : ", data);
+                //console.log("data : ", data);
                 console.log("COUNT : " + ++count);
-                $scope.wpPostResponse = data;
-                
+                //$scope.wpPostResponse = data;
+                $scope.responseUrl = data.URL || "";
 
                 postImages(arr, ++start, end, count, errCount);
 

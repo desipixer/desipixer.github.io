@@ -1,13 +1,7 @@
 
 
 module.exports = function (grunt) {
-	/*grunt.registerTask('compile', function() {
-		console.log("I am compiling");s	
-	});
 
-	grunt.registerTask('default', function(){
-		console.log("DP : default task loaded");
-	})*/
 
 	grunt.initConfig({
 		concat: {
@@ -33,7 +27,7 @@ module.exports = function (grunt) {
 		},
 		watch: {
 			files: ['app/**/*.js', 'app/**/*'],
-			tasks: ['concat', 'uglify', 'copy']
+			tasks: ['concat', 'copy']
 		},
 		uglify: {
 			options: {
@@ -71,7 +65,7 @@ module.exports = function (grunt) {
 	})
 
 	grunt.loadNpmTasks('grunt-contrib-concat');
-	grunt.loadNpmTasks('grunt-contrib-uglify');
+	//grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-watch');

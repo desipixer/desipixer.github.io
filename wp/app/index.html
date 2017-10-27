@@ -19,9 +19,11 @@
             <button class="btn btn-primary" ng-click="getSite()"> GET </button>
             <span style="padding-left:20px; color:{{statusColor}}"> {{status}} </span>
         </div>
-        <div>
-
+        <div class="container" style="padding-top:20px">
             {{responseObj}}
+        </div>
+        <div class="container" style="padding-top:50px">
+            <a ng-href='{{responseUrl}}'>{{responseUrl}}</a>
         </div>
 
     </div>
