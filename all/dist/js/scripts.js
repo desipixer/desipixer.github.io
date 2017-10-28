@@ -143,7 +143,6 @@ app.service('service.util', ['$http', 'service.auth', '$q', function ($http, aut
                 }
                 if(isHiddenContentEnabled == true){
                     var hContent = JSON.stringify(this);
-                    
                     str += `<div id='hContent' style='display:none'> ${hContent} </div>`;
                 }
                 str += "</div>";
@@ -327,6 +326,7 @@ app.controller('myCtrl', ['$scope', '$http', 'service.util', '$q', 'service.auth
             var promise = serviceUtil.getBlogJSON(siteId, null, 500);
             promise.then(function (data) {
                 console.log(data);
+
                 $scope.status = "Completed";
                 $scope.statusColor = "green";
                 $scope.postToWp(data);
@@ -342,11 +342,10 @@ app.controller('myCtrl', ['$scope', '$http', 'service.util', '$q', 'service.auth
 
     $scope.postToWp = function (data) {
         if (data) {
-            var startIndex = $scope.startIndex || 0;
-            var endIndex = $scope.endIndex || data.length;
+            var startIndex = 0;
+            var endIndex = data.length;
             var count = 0;
             var errCount = 0;
-            console.log(`startIndex:${startIndex}, endIndex:${endIndex} `);
             postImages(data, startIndex, endIndex, count, errCount);
         } else {
             console.log("ERROR >> data is null or empty");

@@ -106,6 +106,7 @@ app.service('service.util', ['$http', 'service.auth', '$q', function ($http, aut
                 }
                 if(isHiddenContentEnabled == true){
                     var hContent = JSON.stringify(this);
+                    
                     str += `<div id='hContent' style='display:none'> ${hContent} </div>`;
                 }
                 str += "</div>";

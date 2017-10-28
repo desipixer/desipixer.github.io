@@ -1,40 +1,3 @@
-var app = angular.module('myApp', []);
-app.service('service.auth', function () {
-
-    /**
-     * return k value for the site.
-     */
-    var AuthUtil = (function () {
-        var k = Object.freeze({
-            "k": "AIzaSyBZvR46qyUilZ6Fl5vn9oPnLZtYHnqSknE"
-        });
-        var getKey = function () {
-            return k.k;
-        };
-
-        return {
-            getKey: getKey
-        }
-    })();
-
-    var WpAuth = (function(){
-        
-        var getWpAuth = {
-            "k": "mP!Xczt#suEBlT$KfPY2kWLIa$$jaC6Tx11u8c*fEb3L4NXS6jHzrU00qiYLWvSV",
-            "id": "137728983",
-            "url": "http://pixer12wp.wordpress.com"
-        }
-
-        return {
-            getWpAuth : getWpAuth
-        }
-    })();
-    
-    return {
-        getKey: AuthUtil.getKey,
-        getWpAuth : WpAuth.getWpAuth
-    }
-})
 app.service('service.util', ['$http', 'service.auth', '$q', function ($http, authService, $q) {
 
     var actressList = [];
@@ -48,7 +11,7 @@ app.service('service.util', ['$http', 'service.auth', '$q', function ($http, aut
         fetch('./files/actress.json').then(function(response){
             return response.json()
         }).then(function(data){
-            actressList = data;
+            actressList = data;``
         });
     } catch(ex){
         console.log("ERROR ", ex);
@@ -143,7 +106,6 @@ app.service('service.util', ['$http', 'service.auth', '$q', function ($http, aut
                 }
                 if(isHiddenContentEnabled == true){
                     var hContent = JSON.stringify(this);
-                    
                     str += `<div id='hContent' style='display:none'> ${hContent} </div>`;
                 }
                 str += "</div>";
@@ -302,6 +264,35 @@ app.service('service.util', ['$http', 'service.auth', '$q', function ($http, aut
             return cat;
         }
 
+
+        function wp(){
+            let prefix = "https://public-api.wordpress.com/rest/v1.1";
+            return {
+                siteInfo : function(siteUrl){
+                    if(!siteUrl){
+                        return null;
+                    }
+                    return `${prefix}/sites/${siteUrl}`
+                },
+                posts : function(siteUrl, qs){
+                    if(!siteUrl){
+                        return null;
+                    }
+                    let qsString = encodeURIComponent(ObjectToQs(qs));
+                    return `${prefix}/sites/${siteUrl}/posts?${qsString}`
+                }
+            }
+        }
+
+        function ObjectToQs(obj){
+            var str = "?";
+            for(key of Object.keys(obj)){
+                str += key+ "="+ obj[key]+ "&";
+            }
+            return str.substring(0,str.length - 1);
+        }
+        
+
     return {
         getBlogJSON: getBlogJSON,
         downloadFileAsJson: downloadFileAsJson,
@@ -311,124 +302,5 @@ app.service('service.util', ['$http', 'service.auth', '$q', function ($http, aut
         getMatchingCategories : getMatchingCategories,
         postContent : myPostContent
     }
-
-}]);
-/**
- * Parse all the contents and build the JSON
- */
-app.controller('myCtrl', ['$scope', '$http', 'service.util', '$q', 'service.auth', function ($scope, $http, serviceUtil, $q, authService) {
-    $scope.siteId = "873009466583458846";
-    $scope.siteName = "https://idlepix.blogspot.com";
-    $scope.getSite = function () {
-        if ($scope.siteId) {
-            var siteId = $scope.siteId;
-            $scope.status = "Processing...";
-            $scope.statusColor = "blue";
-            var promise = serviceUtil.getBlogJSON(siteId, null, 500);
-            promise.then(function (data) {
-                console.log(data);
-                $scope.status = "Completed";
-                $scope.statusColor = "green";
-                $scope.postToWp(data);
-            }, function (err) {
-                $scope.status = "Error";
-                $scope.statusColor = "red";
-                console.log("ERROR >> " + error)
-            });
-        }
-    };
-
-    
-
-    $scope.postToWp = function (data) {
-        if (data) {
-            var startIndex = $scope.startIndex || 0;
-            var endIndex = $scope.endIndex || data.length;
-            var count = 0;
-            var errCount = 0;
-            console.log(`startIndex:${startIndex}, endIndex:${endIndex} `);
-            postImages(data, startIndex, endIndex, count, errCount);
-        } else {
-            console.log("ERROR >> data is null or empty");
-        }
-        //console.log(data);
-
-    }
-
-    var wpBlogId = authService.getWpAuth.id;
-    var bearerToken = authService.getWpAuth.k;
-    /**
-		 * Iterates through the array and post it
-		 * @param {*} arr 
-		 * @param {*} start 
-		 * @param {*} end 
-		 * @param {*} count 
-		 */
-    function postImages(arr, start, end, count, errCount) {
-        console.log("start:end:count:errCount", start, end, count, errCount);
-        $scope.responseObj = JSON.stringify({
-            "start": start,
-            "end": end,
-            "count": count,
-            "errCount": errCount
-        });
-        if (start > end) {
-            return;
-        }
-        if (arr[start]) {
-            var title = arr[start].title + " - desipixer";
-            var content = arr[start].getImagesHtml();
-            var categories = serviceUtil.getMatchingCategories(title);
-            
-            /** POST FUNCTION EXECUTES HERE */
-            $http({
-                method: 'POST',
-                url: "https://public-api.wordpress.com/rest/v1/sites/" + wpBlogId + "/posts/new",
-                data: {
-                    title: title,
-                    content: content,
-                    categories : categories,
-                    tags : categories
-                },
-                headers: {
-                    "Authorization": "Bearer " + bearerToken
-                }
-            }).success(function (data) {
-                console.log("COUNT : " + ++count);
-                $scope.responseUrl = data.URL || "";
-                $scope.postContent = vkbeautify.json(JSON.stringify(data), 4 ); 
-                //Post next from the array
-                postImages(arr, ++start, end, count, errCount);
-
-            }).error(function (err) {
-                if (errCount > 20) {
-                    return;
-                }
-                console.log("ERROR >> " + err);
-                console.log("COUNT : " + ++count);
-                postImages(arr, ++start, end, count, ++errCount);
-            })
-        }
-
-    }
-
-
-    $scope.getSiteName = function () {
-        if ($scope.siteName) {
-            var siteName = $scope.siteName;
-            var promise = serviceUtil.callBlogIdFromUrl(siteName);
-            promise.then(function (obj) {
-                if (obj.data) {
-                    if (obj.data.id) {
-                        $scope.siteId = obj.data.id;
-                    }
-                }
-            })
-        } else {
-            console.log("Error >> site name not defined");
-        }
-    }
-
-
 
 }]);

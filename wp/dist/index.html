@@ -19,7 +19,16 @@
             <button class="btn btn-primary" ng-click="getSite()"> GET </button>
             <span style="padding-left:20px; color:{{statusColor}}"> {{status}} </span>
         </div>
-        
+        <div class="container">
+            <div> 
+                START INDEX :
+                <input type="text" ng-model="startIndex" />
+            </div>
+            <div>
+                END INDEX : 
+                <input type="text" ng-model="endIndex" />
+            </div>
+        </div>
         <div class="container" style="padding-top:10px">
             <input type="checkbox" ng-model="showOutput" /> Hide Output
         </div>
