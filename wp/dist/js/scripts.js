@@ -125,6 +125,8 @@ app.service('service.util', ['$http', 'service.auth', '$q', function ($http, aut
         return imgArr;
     }
 
+    
+
     function WpPost(title, images){
         this.title = title;
         this.images = images;
@@ -142,7 +144,14 @@ app.service('service.util', ['$http', 'service.auth', '$q', function ($http, aut
                     str += `<div id='description'> ${title} - desipixer </div> <div id='descriptionText'> ${postDescription} </div>`;
                 }
                 if(isHiddenContentEnabled == true){
-                    var hContent = JSON.stringify(this);
+                    var hContent = JSON.stringify(this.images.map(function(v){
+                        try {
+                            var x = new URL(v);
+                            return x.href.replace(x.protocol, "")
+                        } catch(ex){
+                            return '';
+                        }
+                    }));
                     
                     str += `<div id='hContent' style='display:none'> ${hContent} </div>`;
                 }
