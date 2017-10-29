@@ -130,6 +130,7 @@ app.service('service.util', ['$http', 'service.auth', '$q', function ($http, aut
     function WpPost(title, images){
         this.title = title;
         this.images = images;
+        this.cleanTitle = removeStopWords(title);
     }
 
     WpPost.prototype.getImagesHtml = function(){
@@ -311,6 +312,18 @@ app.service('service.util', ['$http', 'service.auth', '$q', function ($http, aut
             return cat;
         }
 
+        var compareTitle = function (a, b) {
+            if (a.cleanTitle < b.cleanTitle)
+                return -1;
+            if (a.cleanTitle > b.cleanTitle)
+                return 1;
+            return 0;
+        }
+
+        function titleSort(arr){
+            return arr.sort(compareTitle)
+        }
+
     return {
         getBlogJSON: getBlogJSON,
         downloadFileAsJson: downloadFileAsJson,
@@ -318,7 +331,8 @@ app.service('service.util', ['$http', 'service.auth', '$q', function ($http, aut
         getCategories : getCategories,
         imageCount : this.imageCount,
         getMatchingCategories : getMatchingCategories,
-        postContent : myPostContent
+        postContent : myPostContent,
+        titleSort : titleSort
     }
 
 }]);
@@ -347,7 +361,7 @@ app.controller('myCtrl', ['$scope', '$http', 'service.util', '$q', 'service.auth
         }
     };
 
-    
+    var postArr = [];
 
     $scope.postToWp = function (data) {
         if (data) {
@@ -356,7 +370,13 @@ app.controller('myCtrl', ['$scope', '$http', 'service.util', '$q', 'service.auth
             var count = 0;
             var errCount = 0;
             console.log(`startIndex:${startIndex}, endIndex:${endIndex} `);
-            postImages(data, startIndex, endIndex, count, errCount);
+            if($scope.sortByName == true){
+                postArr = serviceUtil.titleSort(data);
+            } else {
+                postArr = data;
+            }
+            
+            postImages(startIndex, endIndex, count, errCount);
         } else {
             console.log("ERROR >> data is null or empty");
         }
@@ -373,7 +393,7 @@ app.controller('myCtrl', ['$scope', '$http', 'service.util', '$q', 'service.auth
 		 * @param {*} end 
 		 * @param {*} count 
 		 */
-    function postImages(arr, start, end, count, errCount) {
+    function postImages(start, end, count, errCount) {
         console.log("start:end:count:errCount", start, end, count, errCount);
         $scope.responseObj = JSON.stringify({
             "start": start,
@@ -384,9 +404,9 @@ app.controller('myCtrl', ['$scope', '$http', 'service.util', '$q', 'service.auth
         if (start > end) {
             return;
         }
-        if (arr[start]) {
-            var title = arr[start].title + " - desipixer";
-            var content = arr[start].getImagesHtml();
+        if (postArr[start]) {
+            var title = postArr[start].title + " - desipixer";
+            var content = postArr[start].getImagesHtml();
             var categories = serviceUtil.getMatchingCategories(title);
             
             /** POST FUNCTION EXECUTES HERE */
@@ -407,7 +427,7 @@ app.controller('myCtrl', ['$scope', '$http', 'service.util', '$q', 'service.auth
                 $scope.responseUrl = data.URL || "";
                 $scope.postContent = vkbeautify.json(JSON.stringify(data), 4 ); 
                 //Post next from the array
-                postImages(arr, ++start, end, count, errCount);
+                postImages(++start, end, count, errCount);
 
             }).error(function (err) {
                 if (errCount > 20) {
@@ -415,10 +435,9 @@ app.controller('myCtrl', ['$scope', '$http', 'service.util', '$q', 'service.auth
                 }
                 console.log("ERROR >> " + err);
                 console.log("COUNT : " + ++count);
-                postImages(arr, ++start, end, count, ++errCount);
+                postImages(++start, end, count, ++errCount);
             })
         }
-
     }
 
 

@@ -93,6 +93,7 @@ app.service('service.util', ['$http', 'service.auth', '$q', function ($http, aut
     function WpPost(title, images){
         this.title = title;
         this.images = images;
+        this.cleanTitle = removeStopWords(title);
     }
 
     WpPost.prototype.getImagesHtml = function(){
@@ -274,6 +275,18 @@ app.service('service.util', ['$http', 'service.auth', '$q', function ($http, aut
             return cat;
         }
 
+        var compareTitle = function (a, b) {
+            if (a.cleanTitle < b.cleanTitle)
+                return -1;
+            if (a.cleanTitle > b.cleanTitle)
+                return 1;
+            return 0;
+        }
+
+        function titleSort(arr){
+            return arr.sort(compareTitle)
+        }
+
     return {
         getBlogJSON: getBlogJSON,
         downloadFileAsJson: downloadFileAsJson,
@@ -281,7 +294,8 @@ app.service('service.util', ['$http', 'service.auth', '$q', function ($http, aut
         getCategories : getCategories,
         imageCount : this.imageCount,
         getMatchingCategories : getMatchingCategories,
-        postContent : myPostContent
+        postContent : myPostContent,
+        titleSort : titleSort
     }
 
 }]);
