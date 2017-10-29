@@ -4,6 +4,7 @@
 app.controller('myCtrl', ['$scope', '$http', 'service.util', '$q', 'service.auth', function ($scope, $http, serviceUtil, $q, authService) {
     $scope.siteId = "873009466583458846";
     $scope.siteName = "https://idlepix.blogspot.com";
+    $scope.showOutput = true;
     $scope.getSite = function () {
         if ($scope.siteId) {
             var siteId = $scope.siteId;

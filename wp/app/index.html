@@ -8,32 +8,51 @@
 
 <body ng-app="myApp">
     <div ng-controller="myCtrl" style="padding:40px">
-        <div class="container" style="padding-bottom : 50px">
-            <span> Enter Site Name : </span>
-            <input type="text" ng-model="siteName" class="" style="width: 400px" placeholder="Enter blog name" />
-            <button class="btn btn-info" ng-click="getSiteName()"> GET BLOG ID </button>
-        </div>
         <div class="container">
-            <span> Enter Site ID : </span>
-            <input type="text" ng-model="siteId" class="" style="width: 200px" placeholder="Enter blogId" />
-            <button class="btn btn-primary" ng-click="getSite()"> GET </button>
-            <span style="padding-left:20px; color:{{statusColor}}"> {{status}} </span>
-        </div>
-        <div class="container">
-            <div> 
-                START INDEX :
-                <input type="text" ng-model="startIndex" />
-            </div>
-            <div>
-                END INDEX : 
-                <input type="text" ng-model="endIndex" />
-            </div>
-        </div>
-        <div class="container" style="padding-top:10px">
-            <input type="checkbox" ng-model="showOutput" /> Hide Output
-        </div>
-        <div class="container" style="padding-top:10px">
-            <input type="checkbox" ng-model="sortByName" /> Sort Title
+            <h2>WP POST </h2> 
+            <table class="table">
+                <tr>
+                    <td> Enter Site Name </td>
+                    <td>
+                        <input type="text" ng-model="siteName" class="" style="width: 400px" placeholder="Enter blog name" />
+                        <button class="btn btn-info" ng-click="getSiteName()"> GET BLOG ID </button>
+                </tr>
+                <tr>
+                    <td> Enter Site ID </td>
+                    <td>
+                        <input type="text" ng-model="siteId" class="" style="width: 200px" placeholder="Enter blogId" />
+                        <span style="padding-left:20px; color:{{statusColor}}"> {{status}} </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td> START INDEX </td>
+                    <td>
+                        <input type="text" ng-model="startIndex" /> </td>
+                </tr>
+                <tr>
+                    <td> END INDEX </td>
+                    <td>
+                        <input type="text" ng-model="endIndex" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox" ng-model="showOutput" /> Hide Output </td>
+                    <td>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox" ng-model="sortByName" /> Sort Title </td>
+                    <td>
+                    </td>
+                </tr>
+                <tr>
+                    <td> <button class="btn btn-primary" ng-click="getSite()"> POST </button> </td>
+                    <td></td>
+                </tr>
+
+            </table>
         </div>
         <div class="container" style="padding-top:20px">
             {{responseObj}}
@@ -48,8 +67,9 @@
     <script src="scripts/vendor.js"></script>
     <script src="js/scripts.js"></script>
     <!-- Global style definitions -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">    
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" >
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </body>
 
 </html>
