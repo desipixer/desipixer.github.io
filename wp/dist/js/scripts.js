@@ -46,6 +46,16 @@ app.service('service.auth', function () {
                 "k": "yTZEmEEGLxA6Rw$3vbZ)sI5zr1SmRLV2#*KIafBLuDbdGY!4yeQcGt0$rFPUdS!G",
                 "id": "137858138",
                 "url": "http://p12zblog.wordpress.com"
+            },
+            {
+                "k": "!wkjCPw0w$Jawnf^XnXaYNWd&)cO^iA9mmIV&YZN2ctUUGvXLU)SaCQW47QEkw4@",
+                "id": "137895800",
+                "url": "http://p12go.wordpress.com"
+            },
+            {
+                "k": "9N^dD319d1VdBn1GUE3!wDWeyMr8HwoDLdIz^qs8SFH31uyn3dqsFZceosnGuZ)T",
+                "id": "137895882",
+                "url": "http://p12in.wordpress.com"
             }
         ]
 
