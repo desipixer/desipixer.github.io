@@ -49,6 +49,21 @@ app.controller('myCtrl', ['$scope', '$http', 'service.util', '$q', 'service.auth
 
     var wpBlogId = authService.getWpAuth.id;
     var bearerToken = authService.getWpAuth.k;
+
+    $scope.postSiteList = authService.wpAuthArray;
+
+    $scope.selectedSiteChanged = function(){
+        
+        var siteUrl = $scope.selectedSite;
+        let temparr = _.where(authService.wpAuthArray, { url : siteUrl});
+        if(temparr.length > 0){
+            console.log("POST BLOG CHANGED TO ", temparr[0].url)
+            bearerToken = temparr[0].k;
+            wpBlogId = temparr[0].id;
+        }
+    }
+
+    
     /**
 		 * Iterates through the array and post it
 		 * @param {*} arr 

@@ -9,7 +9,7 @@
 <body ng-app="myApp">
     <div ng-controller="myCtrl" style="padding:40px">
         <div class="container">
-            <h2>WP POST </h2> 
+            <h2>WP POST </h2>
             <table class="table">
                 <tr>
                     <td> Enter Site Name </td>
@@ -22,6 +22,16 @@
                     <td>
                         <input type="text" ng-model="siteId" class="" style="width: 200px" placeholder="Enter blogId" />
                         <span style="padding-left:20px; color:{{statusColor}}"> {{status}} </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td> Post Site </td>
+                    <td>
+                        <!-- <select ng-model="postSiteList" ng-options="site.url as site.url for site in postSiteList" ng-init="siteList = sitesList[0]"
+                            ng-change="selectedSiteChanged()"></select> -->
+                            <select ng-model="selectedSite" ng-change="selectedSiteChanged()">
+                                <option ng-repeat="site in postSiteList" ng-value="site.url">{{site.url}}</option>
+                            </select>
                     </td>
                 </tr>
                 <tr>
@@ -48,7 +58,9 @@
                     </td>
                 </tr>
                 <tr>
-                    <td> <button class="btn btn-primary" ng-click="getSite()"> POST </button> </td>
+                    <td>
+                        <button class="btn btn-primary" ng-click="getSite()"> POST </button>
+                    </td>
                     <td></td>
                 </tr>
 
