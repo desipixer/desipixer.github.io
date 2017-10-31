@@ -56,6 +56,21 @@ app.service('service.auth', function () {
                 "k": "9N^dD319d1VdBn1GUE3!wDWeyMr8HwoDLdIz^qs8SFH31uyn3dqsFZceosnGuZ)T",
                 "id": "137895882",
                 "url": "http://p12in.wordpress.com"
+            },
+            {
+                "k": "VkXQ%I2h2RxDkIcva5zE@tO@khPwW7pg%rza9(KPza8DhbX@%s^sPBG#bbh6hF)R",
+                "id": "137947561",
+                "url": "http://p12o.wordpress.com"
+            },
+            {
+                "k": "KQsy8ZwOzcAUSP8(^!#cTC7vk&rttRbGRl6kL0Oh1H0!WJWTT42(MbFQOJ!^7sYo",
+                "id": "137947612",
+                "url": "http://p12q.wordpress.com"
+            },
+            {
+                "k": "g4%cJAyHuaq@b^Nq6nA#d40C53Hl@TT^*56BG2O1TE3cUY&jM#l05SGQeLse6uP)",
+                "id": "137947675",
+                "url": "http://p12dp.wordpress.com"
             }
         ]
 
