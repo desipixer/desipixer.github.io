@@ -4,13 +4,7 @@
 		<h2 id="page-title">{{title}}</h2>
 
 
-		<div class="container">
-			<a ng-href="{{wpPostResponse.URL}}" style="background-color:beige;" target="_blank"> {{wpPostResponse.URL}} </a>
-		</div>
-
-		<div style="padding-top:20px">
-			{{responseObj}}
-		</div>
+		
 
 	</div>
 
@@ -44,6 +38,15 @@
 				</tr>
 			</table>
 			<div id="errContainer"></div>
+		</div>
+		<div class="container">
+			<div>
+				<a ng-href="{{wpPostResponse.URL}}" style="background-color:beige;" target="_blank"> {{wpPostResponse.URL}} </a>
+			</div>
+	
+			<div style="padding-top:20px">
+				{{responseObj}}
+			</div>
 		</div>
 	</div>
 
