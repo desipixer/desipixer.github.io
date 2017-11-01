@@ -1,0 +1,4 @@
+dist
+node_modules
+app/data
+app/data/images.json
