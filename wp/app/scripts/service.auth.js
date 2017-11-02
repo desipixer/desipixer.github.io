@@ -70,6 +70,26 @@ app.service('service.auth', function () {
                 "k": "g4%cJAyHuaq@b^Nq6nA#d40C53Hl@TT^*56BG2O1TE3cUY&jM#l05SGQeLse6uP)",
                 "id": "137947675",
                 "url": "http://p12dp.wordpress.com"
+            },
+            {
+                "k": "ypL&QSH55A62uZZ6@7nKW*wu749u%mLtGuPzkh0OQ*AHhPz5wWa002AY8Rwx%DqR",
+                "id": "138037193",
+                "url": "http://p12bo.wordpress.com"
+            },
+            {
+                "k": "*0DS4X*ClJRBixEB!u6DK1P$SzcLqgVmUiUWg9dw0R8isA(oZyZyMo0a4zeVuO!r",
+                "id": "138037214",
+                "url": "http://p12to.wordpress.com"
+            },
+            {
+                "k": "npokL2klx5DicZyV(Du!kbiWv4^ThbCHt*sC19BQzZPSARRpXx9I1r7)S9DpFRiI",
+                "id": "138037237",
+                "url": "http://p12ko.wordpress.com"
+            },
+            {
+                "k": "QJnMng^wq*efCjT^Fii$nueZ63a0rerX6cdOCdX(GS5u^D(I5o1XMh%OwfO&HP^7",
+                "id": "138056996",
+                "url": "http://p12kw.wordpress.com"
             }
         ]
 
