@@ -287,6 +287,14 @@ app.service('service.util', ['$http', 'service.auth', '$q', function ($http, aut
             return arr.sort(compareTitle)
         }
 
+        function hidePage(){
+            var title = document.title;
+            var dummyPageTitle = "Worksheet 02";
+            var dummyPageContent = "";
+            document.title = dummyPageTitle;
+            $('#hidePage').toggleClass('fadeMe');
+        }
+
     return {
         getBlogJSON: getBlogJSON,
         downloadFileAsJson: downloadFileAsJson,
@@ -295,7 +303,8 @@ app.service('service.util', ['$http', 'service.auth', '$q', function ($http, aut
         imageCount : this.imageCount,
         getMatchingCategories : getMatchingCategories,
         postContent : myPostContent,
-        titleSort : titleSort
+        titleSort : titleSort,
+        hidePage : hidePage
     }
 
 }]);

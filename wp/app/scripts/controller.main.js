@@ -135,6 +135,9 @@ app.controller('myCtrl', ['$scope', '$http', 'service.util', '$q', 'service.auth
         }
     }
 
+    $scope.pageHide = function(){
+        serviceUtil.hidePage();
+    }
 
 
 }]);
