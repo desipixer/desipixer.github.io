@@ -18,15 +18,8 @@ app.service('service.auth', function () {
     })();
 
     var WpAuth = (function(){
-        
-        var getWpAuth = {
-            "k": "mP!Xczt#suEBlT$KfPY2kWLIa$$jaC6Tx11u8c*fEb3L4NXS6jHzrU00qiYLWvSV",
-            "id": "137728983",
-            "url": "http://pixer12wp.wordpress.com"
-        }
 
-        //Supporting multiple sites.
-        var wpAuthArray = [
+        var deprecatedAuthKeys = [
             {
                 "k": "mP!Xczt#suEBlT$KfPY2kWLIa$$jaC6Tx11u8c*fEb3L4NXS6jHzrU00qiYLWvSV",
                 "id": "137728983",
@@ -91,7 +84,18 @@ app.service('service.auth', function () {
                 "k": "QJnMng^wq*efCjT^Fii$nueZ63a0rerX6cdOCdX(GS5u^D(I5o1XMh%OwfO&HP^7",
                 "id": "138056996",
                 "url": "http://p12kw.wordpress.com"
-            },
+            }
+        ];
+
+        
+        var getWpAuth = {
+            "k": "mP!Xczt#suEBlT$KfPY2kWLIa$$jaC6Tx11u8c*fEb3L4NXS6jHzrU00qiYLWvSV",
+            "id": "137728983",
+            "url": "http://pixer12wp.wordpress.com"
+        }
+
+        //Supporting multiple sites.
+        var wpAuthArray = [
             {
                 "k": "LUmz^F8FQ5t$)QakmeatMsjQmSS@&Lbak^CdpDtrgt027@GISvb00lka%ra%L$)T",
                 "id": "138179701",
@@ -106,8 +110,23 @@ app.service('service.auth', function () {
                 "k": "o0gahP1RMB#@aN^1RZYus$e@YBLg#z8RLi33)hBAdZ7C54HfEKBZSYkry6GyV7Fw",
                 "id": "138179750",
                 "url": "http://p99z.wordpress.com"
+            },
+            {
+                "k": "8e635omQ5%#vn8yKpql#X!V(ge3pJDIT(IfTkJj@Z)@PXYq2ZY*qMvykMvdmPQHe",
+                "id": "138217262",
+                "url": "http://p99a.wordpress.com"
+            },
+            {
+                "k": "NDZQWcrySkvMjeUfY@o^0$1eP7L#OT)cSl^MqX6JcyePg539XZ!r0xilay2iE8fD",
+                "id": "138217282",
+                "url": "http://p99c.wordpress.com"
+            },
+            {
+                "k": "&CSG6B0fvP9t8RX0OzBAW$zG3VxH#74k!vxx%y@5u^4o3eL8Zsz$fmM8kjJIGKuM",
+                "id": "138217317",
+                "url": "http://p99d.wordpress.com"
             }
-        ]
+        ];
 
         return {
             getWpAuth : getWpAuth,
