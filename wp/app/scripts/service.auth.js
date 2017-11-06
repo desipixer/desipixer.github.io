@@ -90,6 +90,21 @@ app.service('service.auth', function () {
                 "k": "QJnMng^wq*efCjT^Fii$nueZ63a0rerX6cdOCdX(GS5u^D(I5o1XMh%OwfO&HP^7",
                 "id": "138056996",
                 "url": "http://p12kw.wordpress.com"
+            },
+            {
+                "k": "LUmz^F8FQ5t$)QakmeatMsjQmSS@&Lbak^CdpDtrgt027@GISvb00lka%ra%L$)T",
+                "id": "138179701",
+                "url": "http://p99x.wordpress.com"
+            },
+            {
+                "k": "HUVLCuoAfl6EOoroyB3Vp$d7lml3*lO(dC*o*gpHuJ4eLYbq$WfxFEdk797PwIdq",
+                "id": "138179732",
+                "url": "http://p99y.wordpress.com"
+            },
+            {
+                "k": "o0gahP1RMB#@aN^1RZYus$e@YBLg#z8RLi33)hBAdZ7C54HfEKBZSYkry6GyV7Fw",
+                "id": "138179750",
+                "url": "http://p99z.wordpress.com"
             }
         ]
 
