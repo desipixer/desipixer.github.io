@@ -33,12 +33,12 @@ app.controller('myCtrl', ['$scope', '$http', 'service.util', '$q', 'service.auth
             var count = 0;
             var errCount = 0;
             console.log(`startIndex:${startIndex}, endIndex:${endIndex} `);
-            if($scope.sortByName == true){
+            if ($scope.sortByName == true) {
                 postArr = serviceUtil.titleSort(data);
             } else {
                 postArr = data;
             }
-            
+
             postImages(startIndex, endIndex, count, errCount);
         } else {
             console.log("ERROR >> data is null or empty");
@@ -52,18 +52,18 @@ app.controller('myCtrl', ['$scope', '$http', 'service.util', '$q', 'service.auth
 
     $scope.postSiteList = authService.wpAuthArray;
 
-    $scope.selectedSiteChanged = function(){
-        
+    $scope.selectedSiteChanged = function () {
+
         var siteUrl = $scope.selectedSite;
-        let temparr = _.where(authService.wpAuthArray, { url : siteUrl});
-        if(temparr.length > 0){
+        let temparr = _.where(authService.wpAuthArray, { url: siteUrl });
+        if (temparr.length > 0) {
             console.log("POST BLOG CHANGED TO ", temparr[0].url)
             bearerToken = temparr[0].k;
             wpBlogId = temparr[0].id;
         }
     }
 
-    
+
     /**
 		 * Iterates through the array and post it
 		 * @param {*} arr 
@@ -86,7 +86,7 @@ app.controller('myCtrl', ['$scope', '$http', 'service.util', '$q', 'service.auth
             var title = postArr[start].title + " - desipixer";
             var content = postArr[start].getImagesHtml();
             var categories = serviceUtil.getMatchingCategories(title);
-            
+
             /** POST FUNCTION EXECUTES HERE */
             $http({
                 method: 'POST',
@@ -94,8 +94,8 @@ app.controller('myCtrl', ['$scope', '$http', 'service.util', '$q', 'service.auth
                 data: {
                     title: title,
                     content: content,
-                    categories : categories,
-                    tags : categories
+                    categories: categories,
+                    tags: categories
                 },
                 headers: {
                     "Authorization": "Bearer " + bearerToken
@@ -103,7 +103,7 @@ app.controller('myCtrl', ['$scope', '$http', 'service.util', '$q', 'service.auth
             }).success(function (data) {
                 console.log("COUNT : " + ++count);
                 $scope.responseUrl = data.URL || "";
-                $scope.postContent = vkbeautify.json(JSON.stringify(data), 4 ); 
+                $scope.postContent = vkbeautify.json(JSON.stringify(data), 4);
                 //Post next from the array
                 postImages(++start, end, count, errCount);
 
@@ -127,6 +127,11 @@ app.controller('myCtrl', ['$scope', '$http', 'service.util', '$q', 'service.auth
                 if (obj.data) {
                     if (obj.data.id) {
                         $scope.siteId = obj.data.id;
+                        try {
+                            $scope.totalItems = obj.data.posts.totalItems
+                        } catch (ex) {
+                            console.log("ERROR >>", ex);
+                        }
                     }
                 }
             })
@@ -135,7 +140,7 @@ app.controller('myCtrl', ['$scope', '$http', 'service.util', '$q', 'service.auth
         }
     }
 
-    $scope.pageHide = function(){
+    $scope.pageHide = function () {
         serviceUtil.hidePage();
     }
 
