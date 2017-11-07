@@ -48,6 +48,7 @@
                             <select ng-model="selectedSite" ng-change="selectedSiteChanged()">
                                 <option ng-repeat="site in postSiteList" ng-value="site.url">{{site.url}}</option>
                             </select>
+                            <span style="padding-left: 5px"><a href='{{selectedSite}}' target="_blank">Visit</a></span>
                         </td>
                     </tr>
                     <tr>
