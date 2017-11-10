@@ -23,5 +23,10 @@ app.config(['$stateProvider','$urlRouterProvider', function(stateProvider, urlPr
 			templateUrl : 'pages/wp.html',
 			controller : 'dpWpCtrl'
 		})
+		.state('new', {
+			url : '/new',
+			templateUrl : 'pages/new.html',
+			controller : 'dpNewCtrl'
+		})
 		
 }]);
