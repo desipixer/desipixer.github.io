@@ -1436,6 +1436,13 @@ app.controller('dpNewCtrl', ['$scope', 'service.sites', 'service.util', 'setting
 			if (start > end) {
 				return;
 			}
+			if(arr[start].img){
+				if(arr[start].img.length == 0){
+					console.log("No images found in the list : incrementing")
+					++start;
+				}
+			}
+
 			var title = arr[start].title;
 			var content = generateDumpHtml(arr[start].img);
 
