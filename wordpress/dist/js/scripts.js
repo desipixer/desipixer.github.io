@@ -84,18 +84,7 @@ app.service('service.auth', function () {
                 "k": "QJnMng^wq*efCjT^Fii$nueZ63a0rerX6cdOCdX(GS5u^D(I5o1XMh%OwfO&HP^7",
                 "id": "138056996",
                 "url": "http://p12kw.wordpress.com"
-            }
-        ];
-
-        
-        var getWpAuth = {
-            "k": "mP!Xczt#suEBlT$KfPY2kWLIa$$jaC6Tx11u8c*fEb3L4NXS6jHzrU00qiYLWvSV",
-            "id": "137728983",
-            "url": "http://pixer12wp.wordpress.com"
-        }
-
-        //Supporting multiple sites.
-        var wpAuthArray = [
+            },
             {
                 "k": "LUmz^F8FQ5t$)QakmeatMsjQmSS@&Lbak^CdpDtrgt027@GISvb00lka%ra%L$)T",
                 "id": "138179701",
@@ -140,6 +129,42 @@ app.service('service.auth', function () {
                 "k": "egkg)2HqaTmJ!Hib&@mLFpJ69JpJ&QYLStNm$I(AsWM(RDR$5(97ndIW&&4arxEB",
                 "id": "138275508",
                 "url": "http://p99to.wordpress.com"
+            }
+        ];
+
+        
+        var getWpAuth = {
+            "k": "mP!Xczt#suEBlT$KfPY2kWLIa$$jaC6Tx11u8c*fEb3L4NXS6jHzrU00qiYLWvSV",
+            "id": "137728983",
+            "url": "http://pixer12wp.wordpress.com"
+        }
+
+        //Supporting multiple sites.
+        var wpAuthArray = [
+            {
+                "k": "EH@zj#c)$p#jDs#xw6*(khS$EbBBr#wSt8gO%g0yq$kriNmr1ywj8TlaKuuAK2sb",
+                "id": "138559080",
+                "url": "http://p88a.wordpress.com"
+            },
+            {
+                "k": "CQ)OnjcKwssl$0&HZj5R0sQ5e4Cglow1EOTkv*7ef3OCMG6Ni1)KMc&n(T2wNTvG",
+                "id": "138559299",
+                "url": "http://p88b.wordpress.com"
+            },
+            {
+                "k": "X)fT*Ty^$Zbi2^B4yieXnqftH*sYMKU4w1rRE^UaaKX8H(!*D4A!3eGA2^x9U%D&",
+                "id": "138559269",
+                "url": "http://p88wm1.wordpress.com"
+            },
+            {
+                "k": "0M9A6bopxSBPXqa5pbaJFF8sCHq3M5F&XKRrywu(mn2g*jhAlPKa7tW$vvZ0UhpV",
+                "id": "138559604",
+                "url": "http://p88c.wordpress.com"
+            },
+            {
+                "k": "dJZ0BN@NC8HuMyw5d!)Fkt8w2mVvJ0Kz6Qk76**OsGSB#)1$vEhAX4@z(EHeCsK0",
+                "id": "138559621",
+                "url": "http://p88d.wordpress.com"
             }
         ];
 
