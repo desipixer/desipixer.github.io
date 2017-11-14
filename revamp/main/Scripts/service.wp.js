@@ -6,9 +6,9 @@ app.service('wpService', function($http){
     }
 
     var wp = {
-        id : "137332380",
-        url : "http://pixer12.wordpress.com",
-        t : "Gq17V4da1VJm&)t88ypZ#d6xVGTpRwJ9ccq33V1huRkKZp2wNX1Mhnf&mG1(Huyl"
+        id : "138616770",
+        url : "http://p77desipixer.wordpress.com",
+        t : "1sZZhP3k)UXL&G4&^Xhs63#HRqID6gI!fRaljK1WBNNp@aL1m@fkhJ0xWmOtLVp#"
     }
 
     function postEntry(entry){
