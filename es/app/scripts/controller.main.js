@@ -52,11 +52,12 @@ app.controller('myCtrl', ['$scope', '$http', 'service.util', '$q', 'service.auth
 
 
     $scope.selectedSiteChanged = function () {
-
+    
         var siteUrl = $scope.selectedSite;
-        let temparr = _.where($scope.postSiteList, { url: siteUrl });
+        let temparr = $scope.postSiteList.filter(function(obj){
+            return obj.url == siteUrl;
+        });
         if (temparr.length > 0) {
-            console.log("POST BLOG CHANGED TO ", temparr[0].url)
             bearerToken = temparr[0].k;
             wpBlogId = temparr[0].id;
         }

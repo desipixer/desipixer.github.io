@@ -7,6 +7,34 @@ app.controller('postCtrl', function($scope,$http,PostService,URLService,UtilMana
 			id : "7833828309523986982"
 		}
 	}
+	$scope.postSiteList = [];
+	
+	/**
+	 * Get post site settings from config file.
+	 */
+	fetch('config/settings.json').then(function(response){
+		return response.json();
+	}).then(function(data){	
+		
+		$scope.postSiteList = data;
+        $scope.$applyAsync(); 
+		console.log(data);
+	});
+
+	/**
+	 * When post site list selection is sc
+	 */
+	$scope.selectedSiteChanged = function () {
+		
+		var siteUrl = $scope.selectedSite;
+		let temparr = _.where($scope.postSiteList, { url: siteUrl });
+		if (temparr.length > 0) {
+			console.log("POST BLOG CHANGED TO ", temparr[0].url)
+			bearerToken = temparr[0].k;
+			wpBlogId = temparr[0].id;
+		}
+	}
+
 	var postObj = {
 		entry : []
 	}

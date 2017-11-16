@@ -8,6 +8,18 @@
 	  <div class="col-md-3"><input ng-model="searchTxt" placeholder="Search" /> <button ng-click="searchText()" class="btn btn-info"> Search </button></div>
 	   <div class="col-md-3"><button ng-click="shuffle()" class="btn btn-primary"> Shuffle </button></div>
 	</div>
+	<div class="row">
+		<table>
+			<tr>
+				<td>POST SITE :</td>
+				<td>
+					<select ng-model="selectedSite" ng-change="selectedSiteChanged()">
+						<option ng-repeat="site in postSiteList" ng-value="site.url">{{site.url}}</option>
+					</select>
+				</td>
+			</tr>
+		</table>
+	</div>
 	 
 	<div class="">
 		<span ng-repeat="imgEntry in blog.imgArray" class="imageContainer">
