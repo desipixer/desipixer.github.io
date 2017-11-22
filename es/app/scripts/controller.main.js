@@ -61,6 +61,29 @@ app.controller('myCtrl', ['$scope', '$http', 'service.util', '$q', 'service.auth
             bearerToken = temparr[0].k;
             wpBlogId = temparr[0].id;
         }
+
+        //fetch post count of the selected site.
+        if(siteUrl){
+            var hostName;
+            try {
+                hostName = new URL(siteUrl).hostname;
+            }
+            catch(ex){
+                console.log("ERROR >> ", ex);
+                return;
+            }
+
+            var wpPostCountUrl = `https://public-api.wordpress.com/rest/v1.1/sites/${hostName}/posts?fields=found`;
+            fetch(wpPostCountUrl).then(function(response){
+                return response.json()
+            }).then(function(data){
+                if(data){
+                    $scope.postsCount = data.found || 0;
+                    $scope.$applyAsync();   
+                }
+            })
+        }
+        
     }
 
 
