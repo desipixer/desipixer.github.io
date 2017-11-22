@@ -41,6 +41,18 @@
                         </td>
                     </tr>
                     <tr>
+                            <td>
+                                    Configuration
+                                </td>
+                            <td>
+                                    <select ng-model="selectedConfig" ng-change="onConfigChanged()">
+                                            <option ng-repeat="config in configSettings" ng-value="config">{{config}}</option>
+                                    </select>
+                            </td>
+                        
+                            
+                    </tr>
+                    <tr>
                         <td> Post Site </td>
                         <td>
                             <!-- <select ng-model="postSiteList" ng-options="site.url as site.url for site in postSiteList" ng-init="siteList = sitesList[0]"

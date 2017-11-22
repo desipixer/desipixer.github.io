@@ -24,6 +24,11 @@ app.controller('myCtrl', ['$scope', '$http', 'service.util', '$q', 'service.auth
         }
     };
 
+    $scope.configSettings = [
+        "settings.json",
+        "settings2.json"
+    ];
+
     var postArr = [];
 
     $scope.postToWp = function (data) {
@@ -50,6 +55,18 @@ app.controller('myCtrl', ['$scope', '$http', 'service.util', '$q', 'service.auth
     var wpBlogId = 0;
     var bearerToken = "";
 
+    //If user switches the config file, populate siteList with respective config
+    $scope.onConfigChanged = function(){
+        var thisConfig = $scope.selectedConfig;
+        var fileSelect = "config/"+ thisConfig;
+        fetch(fileSelect).then(function(response){
+            return response.json()
+        }).then(function(data){
+            console.log("config ", data);
+            $scope.postSiteList = data;
+            $scope.$applyAsync();
+        });
+    }
 
     $scope.selectedSiteChanged = function () {
     
@@ -167,6 +184,8 @@ app.controller('myCtrl', ['$scope', '$http', 'service.util', '$q', 'service.auth
         serviceUtil.hidePage();
     }
     
+
+
     /**
      * Gets wpKeys from config files and populates array
      */
