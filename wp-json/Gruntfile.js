@@ -18,6 +18,7 @@ module.exports = function (grunt) {
 				src: [
 					'app/lib/js/angular.min.js',
 					'app/lib/js/q.js',
+					'app/lib/js/axios.min.js',
 					'app/lib/js/underscore-min.js',
 					'app/lib/js/jquery-3.1.1.min.js',
 					'app/lib/js/vkbeautify.0.99.00.beta.js'

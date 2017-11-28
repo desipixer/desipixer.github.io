@@ -31,6 +31,13 @@ app.controller('myCtrl', ['$scope', '$http', 'service.util', '$q', 'service.auth
 
     var postArr = [];
 
+    
+    serviceUtil.wpContentDefer.promise.then(function(data){
+        console.log("FROM CONTROLLER : ",data)
+        $scope.wpContentLength = [].concat.apply([],data.map( x => x.img));
+        $scope.$applyAsync();
+    })
+
     $scope.postToWp = function (data) {
         if (data) {
             var startIndex = $scope.startIndex || 0;

@@ -31,6 +31,7 @@ app.service('service.util', ['$http', 'service.auth', '$q', function ($http, aut
     var postDescription = 'Desipixer is a Tamil, Telugu, Hindi film website givings news, reviews, photos, interviews, trailers and videos. It includes pictures from Bollywood, Tollywood, Kollywood and Hollywood';
     this.postContent = null;
     var myPostContent = this.postContent;
+    this.wpContentArray = [];
     //Use fetch API to update actress list
     try {
         fetch('./files/actress.json').then(function(response){
@@ -161,7 +162,7 @@ app.service('service.util', ['$http', 'service.auth', '$q', function ($http, aut
         return `https://public-api.wordpress.com/rest/v1.1/sites/${siteId}/posts?page=${page}&number=${number}`;
     }
 
-    function getWpJson(siteId, page = 1, number = 100,wpArray = []){
+    function getWpJson(siteId, page = 1, number = 100,wpArray = [], isStart = false){
         var siteUrl = getWpJsonUrl(siteId, page, number);
         axios.get(siteUrl).then(function(response){
             if(response.status == 200){
@@ -169,10 +170,9 @@ app.service('service.util', ['$http', 'service.auth', '$q', function ($http, aut
                 var posts = data.posts;
                 wpArray = wpArray.concat(posts);
                 if(data.found !== 0){
-                    console.log("posts found ", data.found);
-                    console.log()
-                    if(data.found > page*number){
-                        getWpJson(siteId, ++page, number, wpArray);
+                    console.log("posts found count : ", data.found);
+                    if(data.found > page*number && isStart == false){
+                            getWpJson(siteId, ++page, number, wpArray, false);
                     } else {
                         console.log("COMPLETED FETCHING : ");
                         console.log(wpArray);
@@ -183,11 +183,29 @@ app.service('service.util', ['$http', 'service.auth', '$q', function ($http, aut
         })
     }
 
+    function getWpJsonStart(siteId, page = 1, number = 10,wpArray = []){
+        var siteUrl = getWpJsonUrl(siteId, page, number);
+        axios.get(siteUrl).then(function(response){
+            if(response.status == 200){
+                var data = response.data;
+                var posts = data.posts;
+                wpArray = wpArray.concat(posts);
+                if(data.found !== 0){
+                    console.log("posts found ", data.found);
+                    fetchImages(wpArray);
+                }
+            }
+        })
+    }
+
+    var wpContentDefer = $q.defer();
+
     /**
      * Construct Images Array from output.
      * @param {*} wpArray 
      */
     function fetchImages(wpArray){
+
         var imgArray = [];
         wpArray.forEach(function(val, index){
             var imgArr = filterImages(val.content);
@@ -197,12 +215,14 @@ app.service('service.util', ['$http', 'service.auth', '$q', function ($http, aut
                 img : imgArr
             });
         });
+        this.wpContentArray = imgArray;
+        wpContentDefer.resolve(imgArray);
         console.log(imgArray);
     }
 
     //unit test
     var siteId = 'p77desipixer.wordpress.com';
-    getWpJson(siteId);
+    getWpJson(siteId,1,10,[],true);
 
     /**
      * Get WpPost object array from this function.
@@ -404,7 +424,9 @@ app.service('service.util', ['$http', 'service.auth', '$q', function ($http, aut
         postContent : myPostContent,
         titleSort : titleSort,
         hidePage : hidePage,
-        processBlogEntires : processBlogEntires
+        processBlogEntires : processBlogEntires,
+        wpContentArray : this.wpContentArray,
+        wpContentDefer : wpContentDefer
     }
 
 }]);
@@ -440,6 +462,13 @@ app.controller('myCtrl', ['$scope', '$http', 'service.util', '$q', 'service.auth
     ];
 
     var postArr = [];
+
+    
+    serviceUtil.wpContentDefer.promise.then(function(data){
+        console.log("FROM CONTROLLER : ",data)
+        $scope.wpContentLength = [].concat.apply([],data.map( x => x.img));
+        $scope.$applyAsync();
+    })
 
     $scope.postToWp = function (data) {
         if (data) {
