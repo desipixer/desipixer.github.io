@@ -25,6 +25,7 @@ app.controller('myCtrl', ['$scope', '$http', 'service.util', '$q', 'service.auth
     };
 
     $scope.configSettings = [
+        "settings3.json",
         "settings.json",
         "settings2.json"
     ];
