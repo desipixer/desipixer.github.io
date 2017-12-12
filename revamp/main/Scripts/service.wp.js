@@ -6,9 +6,9 @@ app.service('wpService', function($http){
     }
 
     var wp = {
-        id : "138616770",
-        url : "http://p77desipixer.wordpress.com",
-        t : "Gyqi^V@zQRSf93T$8cUC0k3P%4R$A1FvRJ7t2e0R*AQF@HVHpg^Ozu(^1d0!KdJk"
+        id : "139897346",
+        url : "http://desipixer77.wordpress.com",
+        t : "#F&onF%etB85DhC$12i%3JpkJaYJ(ce0QW^iUegW0O)HBFXdpsgdT!@U7ZWP1d#J"
     }
 
     function postEntry(entry){
