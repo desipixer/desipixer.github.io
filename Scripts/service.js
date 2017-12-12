@@ -102,7 +102,7 @@ app.service('imageService', ['$http', '$q', "blogutil", function ($http, $q, blo
     }
 
 
-    this.getPosts = function (blogId, startIndex) {
+    this.getPosts = function (blogId, startIndex, maxResults = 500) {
 
         var deferred = $q.defer();
 

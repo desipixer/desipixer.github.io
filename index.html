@@ -51,7 +51,9 @@
         <td>
           <select ng-model="siteList" ng-options="site.blogURL as site.blogURL for site in sitesList" ng-init="siteList = sitesList[0]"
             ng-change="selectedSite()"></select>
-          <button ng-click="sortBlogs()" class="btn btn-sm"> SORT </button>
+          <button ng-click="sortBlogs()" class="btn btn-default"> SORT </button>
+          <button ng-click="goUrl()" class="btn btn-link"> GO </button>
+          <span><input type="checkbox" ng-model="limitedResults" /> Short Feed </td></span>
         </td>
 
         <td>

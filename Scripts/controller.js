@@ -4,7 +4,7 @@
     $scope.feedObj = [];
     $scope.startIndex = imageService.startIndex;
     $scope.clientKeys = loginService.clientKeys;
-
+    const maxResults = imageService.maxResults;
     $scope.blog = {};
     if ($scope.location == undefined) {
         $scope.location = {
@@ -20,7 +20,10 @@
         $scope.location.y = window.scrollY;
     }
 
-    $scope.getSite = function (blogName, startIndex) {
+    $scope.getSite = function (blogName, startIndex, maxResults = 500) {
+        if($scope.limitedResults == true){
+            maxResults = 50;
+        }
         imageService.getBlogId(blogName).then(function (data) {
             imageService.blogId = data.id;
 
@@ -31,7 +34,7 @@
             $scope.blogId = data.id;
             imageService.totalItems = data.posts.totalItems;
             $scope.totalItems = data.posts.totalItems;
-            imageService.getPosts(data.id, startIndex).then(function (data) {
+            imageService.getPosts(data.id, startIndex, maxResults).then(function (data) {
                 blogutil.parseFeed(data);
                 $scope.feedObj = blogutil.getFeedObj(data);
                 $scope.startIndex = imageService.startIndex;
@@ -66,7 +69,10 @@
                 blogURL: $scope.txtBlogName,
                 category: 1
             });
-            imageService.getPosts(data.id, imageService.startIndex).then(function (data) {
+            if($scope.limitedResults == true){
+                maxResults = 50;
+            }
+            imageService.getPosts(data.id, imageService.startIndex, maxResults).then(function (data) {
                 $scope.blogPosts = data;
                 blogutil.parseFeed(data);
                 $scope.feedObj = blogutil.getFeedObj(data);
@@ -74,6 +80,16 @@
             });
         });
 
+    }
+
+    //open current URL in new tab.
+    $scope.goUrl = function(){
+        var siteUrl = imageService.defaults.blogName;
+        if(typeof $scope.siteList == "string"){
+          siteUrl =  $scope.siteList; 
+        }
+        var win = window.open(siteUrl, '_blank');
+        win.focus();
     }
 
     /**
@@ -106,7 +122,10 @@
                 blogURL: $scope.txtBlogName,
                 category: 1
             });
-            imageService.getPosts(data.id, imageService.startIndex).then(function (data) {
+            if($scope.limitedResults == true){
+                maxResults = 50;
+            }
+            imageService.getPosts(data.id, imageService.startIndex, maxResults).then(function (data) {
                 $scope.blogPosts = data;
                 blogutil.parseFeed(data);
                 $scope.feedObj = blogutil.getFeedObj(data);
@@ -271,7 +290,7 @@
     }
 
     /***** default site loaded *******/
-    $scope.getSite("http://www.desipixer.blogspot.com", 1);
+    $scope.getSite("http://www.desipixer.blogspot.com", 1, 50);
 
 
 
