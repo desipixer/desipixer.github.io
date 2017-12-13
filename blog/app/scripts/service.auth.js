@@ -5,7 +5,7 @@ app.service('service.auth', function () {
      */
     var AuthUtil = (function () {
         var k = Object.freeze({
-            "k": "AIzaSyBZvR46qyUilZ6Fl5vn9oPnLZtYHnqSknE"
+            "k": "AIzaSyAOODMyvwKYBxGRTn2mIWNMJAFlUmFOEi8"
         });
         var getKey = function () {
             return k.k;

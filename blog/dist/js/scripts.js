@@ -6,7 +6,7 @@ app.service('service.auth', function () {
      */
     var AuthUtil = (function () {
         var k = Object.freeze({
-            "k": "AIzaSyBZvR46qyUilZ6Fl5vn9oPnLZtYHnqSknE"
+            "k": "AIzaSyAOODMyvwKYBxGRTn2mIWNMJAFlUmFOEi8"
         });
         var getKey = function () {
             return k.k;
@@ -52,7 +52,7 @@ app.service('service.util', ['$http', 'service.auth', '$q', function ($http, aut
     var deferred = $q.defer();
     this.imageCount = 0;
 
-    var getApiUrl = function (id, nToken, maxResults) {
+    var getApiUrl = function (id, nToken, maxResults = 250) {
         var apiUrl = "https://www.googleapis.com/blogger/v3/blogs/" + id + "/posts?fetchImages=true&key=" + k;
         if (!id) {
             console.log("getApiUrl() >> siteId is null")
@@ -167,7 +167,7 @@ app.service('service.util', ['$http', 'service.auth', '$q', function ($http, aut
         var apiUrl = getApiUrl(id, nextPageToken, maxResults);
         //console.log(apiUrl);
         if (apiUrl) {
-            $http.get(apiUrl).then(
+            axios.get(apiUrl).then(
                 //SUCCESS FUNCTION
                 function (obj) {
                    // console.log(obj.data);
@@ -203,8 +203,7 @@ app.service('service.util', ['$http', 'service.auth', '$q', function ($http, aut
                     } else {
                         console.log("getBlogJSON() >> data is null");
                     }
-                },  //ERROR FUNCTION
-                function (err) {
+                }).catch(function (err) {
                     console.log("getBlogJSON() >> ERROR : " + err);
                 });
         } else {
@@ -377,7 +376,7 @@ app.controller('myCtrl', ['$scope', '$http', 'service.util', '$q', 'service.auth
             var siteId = $scope.siteId;
             $scope.status = "Processing...";
             $scope.statusColor = "blue";
-            var promise = serviceUtil.getBlogJSON(siteId, null, 500);
+            var promise = serviceUtil.getBlogJSON(siteId, null, 250);
             promise.then(function (data) {
                 console.log(data);
                 $scope.status = "Completed";

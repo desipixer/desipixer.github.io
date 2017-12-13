@@ -10,7 +10,7 @@ app.controller('myCtrl', ['$scope', '$http', 'service.util', '$q', 'service.auth
             var siteId = $scope.siteId;
             $scope.status = "Processing...";
             $scope.statusColor = "blue";
-            var promise = serviceUtil.getBlogJSON(siteId, null, 500);
+            var promise = serviceUtil.getBlogJSON(siteId, null, 250);
             promise.then(function (data) {
                 console.log(data);
                 $scope.status = "Completed";

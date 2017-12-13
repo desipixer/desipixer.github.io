@@ -27,7 +27,7 @@ app.service('service.util', ['$http', 'service.auth', '$q', function ($http, aut
     var deferred = $q.defer();
     this.imageCount = 0;
 
-    var getApiUrl = function (id, nToken, maxResults) {
+    var getApiUrl = function (id, nToken, maxResults = 250) {
         var apiUrl = "https://www.googleapis.com/blogger/v3/blogs/" + id + "/posts?fetchImages=true&key=" + k;
         if (!id) {
             console.log("getApiUrl() >> siteId is null")
@@ -142,7 +142,7 @@ app.service('service.util', ['$http', 'service.auth', '$q', function ($http, aut
         var apiUrl = getApiUrl(id, nextPageToken, maxResults);
         //console.log(apiUrl);
         if (apiUrl) {
-            $http.get(apiUrl).then(
+            axios.get(apiUrl).then(
                 //SUCCESS FUNCTION
                 function (obj) {
                    // console.log(obj.data);
@@ -178,8 +178,7 @@ app.service('service.util', ['$http', 'service.auth', '$q', function ($http, aut
                     } else {
                         console.log("getBlogJSON() >> data is null");
                     }
-                },  //ERROR FUNCTION
-                function (err) {
+                }).catch(function (err) {
                     console.log("getBlogJSON() >> ERROR : " + err);
                 });
         } else {
