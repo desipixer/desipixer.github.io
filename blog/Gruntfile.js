@@ -17,6 +17,7 @@ module.exports = function (grunt) {
 			extras: {
 				src: [
 					'app/lib/js/angular.min.js',
+					'app/lib/js/axios.min.js',
 					'app/lib/js/q.js',
 					'app/lib/js/underscore-min.js',
 					'app/lib/js/jquery-3.1.1.min.js',

@@ -88,9 +88,15 @@ app.service('service.util', ['$http', 'service.auth', '$q', function ($http, aut
             blogName = settings.defaultBlog;
         }
         var reqUrl = getBlogIdFromUrl(blogName);
-        $http.get(reqUrl).then(function(obj) {
+        axios.get(reqUrl).then(function(obj){
+            console.log(obj);
             d.resolve(obj);
-        });
+        }).catch(function(err){
+            console.log("ERROR ", err)
+        })
+        // $http.get(reqUrl).then(function (obj) {
+        //     d.resolve(obj);
+        // });
         return d.promise;
     }
 
