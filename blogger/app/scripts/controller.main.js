@@ -21,6 +21,7 @@ app.controller('myCtrl', ['$scope', '$http', 'service.util', '$q', 'service.auth
     };
 
     $scope.configSettings = [
+        "settings5.json",
         "settings4.json",
         "settings3.json",
         "settings.json",
@@ -187,13 +188,14 @@ app.controller('myCtrl', ['$scope', '$http', 'service.util', '$q', 'service.auth
     /**
      * Gets wpKeys from config files and populates array
      */
-    fetch('config/settings4.json').then(function(response){
+    fetch('config/settings5.json').then(function(response){
         return response.json();
     }).then(function(data){
         if(typeof data == "string"){
             data = JSON.parse(data);
         }
         $scope.postSiteList = data;
+        $scope.selectedSiteChanged();
         $scope.$applyAsync();        
         //console.log(data);
     })
