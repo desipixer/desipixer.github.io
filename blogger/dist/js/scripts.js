@@ -480,7 +480,7 @@ app.service('service.util', ['$http', 'service.auth', '$q', function ($http, aut
  */
 app.controller('myCtrl', ['$scope', '$http', 'service.util', '$q', 'service.auth', function ($scope, $http, serviceUtil, $q) {
     $scope.siteId = "873009466583458846";
-    $scope.siteName = "https://idlepix.blogspot.com";
+    $scope.siteName = "https://hq-tollywood.blogspot.com";
     $scope.showOutput = true;
     $scope.getSite = function () {
         if($scope.siteId){
