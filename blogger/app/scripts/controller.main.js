@@ -7,8 +7,14 @@ app.controller('myCtrl', ['$scope', '$http', 'service.util', '$q', 'service.auth
     $scope.showOutput = true;
     $scope.getSite = function () {
         if($scope.siteId){
+            $('#fetchStatus').show();
             var siteId = $scope.siteId;
+            $scope.status = "Processing...";
+            $scope.statusColor = "blue";
             serviceUtil.getBlogFeedJSON(siteId, 1, 500, $scope.totalItems, []).then(function(data){
+                $scope.status = "COMPLETED";
+                $scope.statusColor = "green";
+                $('#fetchStatus').fadeOut(3000);
                 $scope.postToWp(data);
             });
         }
@@ -44,8 +50,8 @@ app.controller('myCtrl', ['$scope', '$http', 'service.util', '$q', 'service.auth
 
     }
 
-    var wpBlogId = 0;
-    var bearerToken = "";
+    var wpBlogId = 139747387;
+    var bearerToken = "h0qE3ZX1z7CZRusMAB$^@HD*ZjicLeN!Yu$OqKVzzn%fswejn66U*r9kUH&fpk5q";
 
     //If user switches the config file, populate siteList with respective config
     $scope.onConfigChanged = function(){

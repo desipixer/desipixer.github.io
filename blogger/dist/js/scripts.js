@@ -33,17 +33,17 @@ app.service('service.util', ['$http', 'service.auth', '$q', function ($http, aut
     var myPostContent = this.postContent;
     //Use fetch API to update actress list
     try {
-        fetch('./files/actress.json').then(function(response){
+        fetch('./files/actress.json').then(function (response) {
             return response.json()
-        }).then(function(data){
+        }).then(function (data) {
             actressList = data;
         });
-    } catch(ex){
+    } catch (ex) {
         console.log("ERROR ", ex);
     }
 
     var settings = {
-        defaultBlog : "https://desipixer.blogspot.com"
+        defaultBlog: "https://desipixer.blogspot.com"
     }
 
     var k = authService.getKey();
@@ -72,26 +72,26 @@ app.service('service.util', ['$http', 'service.auth', '$q', function ($http, aut
      * When blog Url is passed, it returns blog Id
      * @param {*} blogName 
      */
-    var getBlogIdFromUrl = function(blogName){
-        if(!blogName){
+    var getBlogIdFromUrl = function (blogName) {
+        if (!blogName) {
             blogName = settings.defaultBlog;
         }
         blogName = new URL(blogName).origin;
-        var apiUrl = "https://www.googleapis.com/blogger/v3/blogs/byurl?key="+ k + "&url="+ blogName;
+        var apiUrl = "https://www.googleapis.com/blogger/v3/blogs/byurl?key=" + k + "&url=" + blogName;
         return apiUrl;
     }
 
 
-    var callBlogIdFromUrl = function(blogName){
+    var callBlogIdFromUrl = function (blogName) {
         var d = $q.defer();
-        if(!blogName){
+        if (!blogName) {
             blogName = settings.defaultBlog;
         }
         var reqUrl = getBlogIdFromUrl(blogName);
-        axios.get(reqUrl).then(function(obj){
+        axios.get(reqUrl).then(function (obj) {
             console.log(obj);
             d.resolve(obj);
-        }).catch(function(err){
+        }).catch(function (err) {
             console.log("ERROR ", err)
         })
         // $http.get(reqUrl).then(function (obj) {
@@ -119,35 +119,35 @@ app.service('service.util', ['$http', 'service.auth', '$q', function ($http, aut
         return imgArr;
     }
 
-    
 
-    function WpPost(title, images){
+
+    function WpPost(title, images) {
         this.title = title;
         this.images = images;
         this.cleanTitle = removeStopWords(title);
     }
 
-    WpPost.prototype.getImagesHtml = function(){
-        if(this.images){
+    WpPost.prototype.getImagesHtml = function () {
+        if (this.images) {
             var str = "<div id='postContainer'>";
             var title = this.title;
-            if(this.images.length > 0){
-                this.images.forEach(function(val, index){
+            if (this.images.length > 0) {
+                this.images.forEach(function (val, index) {
                     str += `<div class='picContainer'> <img src='${val}' alt='${title}' title='${title}' /></div>`
                 });
-                if(isDescriptionEnabled == true){
+                if (isDescriptionEnabled == true) {
                     str += `<div id='description'> ${title} - desipixer </div> <div id='descriptionText'> ${postDescription} </div>`;
                 }
-                if(isHiddenContentEnabled == true){
-                    var hContent = JSON.stringify(this.images.map(function(v){
+                if (isHiddenContentEnabled == true) {
+                    var hContent = JSON.stringify(this.images.map(function (v) {
                         try {
                             var x = new URL(v);
                             return x.href.replace(x.protocol, "")
-                        } catch(ex){
+                        } catch (ex) {
                             return '';
                         }
                     }));
-                    
+
                     str += `<div id='hContent' style='display:none'> ${hContent} </div>`;
                 }
                 str += "</div>";
@@ -170,7 +170,7 @@ app.service('service.util', ['$http', 'service.auth', '$q', function ($http, aut
             axios.get(apiUrl).then(
                 //SUCCESS FUNCTION
                 function (obj) {
-                   // console.log(obj.data);
+                    // console.log(obj.data);
                     var data = obj.data;
                     if (data) {
                         var items = data.items;
@@ -180,10 +180,10 @@ app.service('service.util', ['$http', 'service.auth', '$q', function ($http, aut
                             var title = cleanFileName(item.title);
                             var imgArr = filterImages(item.content);
                             if (imgArr.length > 0)
-                                imgArr.forEach(function(v, i){
-                                    if(v){
+                                imgArr.forEach(function (v, i) {
+                                    if (v) {
                                         var wpPost = new WpPost(title, [v]);
-                                        if(wpPost){
+                                        if (wpPost) {
                                             iArr = iArr.concat(wpPost);
                                         }
                                     }
@@ -212,39 +212,39 @@ app.service('service.util', ['$http', 'service.auth', '$q', function ($http, aut
         return deferred.promise;
     }
     var settings = {
-        id : '8286550106938870562',
-        startIndex : 1,
-        maxResults : 500,
-        totalItems : 500
+        id: '8286550106938870562',
+        startIndex: 1,
+        maxResults: 500,
+        totalItems: 500
     }
 
-    function FeedPost(title, images){
+    function FeedPost(title, images) {
         this.title = title;
         this.images = images
         this.cleanTitle = removeStopWords(this.title);
     }
 
-    FeedPost.prototype.getImagesHtml = function(){
-        if(this.images){
+    FeedPost.prototype.getImagesHtml = function () {
+        if (this.images) {
             var str = "<div id='postContainer'>";
             var title = this.title;
-            if(this.images.length > 0){
-                this.images.forEach(function(val, index){
+            if (this.images.length > 0) {
+                this.images.forEach(function (val, index) {
                     str += `<div class='picContainer'> <img src='${val}' alt='${title}' title='${title}' /></div>`
                 });
-                if(isDescriptionEnabled == true){
+                if (isDescriptionEnabled == true) {
                     str += `<div id='description'> ${title} - desipixer </div> <div id='descriptionText'> ${postDescription} </div>`;
                 }
-                if(isHiddenContentEnabled == true){
-                    var hContent = JSON.stringify(this.images.map(function(v){
+                if (isHiddenContentEnabled == true) {
+                    var hContent = JSON.stringify(this.images.map(function (v) {
                         try {
                             var x = new URL(v);
                             return x.href.replace(x.protocol, "")
-                        } catch(ex){
+                        } catch (ex) {
                             return '';
                         }
                     }));
-                    
+
                     str += `<div id='hContent' style='display:none'> ${hContent} </div>`;
                 }
                 str += "</div>";
@@ -268,10 +268,13 @@ app.service('service.util', ['$http', 'service.auth', '$q', function ($http, aut
         }
         var apiUrl = getBloggerApiUrl(id, startIndex, maxResults);
 
-        $.ajax({
-            url: apiUrl,
-            dataType: 'jsonp',
-            success: function (obj) {
+        // using superagent for calling JSON instead of jquery ajax.
+        superagent.get(apiUrl).end((err, res) => {
+            // check statuscode.
+            if (err) {
+                console.log("ERROR in superagent call >> ", err);
+            } else if (res.status == 200) {
+                var obj = res.body;
                 if (obj) {
                     try {
                         var entries = obj.feed.entry;
@@ -295,7 +298,7 @@ app.service('service.util', ['$http', 'service.auth', '$q', function ($http, aut
                         }
                         startIndex = startIndex + maxResults;
                         if (startIndex < totalItems) {
-                            getBlogFeedJSON(id, startIndex, maxResults, totalItems, arr);
+                            getBlogFeedJSON(id, startIndex, maxResults, totalItems, arr, def);
                         } else {
                             def.resolve(arr);
                         }
@@ -304,10 +307,6 @@ app.service('service.util', ['$http', 'service.auth', '$q', function ($http, aut
                         return arr;
                     }
                 }
-            },
-            error: function (err) {
-                console.log("ERROR >> " + err);
-                return arr;
             }
         });
         return def.promise;
@@ -319,7 +318,7 @@ app.service('service.util', ['$http', 'service.auth', '$q', function ($http, aut
      * @param {*} startIndex 
      * @param {*} maxResults 
      */
-    function getBloggerApiUrl(id = '8286550106938870562', startIndex = 1, maxResults = 500){
+    function getBloggerApiUrl(id = '8286550106938870562', startIndex = 1, maxResults = 500) {
         return `https://www.blogger.com/feeds/${id}/posts/default?start-index=${startIndex}&max-results=${maxResults}&alt=json`
     }
 
@@ -360,94 +359,94 @@ app.service('service.util', ['$http', 'service.auth', '$q', function ($http, aut
     /**
 		 * Cleans title Name and returns the title.
 		 */
-		function getCleanTitleName(link) {
-			var pathname = (new URL(link)).pathname;
-			var filename = pathname.split("/").pop();
-			filename = cleanFileName(filename);
-			filename = removeStopWords(filename);
-			return filename;
-		}
+    function getCleanTitleName(link) {
+        var pathname = (new URL(link)).pathname;
+        var filename = pathname.split("/").pop();
+        filename = cleanFileName(filename);
+        filename = removeStopWords(filename);
+        return filename;
+    }
 
-		function cleanFileName(str) {
-			//str = decodeURIComponent(str);
-			var suffix = "";
-			var suffixMatch = str.match(/(\.jpg)|(\.png)/g);
-			if (suffixMatch !== undefined && suffixMatch !== null) {
-				suffix = suffixMatch[0];
-			}
-			str = str.replace(/(\.jpg)|(\.png)/g, " ");
-			str = str.replace(/\W/g, " ");
-			str = str.replace(/\_/g, " ");
-			str = str.replace(/\s+/g, " ").trim();
-			return str;
-		}
-
-		function removeStopWords(string) {
-			var stopWords = ["Telugu", "Tamil", "Actress", "Acress", "CelebsNext", "Photoshoot", "Cinema", "Photos", "Photo", "Pictures", "Picture", "Tollywood", "Kollywood", "Movies", "Movie", "Latest", "Saree", "Gallery", "Dress", "Event", "Audio", "Stills", "Still", " hot ", "Navel", "Cleavage", "Boobs", "Exposing", "Desi ", "Heroin", "Images", "Wallpapers", "Wallpaper", "Cute", "Spicy", "New ", "Function", "Success Meet", "Teaser Launch", "Launch ", " Hot", "Press Meet", " Launch"];
-			var rExp;
-			stopWords.forEach(function (val, index) {
-				rExp = new RegExp(val, "gi");
-				string = string.replace(rExp, " ").trim();
-			});
-			string = string.replace(/\s+/g, " ").trim();
-			return string;
+    function cleanFileName(str) {
+        //str = decodeURIComponent(str);
+        var suffix = "";
+        var suffixMatch = str.match(/(\.jpg)|(\.png)/g);
+        if (suffixMatch !== undefined && suffixMatch !== null) {
+            suffix = suffixMatch[0];
         }
-        
-        function getCategories(){
-            return actressList;
-        }
+        str = str.replace(/(\.jpg)|(\.png)/g, " ");
+        str = str.replace(/\W/g, " ");
+        str = str.replace(/\_/g, " ");
+        str = str.replace(/\s+/g, " ").trim();
+        return str;
+    }
 
-        function getMatchingCategories(title){
-            var cat = _.filter(actressList, function(val){
-                if(title.indexOf(val) != -1){
-                    return val;
-                }
-            });
-            return cat;
-        }
+    function removeStopWords(string) {
+        var stopWords = ["Telugu", "Tamil", "Actress", "Acress", "CelebsNext", "Photoshoot", "Cinema", "Photos", "Photo", "Pictures", "Picture", "Tollywood", "Kollywood", "Movies", "Movie", "Latest", "Saree", "Gallery", "Dress", "Event", "Audio", "Stills", "Still", " hot ", "Navel", "Cleavage", "Boobs", "Exposing", "Desi ", "Heroin", "Images", "Wallpapers", "Wallpaper", "Cute", "Spicy", "New ", "Function", "Success Meet", "Teaser Launch", "Launch ", " Hot", "Press Meet", " Launch"];
+        var rExp;
+        stopWords.forEach(function (val, index) {
+            rExp = new RegExp(val, "gi");
+            string = string.replace(rExp, " ").trim();
+        });
+        string = string.replace(/\s+/g, " ").trim();
+        return string;
+    }
 
-        var getMatchingCategories = function(title, data){
-            data = data || actressList;
-            var cat = _.filter(data, function(val){
+    function getCategories() {
+        return actressList;
+    }
 
-                if(title.toLowerCase().indexOf(val.toLowerCase()) != -1){
-                    return val;
-                }
-            });
-            if(cat){
-                if(cat.length > 0){
-                    cat = [cat[cat.length - 1]];
-                }
+    function getMatchingCategories(title) {
+        var cat = _.filter(actressList, function (val) {
+            if (title.indexOf(val) != -1) {
+                return val;
             }
-            return cat;
-        }
+        });
+        return cat;
+    }
 
-        var compareTitle = function (a, b) {
-            if (a.cleanTitle < b.cleanTitle)
-                return -1;
-            if (a.cleanTitle > b.cleanTitle)
-                return 1;
-            return 0;
-        }
+    var getMatchingCategories = function (title, data) {
+        data = data || actressList;
+        var cat = _.filter(data, function (val) {
 
-        function titleSort(arr){
-            return arr.sort(compareTitle)
+            if (title.toLowerCase().indexOf(val.toLowerCase()) != -1) {
+                return val;
+            }
+        });
+        if (cat) {
+            if (cat.length > 0) {
+                cat = [cat[cat.length - 1]];
+            }
         }
+        return cat;
+    }
 
-        function hidePage(){
-            var title = document.title;
-            var dummyPageTitle = "Worksheet 02";
-            var dummyPageContent = "";
-            document.title = dummyPageTitle;
-            $('#hidePage').toggleClass('fadeMe');
-        }
+    var compareTitle = function (a, b) {
+        if (a.cleanTitle < b.cleanTitle)
+            return -1;
+        if (a.cleanTitle > b.cleanTitle)
+            return 1;
+        return 0;
+    }
+
+    function titleSort(arr) {
+        return arr.sort(compareTitle)
+    }
+
+    function hidePage() {
+        var title = document.title;
+        var dummyPageTitle = "Worksheet 02";
+        var dummyPageContent = "";
+        document.title = dummyPageTitle;
+        $('#hidePage').toggleClass('fadeMe');
+    }
 
     /**
      * Process array of blog objects and return the final array
      * @param {*} entry 
      */
-    function processBlogEntires(entry){
-        if(!entry || !(entry instanceof Array) || entry.length == 0){
+    function processBlogEntires(entry) {
+        if (!entry || !(entry instanceof Array) || entry.length == 0) {
             return [];
         }
         var processedArray = entry.map((obj) => {
@@ -464,15 +463,15 @@ app.service('service.util', ['$http', 'service.auth', '$q', function ($http, aut
     return {
         getBlogJSON: getBlogJSON,
         downloadFileAsJson: downloadFileAsJson,
-        callBlogIdFromUrl : callBlogIdFromUrl,
-        getCategories : getCategories,
-        imageCount : this.imageCount,
-        getMatchingCategories : getMatchingCategories,
-        postContent : myPostContent,
-        titleSort : titleSort,
-        hidePage : hidePage,
-        processBlogEntires : processBlogEntires,
-        getBlogFeedJSON : getBlogFeedJSON
+        callBlogIdFromUrl: callBlogIdFromUrl,
+        getCategories: getCategories,
+        imageCount: this.imageCount,
+        getMatchingCategories: getMatchingCategories,
+        postContent: myPostContent,
+        titleSort: titleSort,
+        hidePage: hidePage,
+        processBlogEntires: processBlogEntires,
+        getBlogFeedJSON: getBlogFeedJSON
     }
 
 }]);
@@ -485,8 +484,14 @@ app.controller('myCtrl', ['$scope', '$http', 'service.util', '$q', 'service.auth
     $scope.showOutput = true;
     $scope.getSite = function () {
         if($scope.siteId){
+            $('#fetchStatus').show();
             var siteId = $scope.siteId;
+            $scope.status = "Processing...";
+            $scope.statusColor = "blue";
             serviceUtil.getBlogFeedJSON(siteId, 1, 500, $scope.totalItems, []).then(function(data){
+                $scope.status = "COMPLETED";
+                $scope.statusColor = "green";
+                $('#fetchStatus').fadeOut(3000);
                 $scope.postToWp(data);
             });
         }
@@ -522,8 +527,8 @@ app.controller('myCtrl', ['$scope', '$http', 'service.util', '$q', 'service.auth
 
     }
 
-    var wpBlogId = 0;
-    var bearerToken = "";
+    var wpBlogId = 139747387;
+    var bearerToken = "h0qE3ZX1z7CZRusMAB$^@HD*ZjicLeN!Yu$OqKVzzn%fswejn66U*r9kUH&fpk5q";
 
     //If user switches the config file, populate siteList with respective config
     $scope.onConfigChanged = function(){
