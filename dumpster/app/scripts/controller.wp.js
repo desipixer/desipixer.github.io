@@ -89,7 +89,7 @@ app.controller('dpWpCtrl', ['$scope', 'service.sites', 'service.util', 'settings
 				arr.forEach(function(value, index){
 					var imgTitle = getCleanTitleName(value);
 					var src = value;
-					str += `<div id='postContainer'><h2> ${imgTitle} </h2> <div id='picContainer'><img src='${src}' title='${imgTitle}' alt='photo' /></div>`;
+					str += `<div id='postContainer'><h2> ${imgTitle} </h2> <div id='picContainer'><img src='${src}' title='${imgTitle}' alt='photo desipixer' /></div></div>`;
 				});
 				return str;
 			}
