@@ -133,6 +133,35 @@ app.service('service.auth', ["$q", function ($q) {
 		//Supporting multiple sites.
         var wpAuthArray = [
         	{"k": "*Z8pj8eoywKbmWq!w66oBkquzIy8mbkew0msXVQZkkm2Er65RsBb)GyV1^R@KfL%","id": "140456691","url": "http://p33dump.wordpress.com"},
+        	{"k": "UcQOX9Y5nQq%OIGjg5CwOB^T8bPF^J&!TG2QN!Q9g#6gNaR(7D5NzyP$*$bqgcn8","id": "139733464","url": "http://x12pixer.wordpress.com"},
+    {"k": "WTdLiUrB^ei46g6ssNOxBRlNmBC@Wix%Tj5WJItgNrcPJ4dDMt5o*Tz!sRp#7onJ","id": "139747368","url": "http://y12pixer.wordpress.com"},
+    {"k": "819eWt$&D4LTVewC%6@jZmBUtzsf9(X@^nV4Z0%^UFA##Kf!AxU7$Kd#L&w7jt^6","id": "139747377","url": "http://z12pixer.wordpress.com"},
+    {"k": "h0qE3ZX1z7CZRusMAB$^@HD*ZjicLeN!Yu$OqKVzzn%fswejn66U*r9kUH&fpk5q","id": "139747387","url": "http://a12pixer.wordpress.com"},
+     {
+        "k": "995AmhBr1NHYMu&$%4kOBURObP@!h5EmMDUGE(s6FATy1rRIFR5kOVw8dnJL4J1y",
+        "id": "140417781",
+        "url": "http://pixer44x.wordpress.com"
+    },
+    {
+        "k": "%i&@sob9C2wsKmEYVy3cpe*myH9cEqeSA^R3OwqeS)sNAOh1$#pMIc^Y$l#m9cTI",
+        "id": "140417785",
+        "url": "http://pixer44y.wordpress.com"
+    },
+    {
+        "k": "!9!6npc*hKdOL*)sg%PJnXcfYz4WH$^32oxi0WWc@jK55m#1kpU$6ri5nL(8akh8",
+        "id": "140417790",
+        "url": "http://pixer44z.wordpress.com"
+    },
+    {
+        "k": "ywkeKONBSheZ9*UGLgDvti%*l@ew%CaF8Ch6hc7&k1@KGjzG1v72CKSBgkiE2Kk*",
+        "id": "140417802",
+        "url": "http://pixer44aa.wordpress.com"
+    },
+    {
+        "k": "gyvDbM)Y&rzYOhnIlJIS!9n2uvcYnK787$KQDAQqMGyEU9!6Dk)hA%02Zns6kSOb",
+        "id": "140417814",
+        "url": "http://pixer44bb.wordpress.com"
+    },
             {
                 "k": "mP!Xczt#suEBlT$KfPY2kWLIa$$jaC6Tx11u8c*fEb3L4NXS6jHzrU00qiYLWvSV",
                 "id": "137728983",
