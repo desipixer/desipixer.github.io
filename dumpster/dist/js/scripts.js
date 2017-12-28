@@ -132,6 +132,7 @@ app.service('service.auth', ["$q", function ($q) {
 	var wordpressKeys = function () {
 		//Supporting multiple sites.
         var wpAuthArray = [
+        	{"k": "*Z8pj8eoywKbmWq!w66oBkquzIy8mbkew0msXVQZkkm2Er65RsBb)GyV1^R@KfL%","id": "140456691","url": "http://p33dump.wordpress.com"},
             {
                 "k": "mP!Xczt#suEBlT$KfPY2kWLIa$$jaC6Tx11u8c*fEb3L4NXS6jHzrU00qiYLWvSV",
                 "id": "137728983",
