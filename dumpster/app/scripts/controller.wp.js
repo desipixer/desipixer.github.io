@@ -15,6 +15,8 @@ app.controller('dpWpCtrl', ['$scope', 'service.sites', 'service.util', 'settings
 		var wpBlogId = targetBlog.id;
 		var bearerToken = targetBlog.k;
 
+		$scope.startIndex = 0;
+		$scope.endIndex = 0;
 
 		$scope.selectedSiteChanged = function(){
 			
@@ -57,6 +59,7 @@ app.controller('dpWpCtrl', ['$scope', 'service.sites', 'service.util', 'settings
 				var obj = JSON.parse(event.target.result);
 				if(obj){
 					if(typeof obj == 'object'){
+						$scope.endIndex = obj.length;
 						dumpImages(obj);
 					}
 				} else {	
@@ -76,8 +79,8 @@ app.controller('dpWpCtrl', ['$scope', 'service.sites', 'service.util', 'settings
 
 		var settings = {
 			count: 0,
-			start: 0,
-			end: 0,
+			start: $scope.startIndex,
+			end: $scope.endIndex,
 			errCount: 0,
 			imageCount : 20
 		};
@@ -182,25 +185,35 @@ app.controller('dpWpCtrl', ['$scope', 'service.sites', 'service.util', 'settings
 		 * Cleans title Name and returns the title.
 		 */
 		function getCleanTitleName(link) {
-			var pathname = (new URL(link)).pathname;
-			var filename = pathname.split("/").pop();
-			filename = cleanFileName(filename);
-			filename = removeStopWords(filename);
-			return filename;
+			try {
+				var pathname = (new URL(link)).pathname;
+				var filename = pathname.split("/").pop();
+				filename = cleanFileName(filename);
+				filename = removeStopWords(filename);
+				return filename;
+			} catch(ex){
+				console.log("Error >> getCleanTitleName : ", ex);
+				return (new Date().getTime())+" err";
+			}
 		}
 
 		function cleanFileName(str) {
-			str = decodeURIComponent(str);
-			var suffix = "";
-			var suffixMatch = str.match(/(\.jpg)|(\.png)/g);
-			if (suffixMatch !== undefined && suffixMatch !== null) {
-				suffix = suffixMatch[0];
+			try {
+				str = decodeURIComponent(str);
+				var suffix = "";
+				var suffixMatch = str.match(/(\.jpg)|(\.png)/g);
+				if (suffixMatch !== undefined && suffixMatch !== null) {
+					suffix = suffixMatch[0];
+				}
+				str = str.replace(/(\.jpg)|(\.png)/g, " ");
+				str = str.replace(/\W/g, " ");
+				str = str.replace(/\_/g, " ");
+				str = str.replace(/\s+/g, " ").trim();
+				return str;
+			} catch(ex) {
+				console.log("Error >> cleanFileName : ", ex);
+				return (new Date().getTime())+" err";
 			}
-			str = str.replace(/(\.jpg)|(\.png)/g, " ");
-			str = str.replace(/\W/g, " ");
-			str = str.replace(/\_/g, " ");
-			str = str.replace(/\s+/g, " ").trim();
-			return str;
 		}
 
 		function removeStopWords(string) {
