@@ -498,6 +498,8 @@ app.controller('myCtrl', ['$scope', '$http', 'service.util', '$q', 'service.auth
     $scope.startIndex = 0;
     $scope.endIndex = 0;
     
+    $scope.batchSize = 5;
+
     var settings = {
         count: 0,
         start: $scope.startIndex,
@@ -539,7 +541,7 @@ app.controller('myCtrl', ['$scope', '$http', 'service.util', '$q', 'service.auth
             var start = settings.start || 0;
             var end = settings.end || 0;
             var errCount = settings.errCount || 0;
-            var imageCount = settings.imageCount || 1;
+            var imageCount = parseInt($scope.batchSize) || 1;
             end = arr.length;
             postDumpImages(arr, start, end, count, errCount, imageCount);
         } else {
