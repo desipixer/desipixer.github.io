@@ -153,14 +153,7 @@ app.controller('myCtrl', ['$scope', '$http', 'service.util', '$q', 'service.auth
     };
 
     $scope.configSettings = [
-        "settings8.json",
-        "settings7.json",
-        "settings6.json",
-        "settings5.json",
-        "settings4.json",
-        "settings3.json",
-        "settings.json",
-        "settings2.json"
+        "settings.json"
     ];
 
     var postArr = [];
@@ -369,7 +362,7 @@ app.controller('myCtrl', ['$scope', '$http', 'service.util', '$q', 'service.auth
     /**
      * Gets wpKeys from config files and populates array
      */
-    fetch('config/settings8.json').then(function (response) {
+    fetch('config/settings.json').then(function (response) {
         return response.json();
     }).then(function (data) {
         if (typeof data == "string") {
