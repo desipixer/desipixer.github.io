@@ -599,7 +599,7 @@ app.controller('myCtrl', ['$scope', '$http', 'service.util', '$q', 'service.auth
             console.log("data : ", data);
             console.log("COUNT : " + ++count);
             $scope.wpPostResponse = data;
-
+            $scope.responseUrl = data.URL || "";
 
             postDumpImages(arr, start + imageCount, end, count, errCount, imageCount);
 
