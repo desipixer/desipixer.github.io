@@ -10,8 +10,8 @@ app.controller('myCtrl', ['$scope', '$http', 'service.util', '$q', 'service.auth
 
     var settings = {
         count: 0,
-        start: $scope.startIndex,
-        end: $scope.endIndex,
+        start: parseInt($scope.startIndex),
+        end: parseInt($scope.endIndex),
         errCount: 0,
         imageCount: 1
     };
@@ -46,8 +46,8 @@ app.controller('myCtrl', ['$scope', '$http', 'service.util', '$q', 'service.auth
     function dumpImages(arr) {
         if (arr) {
             var count = settings.count || 0;
-            var start = $scope.startIndex || 0;
-            var end = $scope.endIndex || 0;
+            var start = parseInt($scope.startIndex) || 0;
+            var end = parseInt($scope.endIndex) || 0;
             var errCount = settings.errCount || 0;
             var imageCount = parseInt($scope.batchSize) || 1;
             end = arr.length;
