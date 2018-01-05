@@ -330,43 +330,6 @@ app.service('service.util', ['$http', 'service.auth', '$q', function ($http, aut
         saveData(data, fileName);
     }
 
-
-    /**
-		 * Cleans title Name and returns the title.
-		 */
-    function getCleanTitleName(link) {
-        var pathname = (new URL(link)).pathname;
-        var filename = pathname.split("/").pop();
-        filename = cleanFileName(filename);
-        filename = removeStopWords(filename);
-        return filename;
-    }
-
-    function cleanFileName(str) {
-        //str = decodeURIComponent(str);
-        var suffix = "";
-        var suffixMatch = str.match(/(\.jpg)|(\.png)/g);
-        if (suffixMatch !== undefined && suffixMatch !== null) {
-            suffix = suffixMatch[0];
-        }
-        str = str.replace(/(\.jpg)|(\.png)/g, " ");
-        str = str.replace(/\W/g, " ");
-        str = str.replace(/\_/g, " ");
-        str = str.replace(/\s+/g, " ").trim();
-        return str;
-    }
-
-    function removeStopWords(string) {
-        var stopWords = ["Telugu", "Tamil", "Actress", "Acress", "CelebsNext", "Photoshoot", "Cinema", "Photos", "Photo", "Pictures", "Picture", "Tollywood", "Kollywood", "Movies", "Movie", "Latest", "Saree", "Gallery", "Dress", "Event", "Audio", "Stills", "Still", " hot ", "Navel", "Cleavage", "Boobs", "Exposing", "Desi ", "Heroin", "Images", "Wallpapers", "Wallpaper", "Cute", "Spicy", "New ", "Function", "Success Meet", "Teaser Launch", "Launch ", " Hot", "Press Meet", " Launch"];
-        var rExp;
-        stopWords.forEach(function (val, index) {
-            rExp = new RegExp(val, "gi");
-            string = string.replace(rExp, " ").trim();
-        });
-        string = string.replace(/\s+/g, " ").trim();
-        return string;
-    }
-
     function getCategories() {
         return actressList;
     }
@@ -416,6 +379,53 @@ app.service('service.util', ['$http', 'service.auth', '$q', function ($http, aut
         $('#hidePage').toggleClass('fadeMe');
     }
 
+
+     /**
+		 * Cleans title Name and returns the title.
+		 */
+		function getCleanTitleName(link) {
+			try {
+				var pathname = (new URL(link)).pathname;
+				var filename = pathname.split("/").pop();
+				filename = cleanFileName(filename);
+				filename = removeStopWords(filename);
+				return filename;
+			} catch(ex){
+				console.log("Error >> getCleanTitleName : ", ex);
+				return (new Date().getTime())+"-untitled-";
+			}
+        }
+        
+        function cleanFileName(str) {
+			try {
+				str = decodeURIComponent(str);
+				var suffix = "";
+				var suffixMatch = str.match(/(\.jpg)|(\.png)/g);
+				if (suffixMatch !== undefined && suffixMatch !== null) {
+					suffix = suffixMatch[0];
+				}
+				str = str.replace(/(\.jpg)|(\.png)/g, " ");
+				str = str.replace(/\W/g, " ");
+				str = str.replace(/\_/g, " ");
+				str = str.replace(/\s+/g, " ").trim();
+				return str;
+			} catch(ex) {
+				console.log("Error >> cleanFileName : ", ex);
+				return (new Date().getTime())+" err";
+			}
+        }
+        
+        function removeStopWords(string) {
+			var stopWords = ["Telugu", "Tamil", "Actress", "Acress", "CelebsNext", "Photoshoot", "Cinema", "Photos", "Photo", "Pictures", "Picture", "Tollywood", "Kollywood", "Movies", "Movie", "Latest", "Saree", "Gallery", "Dress", "Event", "Audio", "Stills", "Still", " hot ", "Navel", "Cleavage", "Boobs", "Exposing", "Desi ", "Heroin", "Images", "Wallpapers", "Wallpaper", "Cute", "Spicy", "New ", "Function", "Success Meet", "Teaser Launch", "Launch ", " Hot", "Press Meet", " Launch"];
+			var rExp;
+			stopWords.forEach(function (val, index) {
+				rExp = new RegExp(val, "gi");
+				string = string.replace(rExp, " ").trim();
+			});
+			string = string.replace(/\s+/g, " ").trim();
+			return string;
+		}
+
     /**
      * Process array of blog objects and return the final array
      * @param {*} entry 
@@ -446,7 +456,9 @@ app.service('service.util', ['$http', 'service.auth', '$q', function ($http, aut
         titleSort: titleSort,
         hidePage: hidePage,
         processBlogEntires: processBlogEntires,
-        getBlogFeedJSON: getBlogFeedJSON
+        getBlogFeedJSON: getBlogFeedJSON,
+        getCleanTitleName : getCleanTitleName,
+        cleanFileName : cleanFileName
     }
 
 }]);

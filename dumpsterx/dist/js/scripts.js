@@ -26,18 +26,37 @@ app.service('service.auth', function () {
 /**
  * Takes care of all wordpress services.
  */
-app.service('service.wp', function(){
+app.service('service.wp', ['service.util', function(utilService){
 
 
     function getPostWpUrl(wpBlogId = ''){
         return `https://public-api.wordpress.com/rest/v1/sites/${wpBlogId}/posts/new`;
     }
 
-    return {
-        getPostWpUrl : getPostWpUrl
+    /**
+     * Generates HTML for Wordpress POST.
+     * It cleans url for title and generates HTML with div tab.
+     * @param {*} arr 
+     */
+    function generatePostHtml(arr) {
+        if (arr) {
+            var str = "";
+            arr.forEach(function (value, index) {
+                var imgTitle = utilService.getCleanTitleName(value);
+                var src = value;
+                str += `<div id='postContainer'><h2> ${imgTitle} </h2> <div id='picContainer'><img src='${src}' title='${imgTitle}' alt='photo desipixer' /></div></div>`;
+            });
+            return str;
+        }
+        return "";
     }
 
-});
+    return {
+        getPostWpUrl : getPostWpUrl,
+        generatePostHtml : generatePostHtml
+    }
+
+}]);
 app.service('service.util', ['$http', 'service.auth', '$q', function ($http, authService, $q) {
 
     var actressList = [];
@@ -370,43 +389,6 @@ app.service('service.util', ['$http', 'service.auth', '$q', function ($http, aut
         saveData(data, fileName);
     }
 
-
-    /**
-		 * Cleans title Name and returns the title.
-		 */
-    function getCleanTitleName(link) {
-        var pathname = (new URL(link)).pathname;
-        var filename = pathname.split("/").pop();
-        filename = cleanFileName(filename);
-        filename = removeStopWords(filename);
-        return filename;
-    }
-
-    function cleanFileName(str) {
-        //str = decodeURIComponent(str);
-        var suffix = "";
-        var suffixMatch = str.match(/(\.jpg)|(\.png)/g);
-        if (suffixMatch !== undefined && suffixMatch !== null) {
-            suffix = suffixMatch[0];
-        }
-        str = str.replace(/(\.jpg)|(\.png)/g, " ");
-        str = str.replace(/\W/g, " ");
-        str = str.replace(/\_/g, " ");
-        str = str.replace(/\s+/g, " ").trim();
-        return str;
-    }
-
-    function removeStopWords(string) {
-        var stopWords = ["Telugu", "Tamil", "Actress", "Acress", "CelebsNext", "Photoshoot", "Cinema", "Photos", "Photo", "Pictures", "Picture", "Tollywood", "Kollywood", "Movies", "Movie", "Latest", "Saree", "Gallery", "Dress", "Event", "Audio", "Stills", "Still", " hot ", "Navel", "Cleavage", "Boobs", "Exposing", "Desi ", "Heroin", "Images", "Wallpapers", "Wallpaper", "Cute", "Spicy", "New ", "Function", "Success Meet", "Teaser Launch", "Launch ", " Hot", "Press Meet", " Launch"];
-        var rExp;
-        stopWords.forEach(function (val, index) {
-            rExp = new RegExp(val, "gi");
-            string = string.replace(rExp, " ").trim();
-        });
-        string = string.replace(/\s+/g, " ").trim();
-        return string;
-    }
-
     function getCategories() {
         return actressList;
     }
@@ -456,6 +438,53 @@ app.service('service.util', ['$http', 'service.auth', '$q', function ($http, aut
         $('#hidePage').toggleClass('fadeMe');
     }
 
+
+     /**
+		 * Cleans title Name and returns the title.
+		 */
+		function getCleanTitleName(link) {
+			try {
+				var pathname = (new URL(link)).pathname;
+				var filename = pathname.split("/").pop();
+				filename = cleanFileName(filename);
+				filename = removeStopWords(filename);
+				return filename;
+			} catch(ex){
+				console.log("Error >> getCleanTitleName : ", ex);
+				return (new Date().getTime())+"-untitled-";
+			}
+        }
+        
+        function cleanFileName(str) {
+			try {
+				str = decodeURIComponent(str);
+				var suffix = "";
+				var suffixMatch = str.match(/(\.jpg)|(\.png)/g);
+				if (suffixMatch !== undefined && suffixMatch !== null) {
+					suffix = suffixMatch[0];
+				}
+				str = str.replace(/(\.jpg)|(\.png)/g, " ");
+				str = str.replace(/\W/g, " ");
+				str = str.replace(/\_/g, " ");
+				str = str.replace(/\s+/g, " ").trim();
+				return str;
+			} catch(ex) {
+				console.log("Error >> cleanFileName : ", ex);
+				return (new Date().getTime())+" err";
+			}
+        }
+        
+        function removeStopWords(string) {
+			var stopWords = ["Telugu", "Tamil", "Actress", "Acress", "CelebsNext", "Photoshoot", "Cinema", "Photos", "Photo", "Pictures", "Picture", "Tollywood", "Kollywood", "Movies", "Movie", "Latest", "Saree", "Gallery", "Dress", "Event", "Audio", "Stills", "Still", " hot ", "Navel", "Cleavage", "Boobs", "Exposing", "Desi ", "Heroin", "Images", "Wallpapers", "Wallpaper", "Cute", "Spicy", "New ", "Function", "Success Meet", "Teaser Launch", "Launch ", " Hot", "Press Meet", " Launch"];
+			var rExp;
+			stopWords.forEach(function (val, index) {
+				rExp = new RegExp(val, "gi");
+				string = string.replace(rExp, " ").trim();
+			});
+			string = string.replace(/\s+/g, " ").trim();
+			return string;
+		}
+
     /**
      * Process array of blog objects and return the final array
      * @param {*} entry 
@@ -486,7 +515,9 @@ app.service('service.util', ['$http', 'service.auth', '$q', function ($http, aut
         titleSort: titleSort,
         hidePage: hidePage,
         processBlogEntires: processBlogEntires,
-        getBlogFeedJSON: getBlogFeedJSON
+        getBlogFeedJSON: getBlogFeedJSON,
+        getCleanTitleName : getCleanTitleName,
+        cleanFileName : cleanFileName
     }
 
 }]);
@@ -497,7 +528,7 @@ app.controller('myCtrl', ['$scope', '$http', 'service.util', '$q', 'service.auth
 
     $scope.startIndex = 0;
     $scope.endIndex = 0;
-    
+
     $scope.batchSize = 5;
 
     var settings = {
@@ -509,7 +540,6 @@ app.controller('myCtrl', ['$scope', '$http', 'service.util', '$q', 'service.auth
     };
 
     $scope.showOutput = true;
-    
 
     $scope.postJson = function () {
         var el = document.getElementById('uploadFile');
@@ -517,7 +547,6 @@ app.controller('myCtrl', ['$scope', '$http', 'service.util', '$q', 'service.auth
         var event = new CustomEvent('change', onChange);
         el.dispatchEvent(event);
     }
-
 
     /**
 		 * Function for file upload
@@ -533,32 +562,21 @@ app.controller('myCtrl', ['$scope', '$http', 'service.util', '$q', 'service.auth
         reader.readAsText(event.target.files[0]);
     }
 
-
-
     function dumpImages(arr) {
         if (arr) {
-            var count = settings.count || 0;
-            var start = parseInt($scope.startIndex) || 0;
-            var end = parseInt($scope.endIndex) || 0;
-            var errCount = settings.errCount || 0;
-            var imageCount = parseInt($scope.batchSize) || 1;
-            end = arr.length;
-            postDumpImages(arr, start, end, count, errCount, imageCount);
+            try {
+                var count = settings.count || 0;
+                var start = parseInt($scope.startIndex) || 0;
+                var end = parseInt($scope.endIndex) || 0;
+                var errCount = settings.errCount || 0;
+                var imageCount = parseInt($scope.batchSize) || 1;
+                end = arr.length;
+                postDumpImages(arr, start, end, count, errCount, imageCount);
+            } catch(ex){
+                console.log("ERROR >> ex ", ex);
+            }
         } else {
             console.log("ERROR >> Invalid array");
-        }
-    }
-
-
-    var generateDumpHtml = function(arr){
-        if(arr){
-            var str = "";
-            arr.forEach(function(value, index){
-                var imgTitle = getCleanTitleName(value);
-                var src = value;
-                str += `<div id='postContainer'><h2> ${imgTitle} </h2> <div id='picContainer'><img src='${src}' title='${imgTitle}' alt='photo desipixer' /></div></div>`;
-            });
-            return str;
         }
     }
 
@@ -581,8 +599,8 @@ app.controller('myCtrl', ['$scope', '$http', 'service.util', '$q', 'service.auth
         catch (e) {
             console.log("ERROR >> array exception : ", e)
         }
-        var title = getCleanTitleName(arr[start]) + " dump " + count;
-        var content = generateDumpHtml(tempArr);
+        var title = serviceUtil.getCleanTitleName(arr[start]) + " dump " + count;
+        var content = wpService.generatePostHtml(tempArr);
 
 
         $http({
@@ -651,26 +669,6 @@ app.controller('myCtrl', ['$scope', '$http', 'service.util', '$q', 'service.auth
 
     var postArr = [];
 
-    $scope.postToWp = function (data) {
-        if (data) {
-            var startIndex = $scope.startIndex || 0;
-            var endIndex = $scope.endIndex || data.length;
-            var count = 0;
-            var errCount = 0;
-            console.log(`startIndex:${startIndex}, endIndex:${endIndex} `);
-            if ($scope.sortByName == true) {
-                postArr = serviceUtil.titleSort(data);
-            } else {
-                postArr = data;
-            }
-
-            postImages(startIndex, endIndex, count, errCount);
-        } else {
-            console.log("ERROR >> data is null or empty");
-        }
-        //console.log(data);
-
-    }
 
     var wpBlogId = 139747387;
     var bearerToken = "h0qE3ZX1z7CZRusMAB$^@HD*ZjicLeN!Yu$OqKVzzn%fswejn66U*r9kUH&fpk5q";
@@ -687,52 +685,6 @@ app.controller('myCtrl', ['$scope', '$http', 'service.util', '$q', 'service.auth
             $scope.$applyAsync();
         });
     }
-
-    /**
-		 * Cleans title Name and returns the title.
-		 */
-		function getCleanTitleName(link) {
-			try {
-				var pathname = (new URL(link)).pathname;
-				var filename = pathname.split("/").pop();
-				filename = cleanFileName(filename);
-				filename = removeStopWords(filename);
-				return filename;
-			} catch(ex){
-				console.log("Error >> getCleanTitleName : ", ex);
-				return (new Date().getTime())+" err";
-			}
-        }
-        
-        function cleanFileName(str) {
-			try {
-				str = decodeURIComponent(str);
-				var suffix = "";
-				var suffixMatch = str.match(/(\.jpg)|(\.png)/g);
-				if (suffixMatch !== undefined && suffixMatch !== null) {
-					suffix = suffixMatch[0];
-				}
-				str = str.replace(/(\.jpg)|(\.png)/g, " ");
-				str = str.replace(/\W/g, " ");
-				str = str.replace(/\_/g, " ");
-				str = str.replace(/\s+/g, " ").trim();
-				return str;
-			} catch(ex) {
-				console.log("Error >> cleanFileName : ", ex);
-				return (new Date().getTime())+" err";
-			}
-        }
-        
-        function removeStopWords(string) {
-			var stopWords = ["Telugu", "Tamil", "Actress", "Acress", "CelebsNext", "Photoshoot", "Cinema", "Photos", "Photo", "Pictures", "Picture", "Tollywood", "Kollywood", "Movies", "Movie", "Latest", "Saree", "Gallery", "Dress", "Event", "Audio", "Stills", "Still", " hot ", "Navel", "Cleavage", "Boobs", "Exposing", "Desi ", "Heroin", "Images", "Wallpapers", "Wallpaper", "Cute", "Spicy", "New ", "Function", "Success Meet", "Teaser Launch", "Launch ", " Hot", "Press Meet", " Launch"];
-			var rExp;
-			stopWords.forEach(function (val, index) {
-				rExp = new RegExp(val, "gi");
-				string = string.replace(rExp, " ").trim();
-			});
-			string = string.replace(/\s+/g, " ").trim();
-			return string;
-		}
 
     $scope.selectedSiteChanged = function () {
 
@@ -767,61 +719,6 @@ app.controller('myCtrl', ['$scope', '$http', 'service.util', '$q', 'service.auth
             })
         }
 
-    }
-
-
-    /**
-		 * Iterates through the array and post it
-		 * @param {*} arr 
-		 * @param {*} start 
-		 * @param {*} end 
-		 * @param {*} count 
-		 */
-    function postImages(start, end, count, errCount) {
-        console.log("start:end:count:errCount", start, end, count, errCount);
-        $scope.responseObj = JSON.stringify({
-            "start": start,
-            "end": end,
-            "count": count,
-            "errCount": errCount
-        });
-        if (start > end) {
-            return;
-        }
-        if (postArr[start]) {
-            var title = postArr[start].title + " - desipixer";
-            var content = postArr[start].getImagesHtml();
-            var categories = serviceUtil.getMatchingCategories(title);
-
-            /** POST FUNCTION EXECUTES HERE */
-            $http({
-                method: 'POST',
-                url: "https://public-api.wordpress.com/rest/v1/sites/" + wpBlogId + "/posts/new",
-                data: {
-                    title: title,
-                    content: content,
-                    categories: categories,
-                    tags: categories
-                },
-                headers: {
-                    "Authorization": "Bearer " + bearerToken
-                }
-            }).success(function (data) {
-                console.log("COUNT : " + ++count);
-                $scope.responseUrl = data.URL || "";
-                $scope.postContent = vkbeautify.json(JSON.stringify(data), 4);
-                //Post next from the array
-                postImages(++start, end, count, errCount);
-
-            }).error(function (err) {
-                if (errCount > 20) {
-                    return;
-                }
-                console.log("ERROR >> " + err);
-                console.log("COUNT : " + ++count);
-                postImages(++start, end, count, ++errCount);
-            })
-        }
     }
 
 
