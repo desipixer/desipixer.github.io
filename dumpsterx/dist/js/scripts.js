@@ -613,7 +613,7 @@ app.controller('myCtrl', ['$scope', '$http', 'service.util', '$q', 'service.auth
                 siteUrl = $scope.postSiteList.filter(function (obj) {
                     return obj.id == wpBlogId;
                 })[0].url;
-                console.log("RANDOMIZED : ", wpBlogId, bearerToken, siteUrl);
+                //console.log("RANDOMIZED : ", wpBlogId, bearerToken, siteUrl);
             } catch (ex) {
                 console.log("EXCEPTION : ", ex)
             }
