@@ -79,6 +79,22 @@ app.controller('myCtrl', ['$scope', '$http', 'service.util', '$q', 'service.auth
         var title = serviceUtil.getCleanTitleName(arr[start]) + " dump " + count;
         var content = wpService.generatePostHtml(tempArr);
 
+        //if randomize option is selected, then select on all array items.
+        if ($scope.randomPoster == true) {
+            try {
+                // if randomize option is selected.
+                var arrLength = $scope.postSiteList.length;
+                var index = Math.floor(Math.random() * arrLength)
+                var bearerToken = $scope.postSiteList[index].k;
+                var wpBlogId = $scope.postSiteList[index].id;
+                siteUrl = $scope.postSiteList.filter(function (obj) {
+                    return obj.id == wpBlogId;
+                })[0].url;
+                console.log("RANDOMIZED : ", wpBlogId, bearerToken, siteUrl);
+            } catch (ex) {
+                console.log("EXCEPTION : ", ex)
+            }
+        }
 
         $http({
             method: 'POST',
@@ -140,6 +156,7 @@ app.controller('myCtrl', ['$scope', '$http', 'service.util', '$q', 'service.auth
     };
 
     $scope.configSettings = [
+        "settings4.json",
         "settings3.json",
         "settings.json",
         "settings2.json"
@@ -174,6 +191,9 @@ app.controller('myCtrl', ['$scope', '$http', 'service.util', '$q', 'service.auth
             bearerToken = temparr[0].k;
             wpBlogId = temparr[0].id;
         }
+
+        
+        
 
         //fetch post count of the selected site.
         if (siteUrl) {
