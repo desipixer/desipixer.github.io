@@ -707,11 +707,13 @@ app.service('authUtil', function () {
         return k.k;
     }
 
-    var wp = Object.freeze({
-        t: ")gwKcj295LmQGMLpKK34uP$o5p%M7T2g(7wm7l3OxQI6KAW8LSY5D3k2@DpwBRQ)",
-        id: "135975188",
-        u: "http://pixermaster.wordpress.com"
-    });
+    var wp = Object.freeze(
+        {
+            "t": "PncPyS9JulhmQn5B)ZEdFFh$Nz2Eyfz%p3bG%di4kym*Yi66*or#06hxMURl9u4o",
+            "id": "144185781",
+            "u": "http://logmasters.wordpress.com"
+        }
+    );
 
     var getToken = function () {
         return wp.t;
