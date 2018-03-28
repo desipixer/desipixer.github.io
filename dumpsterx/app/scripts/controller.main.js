@@ -156,6 +156,7 @@ app.controller('myCtrl', ['$scope', '$http', 'service.util', '$q', 'service.auth
     };
 
     $scope.configSettings = [
+        "settings7.json",
         "settings6.json",
         "settings5.json",
         "settings4.json",
@@ -252,7 +253,7 @@ app.controller('myCtrl', ['$scope', '$http', 'service.util', '$q', 'service.auth
     /**
      * Gets wpKeys from config files and populates array
      */
-    fetch('config/settings6.json').then(function (response) {
+    fetch('config/settings7.json').then(function (response) {
         return response.json();
     }).then(function (data) {
         if (typeof data == "string") {
