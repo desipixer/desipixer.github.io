@@ -617,6 +617,18 @@ app.controller('myCtrl', ['$scope', '$http', 'service.util', '$q', 'service.auth
             } catch (ex) {
                 console.log("EXCEPTION : ", ex)
             }
+        } else {
+            //get selected site's blog key and id.
+            var selectedSite = $scope.selectedSite;
+            console.log(selectedSite);
+            let temparr = $scope.postSiteList.filter(function (obj) {
+                return obj.url == selectedSite;
+            });
+
+            if (temparr.length > 0) {
+                bearerToken = temparr[0].k;
+                wpBlogId = temparr[0].id;
+            }
         }
 
         $http({
