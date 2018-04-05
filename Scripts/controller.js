@@ -12,6 +12,14 @@
             y: 0
         }
     }
+    $scope.postBlogs = imageService.postBlogs;
+    $scope.selectPostBlog = imageService.selPostBlog;
+    $scope.accessToken = "";
+
+    $scope.selectedBlog = function () {
+        imageService.selPostBlog = $scope.selectPostBlog;
+        console.log("post blog changed to " + $scope.selectPostBlog);
+    }
 
     window.scroll($scope.location.x, $scope.location.y);
 
@@ -286,6 +294,8 @@
         postObject.postTitle = obj.entry.title;
         postObject.postContent = '<div>'+ postService.getPostHTML(obj.entry) +'</div>';
         console.log(postObject);
+        var accessToken = $scope.accessToken;
+        console.log("accessToken : ", accessToken);
         postService.postFunction(postObject);
     }
 
