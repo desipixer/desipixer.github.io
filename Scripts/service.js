@@ -616,12 +616,12 @@ app.service('loginService', ['$http', '$q', function ($http, $q) {
 
 app.service('postService', ['$http', '$q', 'loginService', 'authUtil', function ($http, $q, loginService, authUtil) {
 
-    this.postFunction = function (postObject, accessToken) {
+    this.postFunction = function (postObject) {
         var title = postObject.postTitle + " ★ Desipixer  ★";
         var content = postObject.postContent;
         var blogId = postObject.blogId;
         loginService.getToken().then(function (data) {
-            var accessToken = accessToken || data.access_token;
+            var accessToken = data.access_token;
             var myJSObject = {
                 "content": content,
                 "title": title
