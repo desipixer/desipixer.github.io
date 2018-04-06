@@ -626,8 +626,8 @@ app.controller('myCtrl', ['$scope', '$http', 'service.util', '$q', 'service.auth
                                 $scope.postDataLoaded = true;
                                 $scope.postData = arr;
                                 $scope.postDataLength = arr.length;
-                                
-                            });;
+
+                            });
                         } else if (typeof totalItems == 'string') {
                             totalItems = parseInt(totalItems);
                             blogService.getAllItems(id, null, [], 1, totalItems, deferred).then(function (arr) {
@@ -636,14 +636,14 @@ app.controller('myCtrl', ['$scope', '$http', 'service.util', '$q', 'service.auth
                                 $scope.postDataLoaded = true;
                                 $scope.postData = arr;
                                 $scope.postDataLength = arr.length;
-                                
+
 
                             });
                         } else {
                             console.log("ERROR >> error getting total items");
                         }
-                    } catch {
-
+                    } catch (e) {
+                        console.log('ERROR occured ', e);
                     }
                 }
             })
@@ -668,7 +668,7 @@ app.controller('myCtrl', ['$scope', '$http', 'service.util', '$q', 'service.auth
          */
         $scope.postJson = function () {
             // check if postData has data, then start posting.
-            if($scope.postData.length > 0){
+            if ($scope.postData.length > 0) {
                 dumpImages($scope.postData);
             }
         }
@@ -823,6 +823,7 @@ app.controller('myCtrl', ['$scope', '$http', 'service.util', '$q', 'service.auth
         };
 
         $scope.configSettings = [
+            "settings8.json",
             "settings7.json",
             "settings6.json",
             "settings5.json",
