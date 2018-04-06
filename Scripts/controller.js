@@ -118,9 +118,9 @@
             imageService.totalItems = data.posts.totalItems;
             $scope.totalItems = data.posts.totalItems;
             console.log({
-                blogId: data.id,
-                blogURL: $scope.txtBlogName,
-                category: 1
+                "blogId": data.id,
+                "blogURL": $scope.txtBlogName,
+                "category": 1
             });
             if($scope.limitedResults == true){
                 maxResults = 50;

@@ -1,0 +1,26 @@
+{
+  "name": "dp",
+  "version": "1.0.0",
+  "description": "DP",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "desipixer",
+  "license": "MIT",
+  "dependencies": {
+    "cheerio": "^0.22.0",
+    "express": "^4.15.2",
+    "grunt": "^1.0.1",
+    "superagent": "^3.8.2",
+    "superagent-jsonp": "^0.2.0"
+  },
+  "devDependencies": {
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-jshint": "^1.0.0",
+    "grunt-contrib-uglify": "^1.0.1",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-html-build": "^0.6.0"
+  }
+}

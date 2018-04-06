@@ -20,3 +20,9 @@ var imagesDownload = function (url) {
 	img.src = url;
 	return img;
 }
+
+lightbox.option({
+	'resizeDuration': 0,
+	'imageFadeDuration': 0,
+	'wrapAround': true
+})

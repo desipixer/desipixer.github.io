@@ -7,20 +7,11 @@
   <link rel="shortcut icon" href="Images/icon.png" type="image/x-icon">
 
   <script src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
-
-  <script src="https://code.angularjs.org/1.2.18/angular-route.min.js"></script>
-  <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
   <script type="text/javascript" src="https://www.google.com/jsapi"></script>
   <script src="https://apis.google.com/js/api.js"></script>
-  <script src="Scripts/app.js"></script>
-  <script src="Scripts/service.js"></script>
-  <script src="Scripts/controller.js"></script>
-  <script src="Scripts/misc.js"></script>
-  <script src="lib/js/lightbox.min.js"></script>
-  <!-- <script src="lib/js/FileSaver.js"></script> -->
+  <script src="Scripts/vendor/vendor.js"></script>
+  <script src="Scripts/main/main.js"></script>
   <link href="lib/css/lightbox.min.css" rel="stylesheet">
-
   <style>
     img {
       height: 320px;
@@ -28,11 +19,7 @@
     }
   </style>
   <script>
-    lightbox.option({
-      'resizeDuration': 0,
-      'imageFadeDuration': 0,
-      'wrapAround': true
-    })
+
   </script>
 </head>
 
@@ -42,7 +29,9 @@
     <table class="table table-condensed">
       <tr>
         <td>
-          <a href="/"><button class="btn btn-info btn-sm"> HOME </button> </a>
+          <a href="/">
+            <button class="btn btn-info btn-sm"> HOME </button>
+          </a>
         </td>
         <td>
           <p>BLOG ID : {{blogId}} </p>
@@ -54,27 +43,34 @@
             ng-change="selectedSite()"></select>
           <button ng-click="sortBlogs()" class="btn btn-default"> SORT </button>
           <button ng-click="goUrl()" class="btn btn-link"> GO </button>
-          <span><input type="checkbox" ng-model="limitedResults" /> Short Feed </td></span>
+          <span>
+            <input type="checkbox" ng-model="limitedResults" /> Short Feed </td>
+        </span>
         </td>
 
         <td>
-          Filter : <input ng-model="searchText" /> <button ng-click="sortFeedByTitle()" class="btn btn-success"> Title Sort </button>
+          Filter :
+          <input ng-model="searchText" />
+          <button ng-click="sortFeedByTitle()" class="btn btn-success"> Title Sort </button>
         </td>
 
         <td>
           <button id="btnLogin" ng-click="userLogin()" ng-hide="IsLoggedIn()" class="btn btn-primary btn-sm">
-       Login
-     </button>
+            Login
+          </button>
           <button ng-hide="!(IsLoggedIn())" class="btn btn-danger btn-sm">
-       LogOut
-     </button>
+            LogOut
+          </button>
         </td>
 
       </tr>
       <tr>
         <td>
-          <button ng-click="getPreviousPosts(siteList)"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Prev</button>
-          <button ng-click="getNextPosts(siteList)"> Next <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button>
+          <button ng-click="getPreviousPosts(siteList)">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Prev</button>
+          <button ng-click="getNextPosts(siteList)"> Next
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+          </button>
         </td>
         <td>
           <p class="">TOTAL ITEMS : {{totalItems}} </p>
@@ -87,7 +83,8 @@
           <button ng-click="getPostsAll()" class="btn btn-primary"> ALL </button>
         </td>
         <td>
-          Search : <input ng-model="fastQueryText" ng-enter="queryText()" />
+          Search :
+          <input ng-model="fastQueryText" ng-enter="queryText()" />
           <button ng-click="queryText()" class="btn btn-warning btn-sm"> SEARCH </button>
         </td>
         <td>
@@ -98,17 +95,20 @@
 
     <div ng-hide="isActive('')">
       <span ng-repeat="entry in feedObj | filter : searchText" class="imageContainer" ng-hide="entry.thumbs.length < 2">
-    <a ng-href="#content/{{entry.id}}">    <img ng-src="{{entry.thumbs[0]}}" title="{{entry.title}}" /></a>
-    <span class="imgCount" > {{ entry.thumbs.length }} </span>
-    <span class="postContentButton"> <button class="btn btn-success" ng-click="postContent(this)"> POST </button> </span>
+        <a ng-href="#content/{{entry.id}}">
+          <img ng-src="{{entry.thumbs[0]}}" title="{{entry.title}}" />
+        </a>
+        <span class="imgCount"> {{ entry.thumbs.length }} </span>
+        <span class="postContentButton">
+          <button class="btn btn-success" ng-click="postContent(this)"> POST </button>
+        </span>
       </span>
     </div>
     <div ng-view>
 
     </div>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="Styles/styles.css" rel="stylesheet" />
+      <link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" />
+      <link href="Styles/styles.css" rel="stylesheet" />
 </body>
 
 </html>
