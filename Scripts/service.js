@@ -595,7 +595,17 @@ app.service('loginService', ['$http', '$q', function ($http, $q) {
             response_type: "token",
             scope: "http://www.blogger.com/feeds/"
         };
-        gapi.auth.authorize(parameters, this.callbackFn);
+
+        var parameters2 = {
+            "client_id" : selectedKey,
+            "scope" : "http://www.blogger.com/feeds/",
+            "response_type" : "permission",
+            "prompt"  : "consent"
+        }
+       // gapi.auth.authorize(parameters, this.callbackFn);
+
+       gapi.auth2.authorize(parameters2, this.callbackFn);
+
     }
     this.callbackFn = function (data) {
         deferred.resolve(data);
@@ -621,6 +631,7 @@ app.service('postService', ['$http', '$q', 'loginService', 'authUtil', function 
         var content = postObject.postContent;
         var blogId = postObject.blogId;
         loginService.getToken().then(function (data) {
+            debugger;
             var accessToken = data.access_token;
             var myJSObject = {
                 "content": content,
