@@ -8,8 +8,9 @@ module.exports = function (grunt) {
 					'lib/js/angular.min.js',
 					'lib/js/angular-route.min.js',
 					'lib/js/jquery-1.11.1.min.js',
-					'lib/js/lightbox.min.js',
-					'lib/js/bootstrap.min.js'
+					'lib/js/bootstrap.min.js',
+					'lib/js/axios.min.js',
+					'lib/js/lightbox.min.js'
 				],
 				dest: 'Scripts/vendor/vendor.js'
 			},
@@ -18,6 +19,8 @@ module.exports = function (grunt) {
 					'Scripts/app.js',
 					'Scripts/service.data.js',
 					'Scripts/service.login.js',
+					'Scripts/service.util.js',
+					'Scripts/service.post.js',
 					'Scripts/service.js',
 					'Scripts/controller.js',
 					'Scripts/misc.js'
