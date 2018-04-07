@@ -2,6 +2,7 @@
     $scope.xStartIndex = 0;
     $scope.xThumbnails = [];
     $scope.feedObj = [];
+    $scope.currentIndex = 1;
     $scope.startIndex = imageService.startIndex;
     $scope.clientKeys = loginService.clientKeys;
     const maxResults = imageService.maxResults;
@@ -20,7 +21,7 @@
         $scope.location.y = window.scrollY;
     }
 
-    $scope.getSite = function (blogName, startIndex, maxResults = 500) {
+    $scope.getSite = function (blogName, startIndex, maxResults = 100) {
         if($scope.limitedResults == true){
             maxResults = 50;
         }
