@@ -655,13 +655,29 @@ app.service('postService', ['loginService', 'authService', function (loginServic
     }
 
 }]);
-app.service('imageService', ['$http', '$q', "blogutil","service.data", function ($http, $q, blogutil, dataService) {
+app.service('urlService', ['authService', function (authService) {
+
+    var getBlogIdUrl = function(blogName){
+        key = authService.k;
+        return `https://www.googleapis.com/blogger/v3/blogs/byurl?key=${key}&url=${blogName}`;
+    }
+
+    var getBlogFeedUrl = function(blogId = '7833828309523986982', startIndex = 1, maxResults = 500){
+        return `https://www.blogger.com/feeds${blogId}/posts/default?start-index=${startIndex}&max-results=${maxResults}&alt=json&callback=JSON_CALLBACK`;
+    }
+
+    return {
+        getBlogIdUrl : getBlogIdUrl,
+        getBlogFeedUrl : getBlogFeedUrl
+    }
+}]);
+app.service('imageService', ['$http', '$q', "blogutil","service.data", "urlService", function ($http, $q, blogutil, dataService, urlService) {
     //Variables Declaration
     var entries = [];
     var blogId = "";
     var startIndex = 0001;
     var totalItems = 0001;
-    var maxResults = 500;
+    var maxResults = 100;
     var bloggerKey = "AIzaSyCIEuVxD1SFWMNBTtc24gBtuVExstlSGEQ";
     var selPostBlog = "7833828309523986982";
     var defaults = Object.freeze({
@@ -672,20 +688,12 @@ app.service('imageService', ['$http', '$q', "blogutil","service.data", function 
 
     this.getBlogId = function (blogName) {
         var deferred = $q.defer();
-        var URL = "https://www.googleapis.com/blogger/v3/blogs/byurl";
-        var params = {
-            key: "AIzaSyAb3tFTPvsduIR2xopIVpYhwKMQ5ac_5Po",
-            url: blogName
-        }
-        var queryString = blogutil.objToQueryString(params);
-        URL += queryString;
-
-        $http.get(URL).success(function (data) {
+        var reqUrl = urlService.getBlogIdUrl(blogName);
+        $http.get(reqUrl).success(function (data) {
             blogId = data.id;
             totalItems = data.posts.totalItems;
             deferred.resolve(data);
         });
-        //console.log(deferred.promise);
         return deferred.promise;
     }
 
@@ -693,12 +701,9 @@ app.service('imageService', ['$http', '$q', "blogutil","service.data", function 
 
     function getAllPosts(blogId, startIndex, maxResults, arr) {
 
-        var startIndex = startIndex || 1;
-        var maxResults = maxResults || 500;
-        //entries = entries || [];
         try {
-            var URL = "https://www.blogger.com/feeds/" + blogId + "/posts/default?start-index=" + startIndex + "&max-results=" + maxResults + "&alt=json&callback=JSON_CALLBACK";
-            $http.jsonp(URL).success(function (data) {
+            var reqUrl = urlService.getBlogFeedUrl(blogId, startIndex, maxResults);
+            $http.jsonp(reqUrl).success(function (data) {
                 //deferred.resolve(data);
                 var arr1 = [];
                 angular.forEach(data.feed.entry, function (entryX) {
@@ -724,7 +729,7 @@ app.service('imageService', ['$http', '$q', "blogutil","service.data", function 
     function getAllPosts3(blogId, startIndex = 1, maxResults = 500, arr = []) {
         
         try {
-            var URL = "https://www.blogger.com/feeds/" + blogId + "/posts/default?start-index=" + startIndex + "&max-results=" + maxResults + "&alt=json&callback=JSON_CALLBACK";
+            var URL = urlService.getBlogFeedUrl(blogId, startIndex, maxResults);
             $http.jsonp(URL).success(function (data) {
                 //deferred.resolve(data);
                 var arr1 = [];
@@ -1095,14 +1100,6 @@ app.service('blogutil', function () {
         }
     }
 
-    var objToQueryString = function (obj) {
-        var str = "?";
-        for (key of Object.keys(obj)) {
-            str += key + "=" + obj[key] + "&";
-        }
-        return str.substring(0, str.length - 1);
-    }
-
 
     return {
         parseFeed: parseFeed,
@@ -1112,8 +1109,7 @@ app.service('blogutil', function () {
         getFeedObj: getFeedObj,
         lazyLoadingImages: lazyLoadingImages,
         searchObjectArray: searchObjectArray,
-        compareTitle: compareTitle,
-        objToQueryString: objToQueryString
+        compareTitle: compareTitle
     }
 });
 app.controller('homeCtrl', function ($scope, imageService, loginService, postService, $sce, $location, $q, $http, blogutil) {

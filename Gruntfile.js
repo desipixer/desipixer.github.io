@@ -21,6 +21,7 @@ module.exports = function (grunt) {
 					'Scripts/services/service.login.js',
 					'Scripts/services/service.auth.js',
 					'Scripts/services/service.post.js',
+					'Scripts/services/service.url.js',
 					'Scripts/services/service.js',
 					'Scripts/controller.js',
 					'Scripts/misc.js'
