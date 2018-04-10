@@ -17,11 +17,11 @@ module.exports = function (grunt) {
 			basic : {
 				src : [
 					'Scripts/app.js',
-					'Scripts/service.data.js',
-					'Scripts/service.login.js',
-					'Scripts/service.util.js',
-					'Scripts/service.post.js',
-					'Scripts/service.js',
+					'Scripts/services/service.data.js',
+					'Scripts/services/service.login.js',
+					'Scripts/services/service.auth.js',
+					'Scripts/services/service.post.js',
+					'Scripts/services/service.js',
 					'Scripts/controller.js',
 					'Scripts/misc.js'
 				],

@@ -720,6 +720,34 @@ app.service('imageService', ['$http', '$q', "blogutil","service.data", function 
         return deferredX.promise;
     }
 
+
+    function getAllPosts3(blogId, startIndex = 1, maxResults = 500, arr = []) {
+        
+        try {
+            var URL = "https://www.blogger.com/feeds/" + blogId + "/posts/default?start-index=" + startIndex + "&max-results=" + maxResults + "&alt=json&callback=JSON_CALLBACK";
+            $http.jsonp(URL).success(function (data) {
+                //deferred.resolve(data);
+                var arr1 = [];
+                angular.forEach(data.feed.entry, function (entryX) {
+                    arr1.push(entryX);
+                });
+                arr = arr.concat(arr1);
+                if (totalItems > startIndex) {
+                    getAllPosts(blogId, startIndex + 500, maxResults, arr);
+                } else {
+                    deferredX.resolve(arr);
+                    entries = arr;
+                    return deferredX.promise;
+                }
+            });
+        } catch (ex) {
+            console.log("ERROR >>", ex);
+        }
+
+        return deferredX.promise;
+    }
+
+
     /**
      * Get all posts using this method.
      */
@@ -1092,6 +1120,7 @@ app.controller('homeCtrl', function ($scope, imageService, loginService, postSer
     $scope.xStartIndex = 0;
     $scope.xThumbnails = [];
     $scope.feedObj = [];
+    $scope.currentIndex = 1;
     $scope.startIndex = imageService.startIndex;
     $scope.clientKeys = loginService.clientKeys;
     const maxResults = imageService.maxResults;
@@ -1110,7 +1139,7 @@ app.controller('homeCtrl', function ($scope, imageService, loginService, postSer
         $scope.location.y = window.scrollY;
     }
 
-    $scope.getSite = function (blogName, startIndex, maxResults = 500) {
+    $scope.getSite = function (blogName, startIndex, maxResults = 100) {
         if($scope.limitedResults == true){
             maxResults = 50;
         }
