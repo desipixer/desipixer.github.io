@@ -157,14 +157,17 @@ app.service('UtilManager', function(){
 	returns URL for corresponding call 
 */
 app.service('URLService', function(AuthService,UtilManager){
-	
+	var settings = {
+		maxResults : 100
+	}
+
 	var getFeedURLByID = function(blogID){
 		var feedURL = "https://www.blogger.com/feeds/";
 		feedURL = feedURL.concat(blogID);
 		feedURL = feedURL.concat("/posts/default");
 		var qsObj = {};
 		qsObj["start-index"] = 1;
-		qsObj["max-results"] = 500;
+		qsObj["max-results"] = settings.maxResults;
 		qsObj["alt"] = "json";
 		qsObj["callback"] = "JSON_CALLBACK";
 		var queryString = UtilManager.objToQueryString(qsObj);
@@ -186,7 +189,7 @@ app.service('URLService', function(AuthService,UtilManager){
 		feedURL = feedURL.concat("/posts/default");
 		var qsObj = {};
 		qsObj["start-index"] = 1;
-		qsObj["max-results"] = 500;
+		qsObj["max-results"] = settings.maxResults;
 		qsObj["alt"] = "json";
 		qsObj["q"] = searchText;
 		qsObj["callback"] = "JSON_CALLBACK";

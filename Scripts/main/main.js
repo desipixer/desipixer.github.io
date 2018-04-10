@@ -512,6 +512,8 @@ app.service('loginService', ['$http', '$q', function ($http, $q) {
         }
         // gapi.auth.authorize(parameters, this.callbackFn);
 
+
+
         gapi.auth2.authorize(parameters2, this.callbackFn);
 
     }
@@ -523,11 +525,21 @@ app.service('loginService', ['$http', '$q', function ($http, $q) {
     this.callbackFn = function (data) {
         _this.apiData = data;
         _this.accessToken = data.access_token;
+        window.localStorage.setItem('dpAuthToken', data.access_token);
+        window.localStorage.setItem('dpTokenExpiry', new Date().getTime());
         deferred.resolve(data);
     }
 
     this.getToken = function () {
-        if(_this.apiData){
+        if(window.localStorage.getItem('dpAuthToken')){
+            var at = window.localStorage.getItem('dpAuthToken');
+            var data = {
+                "access_token" : at
+            };
+            deferred.resolve(data);
+            return deferred.promise;
+        }
+        else if(_this.apiData){
             deferred.resolve(this.apiData);
             return deferred.promise;
         } else {
@@ -663,7 +675,7 @@ app.service('urlService', ['authService', function (authService) {
     }
 
     var getBlogFeedUrl = function(blogId = '7833828309523986982', startIndex = 1, maxResults = 500){
-        return `https://www.blogger.com/feeds${blogId}/posts/default?start-index=${startIndex}&max-results=${maxResults}&alt=json&callback=JSON_CALLBACK`;
+        return `https://www.blogger.com/feeds/${blogId}/posts/default?start-index=${startIndex}&max-results=${maxResults}&alt=json&callback=JSON_CALLBACK`;
     }
 
     return {
