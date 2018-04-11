@@ -823,6 +823,7 @@ app.controller('myCtrl', ['$scope', '$http', 'service.util', '$q', 'service.auth
         };
 
         $scope.configSettings = [
+            "settings9.json",
             "settings8.json",
             "settings7.json",
             "settings6.json",
