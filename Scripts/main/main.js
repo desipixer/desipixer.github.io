@@ -525,21 +525,20 @@ app.service('loginService', ['$http', '$q', function ($http, $q) {
     this.callbackFn = function (data) {
         _this.apiData = data;
         _this.accessToken = data.access_token;
-        window.localStorage.setItem('dpAuthToken', data.access_token);
-        window.localStorage.setItem('dpTokenExpiry', new Date().getTime());
+        window.sessionStorage.setItem('dpAuthToken', data.access_token);
         deferred.resolve(data);
     }
 
     this.getToken = function () {
-        if(window.localStorage.getItem('dpAuthToken')){
-            var at = window.localStorage.getItem('dpAuthToken');
+        if (window.sessionStorage.getItem('dpAuthToken')) {
+            var at = window.sessionStorage.getItem('dpAuthToken');
             var data = {
-                "access_token" : at
+                "access_token": at
             };
             deferred.resolve(data);
             return deferred.promise;
         }
-        else if(_this.apiData){
+        else if (_this.apiData) {
             deferred.resolve(this.apiData);
             return deferred.promise;
         } else {
@@ -547,7 +546,6 @@ app.service('loginService', ['$http', '$q', function ($http, $q) {
         }
         return deferred.promise;
     }
-
 
     return {
         logMeIn: this.logMeIn,
