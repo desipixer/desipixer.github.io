@@ -468,6 +468,7 @@ app.service('service.data', function () {
         postBlogsiteList: postBlogsiteList
     }
 });
+
 /**
  * This module will be used as LoginService which interacts with Google services.
  * 
@@ -477,6 +478,8 @@ app.service('loginService', ['$http', '$q', function ($http, $q) {
 
     this.accessToken = null;
     this.apiData = null;
+    const DP_AUTH_TOKEN_KEY = "dpAuthToken";
+    const DP_EXPIRATION_TIME_KEY = "dpExpirationTime";
 
     let _this = this;
     var deferred = $q.defer();
@@ -525,15 +528,14 @@ app.service('loginService', ['$http', '$q', function ($http, $q) {
     this.callbackFn = function (data) {
         _this.apiData = data;
         _this.accessToken = data.access_token;
-        window.sessionStorage.setItem('dpAuthToken', data.access_token);
+        setAccessToken(data.access_token);
         deferred.resolve(data);
     }
 
     this.getToken = function () {
-        if (window.sessionStorage.getItem('dpAuthToken')) {
-            var at = window.sessionStorage.getItem('dpAuthToken');
+        if (getAccessToken()) {
             var data = {
-                "access_token": at
+                "access_token": getAccessToken()
             };
             deferred.resolve(data);
             return deferred.promise;
@@ -545,6 +547,37 @@ app.service('loginService', ['$http', '$q', function ($http, $q) {
             _this.logMeIn();
         }
         return deferred.promise;
+    }
+
+    /**
+     * check if sessionStorage contains accessToken already.
+     * If present, check for expiration time,
+     * If not return null, so value can be set.
+     */
+    function getAccessToken(){
+        if(window.sessionStorage && window.sessionStorage.getItem(DP_AUTH_TOKEN_KEY)){
+            // check for expiration time.
+            var expTime = window.sessionStorage.getItem(DP_EXPIRATION_TIME_KEY);
+            if(!expTime){
+                return null;
+            }
+            if(expTime > new Date().getTime()){
+                return window.sessionStorage.getItem(DP_AUTH_TOKEN_KEY);
+            }
+        }
+        return null;
+    }
+
+    function setAccessToken(accessToken = null){
+        var currentTime = new Date();
+        var expirationTime = currentTime.setMinutes(currentTime.getMinutes() + 60);
+        if(window.sessionStorage){
+            window.sessionStorage.setItem(DP_AUTH_TOKEN_KEY, accessToken);
+            window.sessionStorage.setItem(DP_EXPIRATION_TIME_KEY, expirationTime);
+        } else {
+            // doesn't support session storage.
+            console.log("ERROR >> Browser doesn't support session storage");
+        }
     }
 
     return {
