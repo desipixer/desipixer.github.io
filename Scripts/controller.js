@@ -293,7 +293,13 @@
     /***** default site loaded *******/
     $scope.getSite("http://www.desipixer.blogspot.com", 1, 50);
 
+    $scope.postBlogs = imageService.postBlogs;
+    $scope.selectPostBlog = imageService.selPostBlog;
 
+    $scope.selectedBlog = function () {
+        imageService.selPostBlog = $scope.selectPostBlog;
+        console.log("post blog changed to " + $scope.selectPostBlog);
+    }
 
 });
 

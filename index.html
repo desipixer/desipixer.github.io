@@ -91,6 +91,12 @@
           <p> Index : {{startIndex}} </p>
         </td>
       </tr>
+      <tr>
+        <td>
+          POST BLOG:
+          <select ng-model="selectPostBlog" ng-change="selectedBlog()" ng-options="blog.blogId as blog.blogURL for blog in postBlogs">	</select>
+        </td>
+      </tr>
     </table>
 
     <div ng-hide="isActive('')">
