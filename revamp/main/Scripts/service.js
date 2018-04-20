@@ -233,7 +233,7 @@ app.service('SessionService', function(){
 
 
 app.service('pinService', function(){
-	var appID = "4820759117729638536";
+	var appID = "4962356321656519229";
 
 	var redirect = window.location.origin + window.location.pathname;
 
@@ -243,7 +243,7 @@ app.service('pinService', function(){
 	    IG_OAUTH: 'https://instagram.com/oauth/authorize/?client_id=886a47a524e14842bb4dde8b4d2823c9&redirect_uri='+ redirect +'&response_type=token',
 	    IG_FEED: 'https://api.instagram.com/v1/users/self/media/recent/?count=12&callback=_instaFeed&access_token=',
 	    IG_COOKIE: 'ig_token',
-	    PIN_APP: '4820759117729638536',
+	    PIN_APP: '4962356321656519229',
 	    PIN_FIELDS: 'id,name,image[small]',
 	    PIN_SCOPE: 'read_public, write_public'
 	};
