@@ -1,4 +1,6 @@
-export class GPost {
+// each GoogleAPI post might have the following.
+
+export class BPost {
     constructor(obj, type = 0) {
         this.obj = obj;
         this.type = type;
@@ -11,9 +13,8 @@ export class GPost {
             imgTags.forEach(function (img, i) {
                 var imgURL = img.match(/(https?:\/\/.*\.(?:png|jpg))/ig);
                 if (imgURL != undefined && imgURL.length > 0) {
-
                     /* get large images if it is a blogger site images */
-                    if (imgURL[0].indexOf("bp.blogspot.com") !== -1 && imgURL[0].indexOf("telugu.zustcinema_film_news_updates.png") == -1) {
+                    if (imgURL[0].indexOf("bp.blogspot.com") !== -1) {
                         var imgSplit = imgURL[0].split('/');
                         var imgRes = imgSplit.splice(imgSplit.length - 2, 1);
                         let largeIMG = imgURL[0].replace(imgRes, "s1600");
@@ -21,10 +22,19 @@ export class GPost {
                     }
                 }
             });
-
         }
         return imgArray;
     }
+
+    static createPost(obj){
+        return {
+            "id" : obj.id + "-"+ obj.blog.id,
+            "url" : obj.url,
+            "images" : this.getImages(obj.content),
+            "title" : obj.title
+        }
+    }
+
 
     static getCleanPost(obj) {
         let id = obj.id.$t;

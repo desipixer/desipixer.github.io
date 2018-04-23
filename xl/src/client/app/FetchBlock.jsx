@@ -17,7 +17,7 @@ export default class FetchBlock extends React.Component {
             posts: [],
             imagesLoaded: false,
             startIndex : 1,
-            maxResults : 50,
+            maxResults : 300,
             currentIndex : 1
         }
     }
