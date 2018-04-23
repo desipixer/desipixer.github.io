@@ -291,7 +291,7 @@
     }
 
     /***** default site loaded *******/
-    $scope.getSite("http://www.desipixer.blogspot.com", 1, 50);
+    $scope.getSite("http://www.desipixer.blogspot.com", 1, 100);
 
     $scope.postBlogs = imageService.postBlogs;
     $scope.selectPostBlog = imageService.selPostBlog;

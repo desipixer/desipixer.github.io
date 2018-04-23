@@ -4,7 +4,7 @@ app.service('imageService', ['$http', '$q', "blogutil","service.data", "urlServi
     var blogId = "";
     var startIndex = 0001;
     var totalItems = 0001;
-    var maxResults = 100;
+    var maxResults = 200;
     var bloggerKey = "AIzaSyCIEuVxD1SFWMNBTtc24gBtuVExstlSGEQ";
     var selPostBlog = "7833828309523986982";
     var defaults = Object.freeze({
