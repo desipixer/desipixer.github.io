@@ -39,7 +39,7 @@
 
     <div id ='myPosts' style='padding-top:20px'>
         <span v-for="post in blogData">
-            <span style="">
+            <span>
                     <img :src="`${post.thumb}`" style="width:320px;height:480px" v-bind:title="`${post.title}`" v:on-mouseover="showTitle"/>    
             </span>
             
