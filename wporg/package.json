@@ -18,6 +18,8 @@
     "babel-preset-react": "^6.24.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "vue": "^2.5.16",
+    "vuejs": "^3.0.1",
     "webpack": "^4.1.1"
   },
   "devDependencies": {
@@ -25,6 +27,7 @@
     "loglevel": "^1.6.1",
     "superagent": "^3.8.2",
     "superagent-jsonp": "^0.2.1",
+    "vue-router": "^3.0.1",
     "webpack-cli": "^2.0.12"
   }
 }

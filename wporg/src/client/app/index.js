@@ -40,6 +40,14 @@ function main() {
                     wpBlog.setTotalPosts(data.found);
                     totalPosts = wpBlog.getTotalPosts();
                     console.log(totalPosts);
+
+
+                    // create vue element now.
+                    let el = new Vue({
+                        data : data,
+                        el : '#myPosts'
+                    });
+
                 }
                 //console.log(res.data);
                 
@@ -54,4 +62,18 @@ function main() {
 
 }
 
+
+function vueTest(){
+    let vm = new Vue({
+        data : {
+            "lastname" : "muthuvel",
+            "firstname" : "senthil"
+        },
+        el : '#myData'
+    });
+
+}
+
 main();
+
+vueTest();

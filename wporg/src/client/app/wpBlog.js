@@ -18,7 +18,5 @@ export class WpBlog {
     getTotalPosts(){
         return this.totalPosts;
     }
-
-
-
 }
+

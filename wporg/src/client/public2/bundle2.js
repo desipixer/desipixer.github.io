@@ -392,62 +392,62 @@ eval("// shim for using process in browser\nvar process = module.exports = {};\n
 
 /***/ }),
 
-/***/ "./src/client/app/globals.js":
-/*!***********************************!*\
-  !*** ./src/client/app/globals.js ***!
-  \***********************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\n\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nvar globals = exports.globals = function () {\n    function globals() {\n        _classCallCheck(this, globals);\n    }\n\n    _createClass(globals, null, [{\n        key: \"getGlobals\",\n        value: function getGlobals() {\n            return {\n                setMax: true\n            };\n        }\n    }]);\n\n    return globals;\n}();\n\n//# sourceURL=webpack:///./src/client/app/globals.js?");
-
-/***/ }),
-
-/***/ "./src/client/app/index.js":
+/***/ "./src/client/app2/blog.js":
 /*!*********************************!*\
-  !*** ./src/client/app/index.js ***!
+  !*** ./src/client/app2/blog.js ***!
   \*********************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: Blog */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("\n\nvar _axios = __webpack_require__(/*! axios */ \"./node_modules/axios/index.js\");\n\nvar _axios2 = _interopRequireDefault(_axios);\n\nvar _util = __webpack_require__(/*! ./util.url */ \"./src/client/app/util.url.js\");\n\nvar _wpBlog = __webpack_require__(/*! ./wpBlog */ \"./src/client/app/wpBlog.js\");\n\nvar _globals = __webpack_require__(/*! ./globals */ \"./src/client/app/globals.js\");\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nfunction main() {\n    var postsLink = \"\";\n    var settings = _globals.globals.getGlobals();\n    var wpBlog = new _wpBlog.WpBlog(null, null, null);\n    //get url from google api.\n    var reqUrl = _util.urlutil.getWpSites();\n    _axios2.default.get(reqUrl).then(function (res) {\n        var data = res.data;\n        if (data) {\n            wpBlog = new _wpBlog.WpBlog(data.ID, data.URL, []);\n            console.log(wpBlog);\n            var meta = data.meta;\n            if (meta) {\n                var links = meta.links;\n                if (links) {\n                    postsLink = links.posts;\n                    //console.log(\"posts link : \", postsLink)\n                }\n            }\n        }\n    }).then(function (res) {\n        // now get all posts.\n        console.log(\"posts link : \", postsLink);\n\n        _axios2.default.get(postsLink).then(function (res) {\n            var data = res.data;\n            if (data) {\n                console.log(data);\n                // get total posts\n                var totalPosts = wpBlog.getTotalPosts();\n                console.log(totalPosts);\n\n                // set total posts now.\n                wpBlog.setTotalPosts(data.found);\n                totalPosts = wpBlog.getTotalPosts();\n                console.log(totalPosts);\n\n                // create vue element now.\n                var el = new Vue({\n                    data: data,\n                    el: '#myPosts'\n                });\n            }\n            //console.log(res.data);\n        });\n    }).catch(function (err) {\n        console.log(\"err : \", err);\n    });\n}\n\nfunction vueTest() {\n    var vm = new Vue({\n        data: {\n            \"lastname\": \"muthuvel\",\n            \"firstname\": \"senthil\"\n        },\n        el: '#myData'\n    });\n}\n\nmain();\n\nvueTest();\n\n//# sourceURL=webpack:///./src/client/app/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"Blog\", function() { return Blog; });\nclass Blog {\n    constructor(id, url) {\n        this.id = id;\n        this.url = url;\n        this.posts = [];\n    }\n\n    getBlogId() {\n        return this.id;\n    }\n\n    getBlogUrl() {\n        return this.url;\n    }\n\n    getBlogPosts() {\n        return this.posts;\n    }\n\n    setBlogPosts(posts) {\n        this.posts = posts;\n    }\n}\n\n//# sourceURL=webpack:///./src/client/app2/blog.js?");
 
 /***/ }),
 
-/***/ "./src/client/app/util.url.js":
-/*!************************************!*\
-  !*** ./src/client/app/util.url.js ***!
-  \************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\n\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nvar urlutil = exports.urlutil = function () {\n    function urlutil(name) {\n        _classCallCheck(this, urlutil);\n    }\n\n    _createClass(urlutil, [{\n        key: 'getBlogPosts',\n        value: function getBlogPosts(blogId, maxResults) {\n            var feedUrl = getGoogleApiUrl(blogId, null, 500);\n            return axios.get(feedUrl);\n        }\n    }, {\n        key: 'getAllBlogPosts',\n        value: function getAllBlogPosts() {}\n    }], [{\n        key: 'getGoogleApiUrl',\n        value: function getGoogleApiUrl() {\n            var blogId = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '4985646326158465936';\n            var key = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'AIzaSyBZvR46qyUilZ6Fl5vn9oPnLZtYHnqSknE';\n            var maxResults = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 10;\n\n            return 'https://www.googleapis.com/blogger/v3/blogs/' + blogId + '/posts?fetchImages=true&key=' + key + '&maxResults=' + maxResults;\n        }\n    }, {\n        key: 'getWpFeed',\n        value: function getWpFeed() {\n            var wpId = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : \"\";\n\n            return '';\n        }\n    }, {\n        key: 'getWpSites',\n        value: function getWpSites() {\n            var wpSiteName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : \"www.glamistan.com\";\n\n            return 'https://public-api.wordpress.com/rest/v1.1/sites/' + wpSiteName;\n        }\n    }]);\n\n    return urlutil;\n}();\n\n//# sourceURL=webpack:///./src/client/app/util.url.js?");
-
-/***/ }),
-
-/***/ "./src/client/app/wpBlog.js":
+/***/ "./src/client/app2/index.js":
 /*!**********************************!*\
-  !*** ./src/client/app/wpBlog.js ***!
+  !*** ./src/client/app2/index.js ***!
   \**********************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\n\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nvar WpBlog = exports.WpBlog = function () {\n    function WpBlog(id, url, posts) {\n        _classCallCheck(this, WpBlog);\n\n        this.id = id;\n        this.url = url;\n        this.posts = [];\n        this.totalPosts = 0;\n    }\n\n    _createClass(WpBlog, [{\n        key: \"setPosts\",\n        value: function setPosts(posts) {\n            var _this = this;\n            _this.posts = posts;\n        }\n    }, {\n        key: \"setTotalPosts\",\n        value: function setTotalPosts(count) {\n            this.totalPosts = count;\n        }\n    }, {\n        key: \"getTotalPosts\",\n        value: function getTotalPosts() {\n            return this.totalPosts;\n        }\n    }]);\n\n    return WpBlog;\n}();\n\n//# sourceURL=webpack:///./src/client/app/wpBlog.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ \"./node_modules/axios/index.js\");\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _blog__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./blog */ \"./src/client/app2/blog.js\");\n/* harmony import */ var _post__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./post */ \"./src/client/app2/post.js\");\n/* harmony import */ var _util_url__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./util.url */ \"./src/client/app2/util.url.js\");\n\n\n\n\n\nfunction main() {\n\n    var reqUrl = _util_url__WEBPACK_IMPORTED_MODULE_3__[\"UrlUtil\"].getGoogleApiUrl();\n    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(reqUrl).then((res) => {\n        console.log(res.status);\n\n        console.log(res.data);\n        var data = res.data;\n        var rawEntry = data.feed.entry;\n\n        if (rawEntry) {\n            //\n            console.log(rawEntry);\n        }\n\n    })\n\n}\n\n//# sourceURL=webpack:///./src/client/app2/index.js?");
+
+/***/ }),
+
+/***/ "./src/client/app2/post.js":
+/*!*********************************!*\
+  !*** ./src/client/app2/post.js ***!
+  \*********************************/
+/*! exports provided: Post */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"Post\", function() { return Post; });\nclass Post {\n    constructor(id, thumb, images) {\n        this.id = id;\n        this.thumb = thumb;\n        this.images = images;\n    }\n\n    getImages() {\n        return this.images;\n    }\n\n    getThumb() {\n        return this.thumb;\n    }\n\n}\n\n//# sourceURL=webpack:///./src/client/app2/post.js?");
+
+/***/ }),
+
+/***/ "./src/client/app2/util.url.js":
+/*!*************************************!*\
+  !*** ./src/client/app2/util.url.js ***!
+  \*************************************/
+/*! exports provided: UrlUtil */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"UrlUtil\", function() { return UrlUtil; });\nclass UrlUtil {\n    constructor(){\n\n    }\n\n    static getGoogleApiUrl(blogId = '4985646326158465936', key = 'AIzaSyBZvR46qyUilZ6Fl5vn9oPnLZtYHnqSknE', maxResults = 10){\n        return `https://www.googleapis.com/blogger/v3/blogs/${blogId}/posts?fetchImages=true&key=${key}&maxResults=${maxResults}`;\n    }\n}\n\n//# sourceURL=webpack:///./src/client/app2/util.url.js?");
 
 /***/ }),
 
 /***/ 0:
-/*!***************************************!*\
-  !*** multi ./src/client/app/index.js ***!
-  \***************************************/
+/*!****************************************!*\
+  !*** multi ./src/client/app2/index.js ***!
+  \****************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("module.exports = __webpack_require__(/*! /Users/senthilmpro/Documents/GitHub/desipixer.github.io/wporg/src/client/app/index.js */\"./src/client/app/index.js\");\n\n\n//# sourceURL=webpack:///multi_./src/client/app/index.js?");
+eval("module.exports = __webpack_require__(/*! /Users/senthilmpro/Documents/GitHub/desipixer.github.io/wporg/src/client/app2/index.js */\"./src/client/app2/index.js\");\n\n\n//# sourceURL=webpack:///multi_./src/client/app2/index.js?");
 
 /***/ })
 
