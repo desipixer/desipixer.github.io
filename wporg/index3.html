@@ -37,14 +37,21 @@
             <input type="checkbox" id="showFullResolution" checked="false" v-on:click="makeChange" /> Full Resolution
         </span>
         <span style="padding-left:20px">
-                <input type="checkbox" id="showLinksCheckBox" v-on:click="showLinks" /> Show Links
+            <input type="checkbox" id="showLinksCheckBox" v-on:click="showLinks" /> Show Links
+        </span>
+        <span style="padding-left:20px">
+                <select>
+                    <option value="https://upcomingtollywoodmovies.com">https://upcomingtollywoodmovies.com</option>
+                    <option value="https://moviegalleri.net/">https://moviegalleri.net/</option>
+                </select>
         </span>
     </div>
     <div id='myImages' style='padding-top:50px'>
         <span v-for="post in posts">
             <div>
                 <div>
-                    <h2>{{post.title}}
+                    <h2>{{post.title}}</h2>
+                    <h2>
                         <a :href="`${post.link}`" style='padding-left:10px' target='_blank'>Link</a>
                     </h2>
                 </div>

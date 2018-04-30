@@ -20,22 +20,24 @@ export class PostUtil {
         return imgArr;
     }
 
-    static getImagesCheerio(htmlContent){
-        if(!htmlContent){
+    static getImagesCheerio(htmlContent) {
+        if (!htmlContent) {
             return []
         }
         var images = [];
         var $ = cheerio.load(htmlContent);
-        $('img').each(function(index,value) {
+        $('img').each(function (index, value) {
             var src = $(this).attr('src');
-            images.push(src);
+            if (src) {
+                images.push(src);
+            }
         });
         return images;
     }
 
-    static getThumb(imgUrl){
-        if(imgUrl){
-            imgUrl = imgUrl.replace(/s1600/gi,"s480");
+    static getThumb(imgUrl) {
+        if (imgUrl) {
+            imgUrl = imgUrl.replace(/s1600/gi, "s480");
             return imgUrl;
         }
         return "";

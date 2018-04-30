@@ -162,6 +162,10 @@ function getWordpressObj(myUrl, pageNum = 1) {
                 data.forEach((v, i) => {
                     try {
                         var htmlContent = v.content.rendered;
+                        var postTitle = v.title.rendered;
+                        if(postTitle && postTitle.indexOf('Desipixer') == -1){
+                            postTitle += " ★ Desipixer ★";
+                        }
                         var images = PostUtil.getImagesCheerio(htmlContent);
                         let isFullResolution = isFullResolutionChecked();
                         if(isFullResolution == true){
@@ -169,7 +173,7 @@ function getWordpressObj(myUrl, pageNum = 1) {
                         }
                         allImages = allImages.concat(images);
                         var postContent = {
-                            title: v.title.rendered,
+                            title: postTitle,
                             images: images,
                             link: v.link
                         }
