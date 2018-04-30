@@ -12,24 +12,7 @@ import cheerio from 'cheerio';
 var settings = Settings.getSettings();
 var blog = new Blog(settings.defaultUrl, settings.pageNum, settings.perPage);
 
-// init vue components
-var postComponent = new Vue({
-    data: {
-        "blogData": []
-    },
-    el: '#myPosts',
-    methods: {
-        showTitle: function () {
-            console.log(this.title);
-        },
-        getImages: function (id) {
-            console.log(this.id);
-            router.push({
-                path: '/images/1'
-            })
-        }
-    }
-});
+
 
 var imageContent = new Vue({
     data: {
@@ -78,18 +61,6 @@ var prevButton = new Vue({
     }
 });
 
-const ImageRoute = {
-    template: '<div> aaa {{ $route.params.id }} </div>'
-}
-
-const router = new VueRouter({
-    routes: [
-        {
-            path: '/images/:id',
-            component: ImageRoute
-        }
-    ]
-});
 
 
 
@@ -123,31 +94,14 @@ var getSiteBtn = new Vue({
 })
 
 
-function main() {
-    let settings = Settings.getSettings();
-
-
-    var reqUrl = UrlUtil.getGoogleApiUrl();
-    axios.get(reqUrl).then((res) => {
-        console.log(res.status);
-
-        console.log(res.data);
-        // set next page token.
-        blog.setBlogNextToken(res.data.nextPageToken);
-        populateData(res.data);
-
-    });
-
-}
-
 /**
  * init the page here with default url.
  */
 function init() {
     var reqUrl = UrlUtil.getWpPosts();
-    //var defaultUrl = UrlUtil.getDefaultUrl();
+    var defaultUrl = settings.defaultUrl;
     //https://moviegalleri.net/
-    var defaultUrl = "http://www.cinejolly.com/";//"https://moviegalleri.net/";
+    //var defaultUrl = "http://www.cinejolly.com/";//"https://moviegalleri.net/";
     getWordpressObj(defaultUrl);
 
 }
@@ -208,47 +162,4 @@ function getWordpressObj(myUrl, pageNum = 1) {
         console.log("ERROR >> Url in invalid format.");
     }
 }
-
-function populateData(data) {
-    var rawEntry = data.items;
-    var postData = [];
-    if (rawEntry) {
-        console.log(rawEntry);
-        rawEntry.forEach((v, i) => {
-            var blogPost = new Post(v);
-            postData.push(blogPost);
-        });
-
-        updatePostsContent(postData);
-
-
-    }
-}
-
-function updatePostsContent(data) {
-    postComponent.blogData = data;
-}
-
-function getBlogId(blogUrl) {
-    var reqUrl = UrlUtil.getBlogIdByUrl(blogUrl);
-    return axios.get(reqUrl).then((res) => {
-        console.log(res.data);
-        var data = res.data;
-        blog = new Blog(data.id, data.url);
-        reqUrl = UrlUtil.getGoogleApiUrl(data.id, settings.key, settings.maxResults, null);
-        axios.get(reqUrl).then((res) => {
-            console.log(res.status);
-            //debugger;
-            console.log(res.data);
-            // set next page token.
-            blog.setBlogNextToken(res.data.nextPageToken);
-            populateData(res.data);
-
-        });
-    });
-}
-
-const app = new Vue({ router }).$mount('#app')
-
-//main();
 init();

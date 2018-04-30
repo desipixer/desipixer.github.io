@@ -4,7 +4,7 @@ export class Settings {
     }
     static getSettings() {
         return {
-            "defaultUrl" : "https://moviegalleri.net/",
+            "defaultUrl" : "http://www.imagesqueen.com",
             "pageNum" : 1,
             "perPage" : 10
         }
