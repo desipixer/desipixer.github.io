@@ -13,7 +13,8 @@ var blog = new Blog(settings.defaultUrl, settings.pageNum, settings.perPage);
 var imageContent = new Vue({
     data: {
         "images": [],
-        "posts": []
+        "posts": [],
+        "showLinks" : false
     },
     el: '#myImages'
 });
@@ -57,7 +58,39 @@ var prevButton = new Vue({
     }
 });
 
+var checkBoxFullResolution = new Vue({
+    el : '#showFullResolution',
+    data : {
 
+    },
+    methods : {
+        makeChange : function(){
+            var pageNum = blog.getPageNum()
+            getWordpressObj(blog.getUrl(), pageNum);
+        }
+    }
+});
+
+var showLinksCheckBox = new Vue({
+    el : '#showLinksCheckBox',
+    data : {
+
+    },
+    methods : {
+        showLinks : function(){
+            imageContent.showLinks = !imageContent.showLinks;
+            var pageNum = blog.getPageNum();
+            getWordpressObj(blog.getUrl(), pageNum);
+        }
+    }
+})
+
+function isFullResolutionChecked(){
+    //
+    let isChecked = document.getElementById('showFullResolution').checked;
+    console.log(isChecked);
+    return isChecked;
+}
 
 
 var getSiteBtn = new Vue({
@@ -130,7 +163,10 @@ function getWordpressObj(myUrl, pageNum = 1) {
                     try {
                         var htmlContent = v.content.rendered;
                         var images = PostUtil.getImagesCheerio(htmlContent);
-                        //console.log(images);
+                        let isFullResolution = isFullResolutionChecked();
+                        if(isFullResolution == true){
+                            images = images.map(x => PostUtil.replaceStringWp(x));
+                        }
                         allImages = allImages.concat(images);
                         var postContent = {
                             title: v.title.rendered,

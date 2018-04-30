@@ -14,7 +14,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+        crossorigin="anonymous">
 
     <style>
         .imgThumb {
@@ -32,14 +33,34 @@
         <span style="padding-left:20px"></span>
         <input type="text" id="siteName" style="width:300px" value="https://moviegalleri.net/" />
         <button class="btn btn-default" id="myPostsId" v-on:click="getSite">GET</button>
+        <span style="padding-left:20px">
+            <input type="checkbox" id="showFullResolution" checked="false" v-on:click="makeChange" /> Full Resolution
+        </span>
+        <span style="padding-left:20px">
+                <input type="checkbox" id="showLinksCheckBox" checked="false" v-on:click="showLinks" /> Show Links
+        </span>
     </div>
     <div id='myImages' style='padding-top:50px'>
         <span v-for="post in posts">
             <div>
-                <div> <h2>{{post.title}} <a :href="`${post.link}`" style='padding-left:10px' target='_blank'>Link</a> </h2> </div>
                 <div>
-                    <span v-for="img in post.images">
-                        <a :href="`${img}`" target='_blank' ><img :src="`${img}`" class='imgThumb' /></a>
+                    <h2>{{post.title}}
+                        <a :href="`${post.link}`" style='padding-left:10px' target='_blank'>Link</a>
+                    </h2>
+                </div>
+                <div>
+                    <span v-if="showLinks == true">
+                        <span v-for="img in post.images">
+                            <a :href="`${img}`" target='_blank'>
+                                <img :src="`${img}`" class='imgThumb' />
+                            </a>
+                        </span>
+
+                    </span>
+                    <span v-else-if="showLinks == false">
+                        <span v-for="img in post.images">
+                            <img :src="`${img}`" class='imgThumb' />
+                        </span>
                     </span>
                 </div>
             </div>

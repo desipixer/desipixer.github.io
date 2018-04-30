@@ -41,4 +41,20 @@ export class PostUtil {
         return "";
     }
 
+
+    static replaceStringWp(str) {
+        if (!str) {
+            return null;
+        }
+        var regex = /-\d+x\d+.jpg/g;
+        var match = regex.exec(str);
+        if (match) {
+            if (match.length > 0) {
+                str = str.replace(match[0], ".jpg");
+            }
+        }
+        str = str.replace('thumbs/thumbs_', '');
+        return str;
+    }
+
 }

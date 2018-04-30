@@ -4,7 +4,7 @@ export class Settings {
     }
     static getSettings() {
         return {
-            "defaultUrl" : "http://www.imagesqueen.com",
+            "defaultUrl" : "https://southcelebrities.com/",
             "pageNum" : 1,
             "perPage" : 10
         }
