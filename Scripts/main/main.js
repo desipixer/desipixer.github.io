@@ -745,7 +745,7 @@ app.service('imageService', ['$http', '$q', "blogutil","service.data", "urlServi
     function getAllPosts(blogId, startIndex, maxResults, arr) {
 
         try {
-            var reqUrl = urlService.getBlogFeedUrl(blogId, startIndex, maxResults);
+            var reqUrl = urlService.getBlogFeedUrl(blogId, startIndex, 500);
             $http.jsonp(reqUrl).success(function (data) {
                 //deferred.resolve(data);
                 var arr1 = [];
@@ -754,7 +754,7 @@ app.service('imageService', ['$http', '$q', "blogutil","service.data", "urlServi
                 });
                 arr = arr.concat(arr1);
                 if (totalItems > startIndex) {
-                    getAllPosts(blogId, startIndex + 500, maxResults, arr);
+                    getAllPosts(blogId, startIndex + 500, 500, arr);
                 } else {
                     deferredX.resolve(arr);
                     entries = arr;
