@@ -14,42 +14,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
     <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
-    
-</head>
-
-<body>
-    <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-    <div>
-        <div class='container-fluid'>
-            <div id="app" />
-        </div>
-        
-    </div>
-
-
-    <div id='myData' style='top:0;position:fixed;z-index:100;background-color: #ffffff; width:100%'>
-        <button class="btn btn-default" id="btnPrevPosts" v-on:click="getPrev">PREV</button>
-        <button class="btn btn-default" id="btnNextPosts" v-on:click="getNext">NEXT</button>
-        <span style="padding-left:20px"></span>
-        <input type="text" id="siteName" style="width:300px" value="https://desipixer.blogspot.com/" />
-        <button class="btn btn-default" id="getSiteId" v-on:click="getSite">GET</button>
-    </div>
-
-    <div id ='myPosts' style='padding-top:20px'>
-        <span v-for="post in blogData">
-            <span>
-                    <img :src="`${post.thumb}`" style="width:320px;height:480px" v-bind:title="`${post.title}`" v:on-mouseover="showTitle"/>    
-            </span>
-            
-        </span>
-    </div>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
         crossorigin="anonymous">
+</head>
 
+<body>
+    
+        <div id='myData' style='top:0;position:fixed;z-index:100;background-color: #ffffff; width:100%'>
+            <button class="btn btn-default" id="btnPrevPosts" v-on:click="getPrev">PREV</button>
+            <button class="btn btn-default" id="btnNextPosts" v-on:click="getNext">NEXT</button>
+            <span style="padding-left:20px"></span>
+            <input type="text" id="siteName" style="width:300px" value="https://desipixer.blogspot.com/" />
+            <button class="btn btn-default" id="myPostsId" v-on:click="getSite">GET</button>
+        </div>
+        <div id="app">
+                <router-link to="/images/1"> sadfasf</router-link>
+                <router-view></router-view>
+        </div>
+
+        <div id='myPosts' style='padding-top:20px'>
+            <span v-for="post in blogData">
+                <span>
+                        
+                        <img :src="`${post.thumb}`" style="width:320px;height:480px" v-bind:title="`${post.title}`" v:on-mouseover="showTitle" v-on:click='getImages'
+                        />
+                   
+                </span>
+
+            </span>
+        </div>
+
+        
+
+  
     <script src="src/client/public2/bundle.js"></script>
+
 </body>
 
 </html>
