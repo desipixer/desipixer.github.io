@@ -5,10 +5,6 @@ import { Settings } from './settings';
 import { UrlUtil } from './util.url';
 import { PostUtil } from './util.post';
 import cheerio from 'cheerio';
-//import VueRouter from 'vue-router';
-//import router from 'vue-router';
-//import Vue from 'vue';
-//import Vue from 'vue';
 var settings = Settings.getSettings();
 var blog = new Blog(settings.defaultUrl, settings.pageNum, settings.perPage);
 
@@ -98,12 +94,8 @@ var getSiteBtn = new Vue({
  * init the page here with default url.
  */
 function init() {
-    var reqUrl = UrlUtil.getWpPosts();
     var defaultUrl = settings.defaultUrl;
-    //https://moviegalleri.net/
-    //var defaultUrl = "http://www.cinejolly.com/";//"https://moviegalleri.net/";
     getWordpressObj(defaultUrl);
-
 }
 
 
