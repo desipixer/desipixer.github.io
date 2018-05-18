@@ -457,7 +457,10 @@ app.service('service.data', function () {
             "blogId": "8460581893105899988",
             "blogURL": "https://desipixer04.blogspot.com/",
             "category": 1
-        }
+        },
+        {blogId: "3744279159256825106", blogURL: "https://saree-pixer.blogspot.com/", category: 1},
+        {blogId: "3375188900476523711", blogURL: "https://hornydesiactress.blogspot.com/", category: 1},
+        {blogId: "3608341200992134490", blogURL: "https://desipiza.blogspot.com/", category: 1}
     ];
 
 
