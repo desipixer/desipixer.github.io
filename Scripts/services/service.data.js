@@ -8,6 +8,11 @@ app.service('service.data', function () {
             "blogURL": "http://www.desipixer.blogspot.com/",
             "category": 1
         },
+        {blogId: "5594796922719072874", blogURL: "https://www.telugucelebs.com", category: 1},
+        {blogId: "6382633314598071891", blogURL: "https://www.firstshowz.com/", category: 1},
+        {blogId: "9038545936593609994", blogURL: "https://www.filmnstars.com/", category: 1},
+        {blogId: "3164456237158089729", blogURL: "https://www.addatoday.com", category: 2},
+        {blogId: "726426979120525537", blogURL: "https://actressdoodles.blogspot.com", category: 1},
         {
             "blogId": "3079987222818050451",
             "blogURL": "http://movies.cinema65.com/",
@@ -428,7 +433,8 @@ app.service('service.data', function () {
         },
         {blogId: "3744279159256825106", blogURL: "https://saree-pixer.blogspot.com/", category: 1},
         {blogId: "3375188900476523711", blogURL: "https://hornydesiactress.blogspot.com/", category: 1},
-        {blogId: "3608341200992134490", blogURL: "https://desipiza.blogspot.com/", category: 1}
+        {blogId: "3608341200992134490", blogURL: "https://desipiza.blogspot.com/", category: 1},
+        {blogId: "2323645530443654738", blogURL: "https://navelshowz.blogspot.com/", category: 1}
     ];
 
 
