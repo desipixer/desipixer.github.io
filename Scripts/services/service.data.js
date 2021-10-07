@@ -8,11 +8,11 @@ app.service('service.data', function () {
             "blogURL": "http://www.desipixer.blogspot.com/",
             "category": 1
         },
-        {blogId: "5594796922719072874", blogURL: "https://www.telugucelebs.com", category: 1},
-        {blogId: "6382633314598071891", blogURL: "https://www.firstshowz.com/", category: 1},
-        {blogId: "9038545936593609994", blogURL: "https://www.filmnstars.com/", category: 1},
-        {blogId: "3164456237158089729", blogURL: "https://www.addatoday.com", category: 2},
-        {blogId: "726426979120525537", blogURL: "https://actressdoodles.blogspot.com", category: 1},
+        { blogId: "5594796922719072874", blogURL: "https://www.telugucelebs.com", category: 1 },
+        { blogId: "6382633314598071891", blogURL: "https://www.firstshowz.com/", category: 1 },
+        { blogId: "9038545936593609994", blogURL: "https://www.filmnstars.com/", category: 1 },
+        { blogId: "3164456237158089729", blogURL: "https://www.addatoday.com", category: 2 },
+        { blogId: "726426979120525537", blogURL: "https://actressdoodles.blogspot.com", category: 1 },
         {
             "blogId": "3079987222818050451",
             "blogURL": "http://movies.cinema65.com/",
@@ -270,171 +270,206 @@ app.service('service.data', function () {
         }
     ];
 
-    let postBlogsiteList = [
-        {
-            "blogId": "7833828309523986982",
-            "blogURL": "http://www.desipixer.blogspot.com/",
-            "category": 1
-        },
-        {
-            "blogId": "5935768727601291895",
-            "blogURL": "http://pixerdesi.blogspot.com/",
-            "category": 1
-        },
-        {
-            "blogId": "4938539013570546208",
-            "blogURL": "http://tamilpicz.blogspot.com/",
-            "category": 1
-        },
-        {
-            "blogId": "2313063316259818401",
-            "blogURL": "http://cinestillz.blogspot.com/",
-            "category": 1
-        },
-        {
-            "blogId": "1689491623003449378",
-            "blogURL": "http://pixerhub.blogspot.com/",
-            "category": 1
-        },
-        {
-            "blogId": "2360413207505978741",
-            "blogURL": "http://pixerblog.blogspot.com/",
-            "category": 1
-        },
-        {
-            "blogId": "7527460989335381985",
-            "blogURL": "http://pixerone.blogspot.com/",
-            "category": 1
-        },
-        {
-            "blogId": "8288428012409826912",
-            "blogURL": "http://samanthapix.blogspot.com/",
-            "category": 1
-        },
-        {
-            "blogId": "4729247519531040631",
-            "blogURL": "http://rakulpixer.blogspot.com/",
-            "category": 1
-        },
-        {
-            "blogId": "6614264041233815321",
-            "blogURL": "http://kajalpixer.blogspot.com/",
-            "category": 1
-        },
-        {
-            "blogId": "2016762340977866228",
-            "blogURL": "http://shriyapixer.blogspot.com/",
-            "category": 1
-        },
-        {
-            "blogId": "9026317655696914243",
-            "blogURL": "http://samanthapixer.blogspot.com/",
-            "category": 1
-        },
-        {
-            "blogId": "7770041580109253182",
-            "blogURL": "http://tamannapixer.blogspot.com/",
-            "category": 1
-        },
-        {
-            "blogId": "6586894154019969761",
-            "blogURL": "http://desipixerz.blogspot.com/",
-            "category": 1
-        },
-        {
-            "blogId": "2727757258846553498",
-            "blogURL": "https://pixer-master.blogspot.com/",
-            "category": 1
-        },
-        {
-            "blogId": "260546303850303554",
-            "blogURL": "https://mehreen-pirzada.blogspot.com/",
-            "category": 1
-        },
-        {
-            "blogId": "8286550106938870562",
-            "blogURL": "https://trisha-pix.blogspot.com",
-            "category": 1
-        },
-        {
-            "blogId": "8014469095416202791",
-            "blogURL": "https://anu-emmanuel.blogspot.com",
-            "category": 1
-        },
-        {
-            "blogId": "175938421274342604",
-            "blogURL": "https://shraddha-kapoor-photos.blogspot.com/",
-            "category": 1
-        },
-        {
-            "blogId": "8415970476188871245",
-            "blogURL": "https://bikini-bolly.blogspot.com/",
-            "category": 1
-        },
-        {
-            "blogId": "148589868162243740",
-            "blogURL": "https://dishapatani-pix.blogspot.com/",
-            "category": 1
-        },
-        {
-            "blogId": "7345164977335901912",
-            "blogURL": "https://bolly-glam.blogspot.com/",
-            "category": 1
-        },
-        {
-            "blogId": "7768880182878796665",
-            "blogURL": "https://cute-goddess.blogspot.com/",
-            "category": 1
-        },
-        {
-            "blogId": "2579625611323391584",
-            "blogURL": "https://cute-desi.blogspot.com/",
-            "category": 1
-        },
-        {
-            "blogId": "6853274516672689018",
-            "blogURL": "https://glam-desi.blogspot.com/",
-            "category": 1
-        },
-        {
-            "blogId": "7420263674707529141",
-            "blogURL": "https://hq-tollywood.blogspot.com/",
-            "category": 1
-        },
-        {
-            "blogId": "7646450543978764525",
-            "blogURL": "https://desipixer-all.blogspot.com/",
-            "category": 1
-        },
-        {
-            "blogId": "3119958128609957983",
-            "blogURL": "https://desi-saree.blogspot.com/",
-            "category": 1
-        },
-        {
-            "blogId": "873009466583458846",
-            "blogURL": "https://idlepix.blogspot.com/",
-            "category": 1
-        },
-        {
-            "blogId": "2578217001206641559",
-            "blogURL": "https://desipixer02.blogspot.com/",
-            "category": 1
-        },
-        {
-            "blogId": "1585528825343121306",
-            "blogURL": "https://desipixer03.blogspot.com/",
-            "category": 1
-        },
-        {
-            "blogId": "8460581893105899988",
-            "blogURL": "https://desipixer04.blogspot.com/",
-            "category": 1
-        },
-        {blogId: "3744279159256825106", blogURL: "https://saree-pixer.blogspot.com/", category: 1},
-        {blogId: "3375188900476523711", blogURL: "https://hornydesiactress.blogspot.com/", category: 1},
-        {blogId: "3608341200992134490", blogURL: "https://desipiza.blogspot.com/", category: 1},
-        {blogId: "2323645530443654738", blogURL: "https://navelshowz.blogspot.com/", category: 1}
+    let postBlogsiteList = [{
+        "blogId": "7833828309523986982",
+        "blogURL": "http://www.desipixer.blogspot.com/",
+        "category": 1
+    },
+    {
+        blogId: '5184898496929684986',
+        blogURL: 'https://sareepixer.blogspot.com/',
+        category: 1
+    },
+    {
+        blogId: '3744279159256825106',
+        blogURL: 'https://saree-pixer.blogspot.com/',
+        category: 1
+    },
+    {
+        blogId: '6816867960560383037',
+        blogURL: 'https://glamspots.blogspot.com/',
+        category: 1
+    },
+    {
+        blogId: '2687453290454507255',
+        blogURL: 'https://glampixer.blogspot.com/',
+        category: 1
+    },
+    {
+        "blogId": "5935768727601291895",
+        "blogURL": "http://pixerdesi.blogspot.com/",
+        "category": 1
+    },
+    {
+        "blogId": "4938539013570546208",
+        "blogURL": "http://tamilpicz.blogspot.com/",
+        "category": 1
+    },
+    {
+        "blogId": "2313063316259818401",
+        "blogURL": "http://cinestillz.blogspot.com/",
+        "category": 1
+    },
+    {
+        "blogId": "1689491623003449378",
+        "blogURL": "http://pixerhub.blogspot.com/",
+        "category": 1
+    },
+    {
+        "blogId": "2360413207505978741",
+        "blogURL": "http://pixerblog.blogspot.com/",
+        "category": 1
+    },
+    {
+        "blogId": "7527460989335381985",
+        "blogURL": "http://pixerone.blogspot.com/",
+        "category": 1
+    },
+    {
+        "blogId": "8288428012409826912",
+        "blogURL": "http://samanthapix.blogspot.com/",
+        "category": 1
+    },
+    {
+        "blogId": "4729247519531040631",
+        "blogURL": "http://rakulpixer.blogspot.com/",
+        "category": 1
+    },
+    {
+        "blogId": "6614264041233815321",
+        "blogURL": "http://kajalpixer.blogspot.com/",
+        "category": 1
+    },
+    {
+        "blogId": "2016762340977866228",
+        "blogURL": "http://shriyapixer.blogspot.com/",
+        "category": 1
+    },
+    {
+        "blogId": "9026317655696914243",
+        "blogURL": "http://samanthapixer.blogspot.com/",
+        "category": 1
+    },
+    {
+        "blogId": "7770041580109253182",
+        "blogURL": "http://tamannapixer.blogspot.com/",
+        "category": 1
+    },
+    {
+        "blogId": "6586894154019969761",
+        "blogURL": "http://desipixerz.blogspot.com/",
+        "category": 1
+    },
+    {
+        "blogId": "2727757258846553498",
+        "blogURL": "https://pixer-master.blogspot.com/",
+        "category": 1
+    },
+    {
+        "blogId": "260546303850303554",
+        "blogURL": "https://mehreen-pirzada.blogspot.com/",
+        "category": 1
+    },
+    {
+        "blogId": "8286550106938870562",
+        "blogURL": "https://trisha-pix.blogspot.com",
+        "category": 1
+    },
+    {
+        "blogId": "8014469095416202791",
+        "blogURL": "https://anu-emmanuel.blogspot.com",
+        "category": 1
+    },
+    {
+        "blogId": "175938421274342604",
+        "blogURL": "https://shraddha-kapoor-photos.blogspot.com/",
+        "category": 1
+    },
+    {
+        "blogId": "8415970476188871245",
+        "blogURL": "https://bikini-bolly.blogspot.com/",
+        "category": 1
+    },
+    {
+        "blogId": "148589868162243740",
+        "blogURL": "https://dishapatani-pix.blogspot.com/",
+        "category": 1
+    },
+    {
+        "blogId": "7345164977335901912",
+        "blogURL": "https://bolly-glam.blogspot.com/",
+        "category": 1
+    },
+    {
+        "blogId": "7768880182878796665",
+        "blogURL": "https://cute-goddess.blogspot.com/",
+        "category": 1
+    },
+    {
+        "blogId": "2579625611323391584",
+        "blogURL": "https://cute-desi.blogspot.com/",
+        "category": 1
+    },
+    {
+        "blogId": "6853274516672689018",
+        "blogURL": "https://glam-desi.blogspot.com/",
+        "category": 1
+    },
+    {
+        "blogId": "7420263674707529141",
+        "blogURL": "https://hq-tollywood.blogspot.com/",
+        "category": 1
+    },
+    {
+        "blogId": "7646450543978764525",
+        "blogURL": "https://desipixer-all.blogspot.com/",
+        "category": 1
+    },
+    {
+        "blogId": "3119958128609957983",
+        "blogURL": "https://desi-saree.blogspot.com/",
+        "category": 1
+    },
+    {
+        "blogId": "873009466583458846",
+        "blogURL": "https://idlepix.blogspot.com/",
+        "category": 1
+    },
+    {
+        "blogId": "2578217001206641559",
+        "blogURL": "https://desipixer02.blogspot.com/",
+        "category": 1
+    },
+    {
+        "blogId": "1585528825343121306",
+        "blogURL": "https://desipixer03.blogspot.com/",
+        "category": 1
+    },
+    {
+        "blogId": "8460581893105899988",
+        "blogURL": "https://desipixer04.blogspot.com/",
+        "category": 1
+    },
+    {
+        blogId: "3744279159256825106",
+        blogURL: "https://saree-pixer.blogspot.com/",
+        category: 1
+    },
+    {
+        blogId: "3375188900476523711",
+        blogURL: "https://hornydesiactress.blogspot.com/",
+        category: 1
+    },
+    {
+        blogId: "3608341200992134490",
+        blogURL: "https://desipiza.blogspot.com/",
+        category: 1
+    },
+    {
+        blogId: "2323645530443654738",
+        blogURL: "https://navelshowz.blogspot.com/",
+        category: 1
+    }
     ];
 
 
